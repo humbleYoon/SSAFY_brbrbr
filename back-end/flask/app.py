@@ -1,4 +1,6 @@
 from datetime import datetime
+from pytz import timezone
+
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse
@@ -12,19 +14,19 @@ api = Api(app)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 
-
 class USER(db.Model):
+    KST = datetime.now(timezone('Asia/Seoul'))
+
     __table_name__ = 'USER'
-    user_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(100), primary_key=True)
     email = db.Column(db.String(100))
     password = db.Column(db.String(100))
     name = db.Column(db.String(50))
     nickname = db.Column(db.String(50))
     age = db.Column(db.Integer)
     gender = db.Column(db.String(2))
-    created = db.Column(db.DateTime, default=datetime.utcnow())
-    updated = db.Column(db.DateTime, default=datetime.utcnow())
-
+    created = db.Column(db.DateTime, default=KST)
+    updated = db.Column(db.DateTime, default=KST)
 
 class UserAPI(Resource):
     def get(self):
@@ -48,7 +50,7 @@ class UserAPI(Resource):
         _gender = args['gender']
 
         hashed = generate_password_hash(_password, method='sha256')
-        user = USER(user_id=str(uuid.uuid4()), email=_email, password=_password,
+        user = USER(user_id=str(uuid.uuid4()), email=_email, password=hashed,
                     name=_name, nickname=_nickname, age=_age, gender=_gender)
         db.session.add(user)
         db.session.commit()

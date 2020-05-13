@@ -8,4 +8,3 @@ db = {
 
 SECRET_KEY = "brbr302"
 SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['database']}?charset=utf8"
-SQLALCHEMY_TRACK_MODIFICATIONS = False
