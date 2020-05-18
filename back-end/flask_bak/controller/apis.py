@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 
-def user_post():
+def user_post(app):
   user = request.json
   user_id = app
 
