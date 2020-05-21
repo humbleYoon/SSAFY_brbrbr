@@ -66,3 +66,7 @@ $ sudo nmcli dev wifi con 'SSID' password 'wifi-password'
 
 되었다 [오예](http://dveamer.github.io/ubuntu/HowToConnectWIFIOnCommandLine.html)
 
+
+
+[연결 관련 명령어 모음](https://qastack.kr/ubuntu/500310/wifi-drops-and-reconnects-with-ubuntu-14-04-realtek-rtl8188)
+
