@@ -81,6 +81,18 @@ $ cd ../  # attempting to load torchvision from build dir will result in import 
 $ pip install 'pillow<7' # always needed for Python 2.7, not needed torchvision v0.5.0+ with Python 3.6
 ```
 
+
+
+아니 나는 쿠다가 안 깔려 있는줄 알았지 왜냐면 nvcc가 안먹어서
+
+nvcc를 볼수있게 이수영이 해줬다. 그렇지만 CUDA는 v10.0이었고 
+
+파이토치는 9.2 10.1 10.2를 지원하는 모양이네.. ^^
+
+
+
+
+
 - NVIDIA driver
 
 ```bash
