@@ -1,0 +1,6 @@
+structure (Item) {
+  property (placeAndEvent) {
+    type (PlaceAndEvent)
+    min (Required)
+  }
+}

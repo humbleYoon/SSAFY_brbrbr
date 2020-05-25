@@ -1,0 +1,15 @@
+structure (Order) {
+  description (오더)
+  property (items) {
+    type(Item)
+    min (Required)
+  }
+  
+  property (orderNumber) {
+    type (OrderNumber)
+    min (Required)
+  }
+  features {
+    transaction
+  }
+}

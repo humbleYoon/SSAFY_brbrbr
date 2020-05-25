@@ -1,0 +1,10 @@
+action (CheckAuthenticationCode) {
+  description (__DESCRIPTION__)
+  collect {
+    input (authenticationCode) {
+      type (AuthenticationCode)
+      min (Required) max (One)
+    }
+  }
+  output (CheckedAuthenticationCode) 
+}

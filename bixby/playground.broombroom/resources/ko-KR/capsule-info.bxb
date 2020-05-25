@@ -1,0 +1,8 @@
+capsule-info {
+  display-name (Example Name)
+  developer-name (Example Developer)
+  description ("Example capsule description")
+  dispatch-name (Example Capsule)
+  // Set your own image for your capsule's icon
+  icon-asset (images/icons/bixby_launcher.png)
+}
