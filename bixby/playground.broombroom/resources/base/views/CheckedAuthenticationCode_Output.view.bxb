@@ -1,5 +1,57 @@
 result-view {
   match: CheckedAuthenticationCode (this)
 
-  message ("#{value(this)}")
+  render {
+    if (value(this) == 'Success') {
+      layout {
+        section {
+          content {
+            input-cell {
+              label {
+                template (성공했다!)
+              }
+              on-click {
+                intent {
+                  goal: CreateItem
+                  route: FindPlaceAndEvent
+                  value: 
+                }
+              }
+            }  
+          }
+        }
+      }
+    }
+    else {
+      layout {
+        section {
+          content {
+            input-cell {
+              label {
+                template (다시 입력하라고 쫌)
+              }
+              on-click {
+                intent {
+                  goal: CheckAuthenticationCode
+                }
+              }
+            }  
+          }
+        }
+      }
+    }
+  }
+
+  conversation-drivers {
+    if (value(this) == 'Success') {
+      conversation-driver {
+        template ("성공했다우!")
+      }
+    }
+    else {
+      conversation-driver {
+         template ("실패했다우..")
+      }
+    }
+  }
 }
