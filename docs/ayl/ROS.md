@@ -33,4 +33,30 @@
 
 #### 9. 임베디드 시스템
 
- 
+ OpenCR (Open-source Control module for ROS)
+
+
+
+#### 11. SLAM & Navigation
+
+SLAM (Simultaneous Localization And Mapping)
+
+1) 위치: 로봇의 위치 계측/추정
+
+	- 추측항법(dead reckoning): 양 바퀴 축의 회전 값을 이용, 이동 거리와 회전 값을 계산하여 위치 측정
+
+2) 센싱: 벽, 물체 등의 장애물 계측
+
+	- 거리센서
+	- 비전센서
+	- Depth camera
+
+3) 지도: 길과 장애물 정보가 담긴 지도
+
+	- 여기까지가 SLAM, 경로까지 전부라면 Navigation
+
+4) 경로: 목적지까지 최적 경로를 계산하고 주행
+
+	- 내비게이션
+	- 위치 추정
+	- 경로 탐색/계획
