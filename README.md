@@ -1,2 +1,11 @@
-부릉부릉2
-ROS2에서 ROS1으로 이동하기로 결정
+# 부릉부릉
+
+자율주행로봇을 만들겁니다.
+
+안내로봇을 중심으로 하는 자율주행로봇을 만들겁니다.
+
+세가지 파트로 나눠서 진행될 것입니다.
+
+
+
+![mobile-robot-outline](docs/images/mobile-robot-outline.png)
