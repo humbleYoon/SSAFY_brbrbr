@@ -1,8 +1,9 @@
 const successCode = 1124;
 
 module.exports.function = function checkAuthenticationCode (authenticationCode) {
-  var ret = "";
-  if (authenticationCode == successCode) ret = "Success";
-  else ret = "Failure";
-  return ret;
+  var checkedAuthenticationCode = {
+    authenticationCode: authenticationCode,
+    isSuccess: authenticationCode == successCode,
+  };
+  return checkedAuthenticationCode;
 }

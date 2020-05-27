@@ -16,5 +16,25 @@ endpoints {
       accepted-inputs (authenticationCode)
       local-endpoint (checkAuthenticationCode.js)
     }
+    action-endpoint (SearchPlaceAndEvent) {
+      accepted-inputs (authenticationCode, guideType)
+      local-endpoint (SearchPlaceAndEvent.js)
+    }
+    action-endpoint (CreateOrder) {
+      accepted-inputs (item)
+      local-endpoint ("CreateOrder.js")
+    }
+    // action-endpoint (UpdateOrder) {
+    //   accepted-inputs (order, addedItems, changedItems, removedItems)
+    //   local-endpoint ("UpdateOrder.js")
+    // }
+    // action-endpoint (CancelOrder) {
+    //   accepted-inputs (order)
+    //   local-endpoint ("CancelOrder.js")
+    // }
+    action-endpoint (CommitOrder) {
+      accepted-inputs (order)
+      local-endpoint ("CommitOrder.js")
+    }
   }
 }

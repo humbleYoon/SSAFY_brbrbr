@@ -1,0 +1,14 @@
+action (CreateOrder) {
+  type (BeginTransaction)
+  collect {
+    input (item) {
+      type (Item)
+      min (Required)
+      max (One)
+      default-init {
+        intent: goal: SearchPlaceAndEvent
+      }
+    }
+  }
+  output (Order)
+}

@@ -2,20 +2,33 @@ result-view {
   match: CheckedAuthenticationCode (this)
 
   render {
-    if (value(this) == 'Success') {
+    if (this.isSuccess) {
       layout {
         section {
           content {
             input-cell {
               label {
-                template (성공했다!)
+                template ()
+              }
+              value {
+                template (안내)
               }
               on-click {
                 intent {
-                  goal: CreateItem
-                  route: FindPlaceAndEvent
-                  value: 
+                  goal: SearchPlaceAndEvent
+                  value: $expr(this.authenticationCode)
+                  value: GuideType(안내)
                 }
+              }
+            }
+            input-cell {
+              label (투어)
+              on-click {
+              }
+            }
+            input-cell {
+              label {
+                template (니맘대로)
               }
             }  
           }

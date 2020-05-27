@@ -1,6 +1,17 @@
 structure (Item) {
+  property (authenticationCode) {
+    type (AuthenticationCode)
+    min (Required)
+    max (One)
+  }
+  property (guideType) {
+    type (GuideType)
+    min (Required)
+    max (One)
+  }
   property (placeAndEvent) {
     type (PlaceAndEvent)
     min (Required)
+    max (One)
   }
 }

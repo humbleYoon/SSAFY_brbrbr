@@ -1,0 +1,13 @@
+structure (CheckedAuthenticationCode) {
+  description (백엔드로부터 인증받은 정보)
+  property (authenticationCode) {
+    type (AuthenticationCode)
+    min (Required)
+    max (One)
+  }
+  property (isSuccess) {
+    type (IsSuccess)
+    min (Required)
+    max (One)
+  }
+}

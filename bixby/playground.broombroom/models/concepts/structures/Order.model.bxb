@@ -1,8 +1,9 @@
 structure (Order) {
   description (오더)
-  property (items) {
+  property (item) {
     type(Item)
     min (Required)
+    max (One)
   }
   
   property (orderNumber) {

@@ -1,0 +1,3 @@
+boolean (IsSuccess) {
+  description (인증 여부)
+}
