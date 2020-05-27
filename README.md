@@ -8,4 +8,4 @@
 
 
 
-![mobile-robot-outline](docs/images/mobile-robot-outline.png)
+![mobile-robot-outline](docs/images/mobile_robot_outline.png)
