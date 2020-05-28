@@ -12,22 +12,18 @@ endpoints {
     //     method (__HTTP_METHOD_USED__)
     //   }
     // }
-    action-endpoint (CheckAuthenticationCode) {
-      accepted-inputs (authenticationCode)
-      local-endpoint (checkAuthenticationCode.js)
-    }
     action-endpoint (SearchPlaceAndEvent) {
       accepted-inputs (authenticationCode, guideType)
       local-endpoint (SearchPlaceAndEvent.js)
     }
     action-endpoint (CreateOrder) {
-      accepted-inputs (item)
+      accepted-inputs (authenticationState, item)
       local-endpoint ("CreateOrder.js")
     }
-    // action-endpoint (UpdateOrder) {
-    //   accepted-inputs (order, addedItems, changedItems, removedItems)
-    //   local-endpoint ("UpdateOrder.js")
-    // }
+    action-endpoint (UpdateOrder) {
+      accepted-inputs (order, changedAuthenticationState, addGuideType, searchTerm, isArrived)
+      local-endpoint ("UpdateOrder.js")
+    }
     // action-endpoint (CancelOrder) {
     //   accepted-inputs (order)
     //   local-endpoint ("CancelOrder.js")
@@ -35,6 +31,10 @@ endpoints {
     action-endpoint (CommitOrder) {
       accepted-inputs (order)
       local-endpoint ("CommitOrder.js")
+    }
+    action-endpoint (GetAuthenticationState) {
+      accepted-inputs (authenticationCode)
+      local-endpoint ("GetAuthenticationState.js")
     }
   }
 }

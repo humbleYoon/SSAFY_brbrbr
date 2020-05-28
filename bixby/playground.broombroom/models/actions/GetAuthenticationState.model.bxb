@@ -1,0 +1,10 @@
+action (GetAuthenticationState) {
+  type (Constructor)
+  collect {
+    input (authenticationCode) {
+      type (AuthenticationCode)
+      min (Required) max (One)
+    }
+  }
+  output (ChangedAuthenticationState)
+}

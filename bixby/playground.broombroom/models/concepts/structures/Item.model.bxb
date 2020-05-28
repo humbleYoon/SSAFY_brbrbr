@@ -1,9 +1,4 @@
 structure (Item) {
-  property (authenticationCode) {
-    type (AuthenticationCode)
-    min (Required)
-    max (One)
-  }
   property (guideType) {
     type (GuideType)
     min (Required)
@@ -11,6 +6,11 @@ structure (Item) {
   }
   property (placeAndEvent) {
     type (PlaceAndEvent)
+    min (Required)
+    max (One)
+  }
+  property (robotState) {
+    type (RobotState)
     min (Required)
     max (One)
   }

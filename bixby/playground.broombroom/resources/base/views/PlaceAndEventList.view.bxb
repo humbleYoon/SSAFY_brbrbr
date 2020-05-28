@@ -1,46 +1,46 @@
 result-view {
   match: Item (this)
 
-  render {
-    layout {
-      section {
-        title {
-          template (장소)
-        }
-        content {
-          for-each (this.placeAndEvent.places) {
-            as (place) {
-              input-cell {
-                label {
-                  template ("{value(place.placeName)}")
-                }
-                on-click {
-                  intent {
-                    goal: CommitOrder
-                    value: Item(this)
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      section {
-        title {
-          template (행사)
-        }
-        content {
-          for-each (this.placeAndEvent.events) {
-            as (event) {
-              single-line {
-                text {
-                  value ("#{value(event.eventName)}")
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  // render {
+  //   layout {
+  //     section {
+  //       title {
+  //         template (장소)
+  //       }
+  //       content {
+  //         for-each (this.placeAndEvent.places) {
+  //           as (place) {
+  //             input-cell {
+  //               label {
+  //                 template ("{value(place.placeName)}")
+  //               }
+  //               on-click {
+  //                 intent {
+  //                   goal: CommitOrder
+  //                   value: Item(this)
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //     section {
+  //       title {
+  //         template (행사)
+  //       }
+  //       content {
+  //         for-each (this.placeAndEvent.events) {
+  //           as (event) {
+  //             single-line {
+  //               text {
+  //                 value ("#{value(event.eventName)}")
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }

@@ -1,8 +1,18 @@
-result-view {
-  match: CheckedAuthenticationCode (this)
-
-  render {
-    if (this.isSuccess) {
+confirmation-view {
+	match {
+		core.Confirmation {
+			confirming {
+				CommitOrder (action)
+			}
+		}
+	}
+	
+	message ("Are you sure you want to buy this?")
+	
+	mode (Transactional)
+	
+	render {
+    if (!!action.order.authenticationState.isAuthenticated) {
       layout {
         section {
           content {
@@ -12,13 +22,6 @@ result-view {
               }
               value {
                 template (안내)
-              }
-              on-click {
-                intent {
-                  goal: SearchPlaceAndEvent
-                  value: $expr(this.authenticationCode)
-                  value: GuideType(안내)
-                }
               }
             }
             input-cell {
@@ -41,30 +44,28 @@ result-view {
           content {
             input-cell {
               label {
-                template (다시 입력하라고 쫌)
+                template (인증 번호가 틀렸습니다. 다시 입력해주세요.)
               }
               on-click {
                 intent {
-                  goal: CheckAuthenticationCode
+                  goal {
+                    CommitOrder
+                    @context (Continuation) { Order }
+                  }
+                  route { UpdateOrder }
+                  route { GetAuthenticationState }
                 }
               }
-            }  
+            }
           }
         }
-      }
-    }
-  }
 
-  conversation-drivers {
-    if (value(this) == 'Success') {
-      conversation-driver {
-        template ("성공했다우!")
       }
     }
-    else {
-      conversation-driver {
-         template ("실패했다우..")
-      }
-    }
-  }
+		// layout-macro (CommitOrder_Section) {
+		// 	param (commitOrder) {
+		// 		expression (action)
+		// 	}
+		// }
+	}
 }

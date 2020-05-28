@@ -5,11 +5,11 @@ action (SearchPlaceAndEvent) {
     input (authenticationCode) {
       type (AuthenticationCode)
       min (Required) max (One)
-      default-init {
-        intent {
-          goal: CheckAuthenticationCode
-        }
-      }
+      // default-init {
+      //   intent {
+      //     goal: CheckAuthenticationCode
+      //   }
+      // }
     }
     input (guideType) {
       type (GuideType)

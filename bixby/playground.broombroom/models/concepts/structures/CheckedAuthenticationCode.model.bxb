@@ -5,8 +5,8 @@ structure (CheckedAuthenticationCode) {
     min (Required)
     max (One)
   }
-  property (isSuccess) {
-    type (IsSuccess)
+  property (isAuthenticated) {
+    type (IsAuthenticated)
     min (Required)
     max (One)
   }
