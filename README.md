@@ -72,7 +72,7 @@ rosserial을 통해 모터제어 명령을 수신받고 IMU, 휠 엔코더 등 �
 
 #### LiDAR 정보 및 수집 가공
 
-![image-20200529153832369](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20200529153832369.png)
+![image-20200529153832369](docs/images/lidar_test.png)
 
 라이다를 활용하여 실내 공간 센싱정보 획득하습니다.
 
