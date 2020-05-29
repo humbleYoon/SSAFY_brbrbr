@@ -41,7 +41,7 @@
 
 ### 이동 및 도착
 
-<img src="../images/bixby_move.png" alt="bixby_move" style="zoom:74%;" />**도착 선택**<img src="../images/bixby_arrival.png" alt="bixby_guide_type" style="zoom:90%;" />
+<img src="../images/bixby_move.png" alt="bixby_move" style="zoom:74%;" />**도착 선택**<img src="../images/bixby_arrival.png" alt="bixby_arrival" style="zoom:50%;" />
 
 - 로봇이 이동중일 때의 화면입니다.
 - 도착했을 시, 도착 버튼을 누르면 이동한 장소/행사에 대한 설명을 들을 수 있습니다.
