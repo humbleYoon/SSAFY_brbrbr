@@ -61,15 +61,38 @@ rosserial을 통해 모터제어 명령을 수신받고 IMU, 휠 엔코더 등 �
 
 ![image-20200527152619867](docs/images/odometry_part_outline.png)
 
-- LiDAR정보 수집 및 가공
-- rosserial을 통해 가공 데이터 수신 및 모터 제어명령 전송 
-- 원격 조절
+### 오도메트리부 핵심기능
+- LiDAR정보 수집 및 가공 
+- 원격 조정
 - SLAM
 - Navigation
+- ROS랑 백엔드 서버 연결...! :dagger:
 
-- ROS랑 백엔드 서버 연결..!(주의사항) :dagger:
 
 
+#### LiDAR 정보 및 수집 가공
+
+![image-20200529153832369](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20200529153832369.png)
+
+라이다를 활용하여 실내 공간 센싱정보 획득하습니다.
+
+
+
+#### 원격 조정
+
+커밍순
+
+#### SLAM
+
+커밍순
+
+#### Navigation
+
+커밍순
+
+#### 백엔드 서버와 연결
+
+커밍순
 
 
 
