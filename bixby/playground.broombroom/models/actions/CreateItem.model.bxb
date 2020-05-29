@@ -1,0 +1,16 @@
+action (CreateItem) {
+  type (Constructor)
+  collect {
+    input (placeAndEvent) {
+      type (PlaceAndEvent)
+      min (Required)
+
+      default-init {
+        intent {
+          goal: FindPlaceAndEvent
+        }
+      }
+    }
+  }
+  output (Item)
+}

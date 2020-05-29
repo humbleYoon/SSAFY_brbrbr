@@ -1,0 +1,10 @@
+structure (Place) {
+  property (placeName) {
+    type (PlaceName)
+    min (Required) max (One)
+  }
+  property (placeDescription) {
+    type (PlaceDescription)
+    min (Required) max (One)
+  }
+}

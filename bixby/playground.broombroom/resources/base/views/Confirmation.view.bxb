@@ -1,0 +1,71 @@
+confirmation-view {
+	match {
+		core.Confirmation {
+			confirming {
+				CommitOrder (action)
+			}
+		}
+	}
+	
+	message ("Are you sure you want to buy this?")
+	
+	mode (Transactional)
+	
+	render {
+    if (!!action.order.authenticationState.isAuthenticated) {
+      layout {
+        section {
+          content {
+            input-cell {
+              label {
+                template ()
+              }
+              value {
+                template (안내)
+              }
+            }
+            input-cell {
+              label (투어)
+              on-click {
+              }
+            }
+            input-cell {
+              label {
+                template (니맘대로)
+              }
+            }  
+          }
+        }
+      }
+    }
+    else {
+      layout {
+        section {
+          content {
+            input-cell {
+              label {
+                template (인증 번호가 틀렸습니다. 다시 입력해주세요.)
+              }
+              on-click {
+                intent {
+                  goal {
+                    CommitOrder
+                    @context (Continuation) { Order }
+                  }
+                  route { UpdateOrder }
+                  route { GetAuthenticationState }
+                }
+              }
+            }
+          }
+        }
+
+      }
+    }
+		// layout-macro (CommitOrder_Section) {
+		// 	param (commitOrder) {
+		// 		expression (action)
+		// 	}
+		// }
+	}
+}

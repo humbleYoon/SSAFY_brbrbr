@@ -1,0 +1,4 @@
+train (t-f35f5wxq8mqo4u5doo1kiean5) {
+  utterance ([g:CommitOrder:continue,r:UpdateOrder,r:GetAuthenticationState] 인증번호 입력할래)
+  last-modified (1590651512903)
+}
