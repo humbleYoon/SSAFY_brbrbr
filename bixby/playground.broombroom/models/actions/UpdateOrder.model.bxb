@@ -14,8 +14,8 @@ action (UpdateOrder) {
           min (Optional)
           max (One)
         }
-        input (addGuideType) {
-          type (AddGuideType)
+        input (changedItem) {
+          type (ChangedItem)
           min (Optional)
           max (One)
         }

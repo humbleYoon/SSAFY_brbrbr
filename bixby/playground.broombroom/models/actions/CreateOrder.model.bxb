@@ -11,6 +11,11 @@ action (CreateOrder) {
       min (Optional)
       max (One)
     }
+    input (step) {
+      type (Step)
+      min (Optional)
+      max (One)
+    }
   }
   output (Order)
 }
