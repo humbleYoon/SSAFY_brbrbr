@@ -14,6 +14,11 @@ structure (Order) {
     type (OrderNumber)
     min (Required)
   }
+  property (step){
+    type(Step)
+    min (Required)
+    max (One)
+  }
   features {
     transaction
   }

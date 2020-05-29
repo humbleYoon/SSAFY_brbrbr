@@ -21,7 +21,7 @@ endpoints {
       local-endpoint ("CreateOrder.js")
     }
     action-endpoint (UpdateOrder) {
-      accepted-inputs (order, changedAuthenticationState, addGuideType, searchTerm, isArrived)
+      accepted-inputs (order, changedAuthenticationState, changedItem, searchTerm, isArrived)
       local-endpoint ("UpdateOrder.js")
     }
     // action-endpoint (CancelOrder) {

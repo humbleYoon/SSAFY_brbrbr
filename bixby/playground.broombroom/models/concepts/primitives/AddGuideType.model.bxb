@@ -1,3 +1,0 @@
-enum (AddGuideType) {
-  role-of (GuideType)
-}
