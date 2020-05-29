@@ -1,0 +1,7 @@
+wheel_motor.cpp:11:6:void wheelDirInit()	48	static
+wheel_motor.cpp:35:6:void wheelPWMInit()	64	static
+wheel_motor.cpp:78:6:void moveStop()	8	static
+wheel_motor.cpp:87:6:void moveForword()	8	static
+wheel_motor.cpp:95:6:void moveBackword()	8	static
+wheel_motor.cpp:103:6:void moveLeft()	8	static
+wheel_motor.cpp:111:6:void moveRight()	8	static
