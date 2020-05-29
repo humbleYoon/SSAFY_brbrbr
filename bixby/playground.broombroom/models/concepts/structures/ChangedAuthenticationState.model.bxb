@@ -1,3 +1,0 @@
-structure (ChangedAuthenticationState) {
-  role-of (AuthenticationState)
-}

@@ -1,3 +1,0 @@
-integer (AuthenticationCode) {
-  description (인증 번호)
-}
