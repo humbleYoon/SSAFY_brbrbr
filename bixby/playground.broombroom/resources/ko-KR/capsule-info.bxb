@@ -5,4 +5,7 @@ capsule-info {
   dispatch-name (Example Capsule)
   // Set your own image for your capsule's icon
   icon-asset (images/icons/bixby_launcher.png)
+  search-keywords {
+    keyword (부릉부릉)
+  }
 }

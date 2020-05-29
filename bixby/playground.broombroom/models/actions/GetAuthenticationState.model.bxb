@@ -1,10 +1,10 @@
-action (CheckAuthenticationCode) {
-  description (__DESCRIPTION__)
+action (GetAuthenticationState) {
+  type (Constructor)
   collect {
     input (authenticationCode) {
       type (AuthenticationCode)
       min (Required) max (One)
     }
   }
-  output (CheckedAuthenticationCode) 
+  output (ChangedAuthenticationState)
 }

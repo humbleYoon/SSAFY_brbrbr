@@ -1,0 +1,3 @@
+boolean (IsArrived) {
+  description (사용자가 도착했는지 확인 버튼)
+}

@@ -1,13 +1,23 @@
 structure (Order) {
   description (오더)
-  property (items) {
+  property (authenticationState) {
+    type (AuthenticationState)
+    min (Required)
+    max (One)
+  }
+  property (item) {
     type(Item)
     min (Required)
+    max (One)
   }
-  
   property (orderNumber) {
     type (OrderNumber)
     min (Required)
+  }
+  property (step){
+    type(Step)
+    min (Required)
+    max (One)
   }
   features {
     transaction

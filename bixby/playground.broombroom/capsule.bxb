@@ -5,6 +5,14 @@ capsule {
   targets {
     target (bixby-mobile-ko-KR)
   }
+   capsule-imports {
+    import (viv.core) { 
+      as (core) 
+    }
+    import (viv.time) { 
+      as (time) version (3.1.115)
+    }
+  }
   runtime-version (7)
   store-countries {
     all

@@ -8,4 +8,20 @@ structure (Event) {
     type (EventDescription)
     min (Required) max (One)
   }
+  property (eventStartTime) {
+    type (EventStartTime)
+    min (Required) max (One)
+  }
+  property (eventEndTime) {
+    type (EventEndTime)
+    min (Required) max (One)
+  }
+  property (eventFloor) {
+    type (EventFloor)
+    min (Required) max (One)
+  }
+  property (eventRoomNumber) {
+    type (EventRoomNumber)
+    min (Required) max (One)
+  }
 }
