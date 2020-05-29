@@ -18,7 +18,7 @@
 
 3. 부릉부릉 캡슐을 실행합니다.
 
-   <img src="../images/bixby_market.png" alt="bixby_market" style="zoom:50%;" />	<img src="../images/bixby_market_brr.png" alt="bixby_market_brr" style="zoom:50%;" />	<img src="../images/bixby_market_brr_2.png" alt="bixby_market_brr_2" style="zoom:50%;" />
+   <img src="../images/bixby_market.png" alt="bixby_market" style="zoom:40%;" />	<img src="../images/bixby_market_brr.png" alt="bixby_market_brr" style="zoom:40%;" />	<img src="../images/bixby_market_brr_2.png" alt="bixby_market_brr_2" style="zoom:40%;" />
 
 
 
