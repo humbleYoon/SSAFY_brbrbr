@@ -1,0 +1,10 @@
+structure (Destination) {
+  property (destinationName) {
+    type (DestinationName)
+    min (Required) max (One)
+  }
+  property (destinationDescription) {
+    type (DestinationDescription)
+    min (Required) max (One)
+  }
+}

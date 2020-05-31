@@ -1,9 +1,9 @@
 enum (Step) {
   description (현재 서비스 진행 단계)
-  symbol (인증 페이지)
-  symbol (가이드 타입 선택 페이지)
-  symbol (안내 페이지)
-  symbol (이동중 페이지)
-  symbol (도착 페이지)
-  symbol (종료 페이지)
+  symbol (인증)
+  symbol (가이드 타입 선택)
+  symbol (안내)
+  symbol (이동중)
+  symbol (도착)
+  symbol (종료)
 }

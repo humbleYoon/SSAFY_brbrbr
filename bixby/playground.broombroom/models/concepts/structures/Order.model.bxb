@@ -7,16 +7,21 @@ structure (Order) {
   }
   property (item) {
     type(Item)
-    min (Required)
+    min (Optional)
     max (One)
   }
-  property (orderNumber) {
-    type (OrderNumber)
-    min (Required)
+  property (pressedCount) {
+    type (PressedCount)
+    min (Optional)
   }
   property (step){
     type(Step)
     min (Required)
+    max (One)
+  }
+  property (destination){
+    type (Destination)
+    min (Optional)
     max (One)
   }
   features {

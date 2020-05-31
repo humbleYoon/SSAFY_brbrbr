@@ -1,0 +1,3 @@
+integer (PressedCount) {
+  description (사용자가 도착 버튼을 누른 횟수)
+}
