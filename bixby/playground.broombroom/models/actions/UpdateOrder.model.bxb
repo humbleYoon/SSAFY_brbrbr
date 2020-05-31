@@ -19,13 +19,18 @@ action (UpdateOrder) {
           min (Optional)
           max (One)
         }
-        input (searchTerm) {
-          type (SearchTerm)
+        input (selectedPlaceName) {
+          type (SelectedPlaceName)
           min (Optional)
           max (One)
         }
-        input (isArrived) {
-          type (IsArrived)
+        input (selectedEventName) {
+          type (SelectedEventName)
+          min (Optional)
+          max (One)
+        }
+        input (currentRobotState) {
+          type (CurrentRobotState)
           min (Optional)
           max (One)
         }

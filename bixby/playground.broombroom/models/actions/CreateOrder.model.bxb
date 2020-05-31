@@ -1,21 +1,4 @@
 action (CreateOrder) {
   type (BeginTransaction)
-  collect {
-    input (authenticationState) {
-      type (AuthenticationState)
-      min (Optional)
-      max (One)
-    }
-    input (item) {
-      type (Item)
-      min (Optional)
-      max (One)
-    }
-    input (step) {
-      type (Step)
-      min (Optional)
-      max (One)
-    }
-  }
   output (Order)
 }

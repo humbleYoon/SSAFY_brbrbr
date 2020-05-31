@@ -13,15 +13,15 @@ endpoints {
     //   }
     // }
     action-endpoint (SearchPlaceAndEvent) {
-      accepted-inputs (authenticationCode, guideType)
+      accepted-inputs ()
       local-endpoint (SearchPlaceAndEvent.js)
     }
     action-endpoint (CreateOrder) {
-      accepted-inputs (authenticationState, item)
+      accepted-inputs ()
       local-endpoint ("CreateOrder.js")
     }
     action-endpoint (UpdateOrder) {
-      accepted-inputs (order, changedAuthenticationState, changedItem, searchTerm, isArrived)
+      accepted-inputs (order, changedAuthenticationState, changedItem, selectedPlaceName, selectedEventName, currentRobotState)
       local-endpoint ("UpdateOrder.js")
     }
     // action-endpoint (CancelOrder) {
@@ -35,6 +35,18 @@ endpoints {
     action-endpoint (GetAuthenticationState) {
       accepted-inputs (authenticationCode)
       local-endpoint ("GetAuthenticationState.js")
+    }
+    action-endpoint (SelectPlace) {
+      accepted-inputs (selectedPlaceName)
+      local-endpoint ("SelectPlace.js")
+    }
+    action-endpoint (SelectEvent) {
+      accepted-inputs (selectedEventName)
+      local-endpoint ("SelectEvent.js")
+    }
+    action-endpoint (IsPressedArrivalButton) {
+      accepted-inputs ()
+      local-endpoint ("IsPressedArrivalButton.js")
     }
   }
 }

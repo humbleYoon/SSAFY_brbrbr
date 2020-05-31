@@ -1,0 +1,5 @@
+action (IsPressedArrivalButton) {
+  type(Constructor)
+  description (사용자가 버튼을 눌렀을 때)
+  output (CurrentRobotState)
+}

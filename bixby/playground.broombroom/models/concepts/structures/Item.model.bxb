@@ -9,9 +9,4 @@ structure (Item) {
     min (Required)
     max (One)
   }
-  property (robotState) {
-    type (RobotState)
-    min (Required)
-    max (One)
-  }
 }

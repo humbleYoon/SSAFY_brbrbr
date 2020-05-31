@@ -13,7 +13,7 @@ confirmation-view {
 	
 	render {
     switch ("#{value(action.order.step)}") {
-      case ("인증 페이지") {
+      case ("인증") {
         layout {
           section {
             content {
@@ -36,7 +36,7 @@ confirmation-view {
           }
         }
       }
-      case ("가이드 타입 선택 페이지") {
+      case ("가이드 타입 선택") {
         layout {
           section {
             content {
@@ -72,7 +72,7 @@ confirmation-view {
           }
         }
       }
-      case("안내 페이지"){
+      case("안내"){
         layout {
           section {
             title {
@@ -85,12 +85,17 @@ confirmation-view {
                     label {
                       template ("#{value(place.placeName)}")
                     }
-                    // on-click {
-                    //   intent {
-                    //     goal: CommitOrder
-                    //     value: Item(this)
-                    //   }
-                    // }
+                    on-click {
+                      intent {
+                        goal {
+                          CommitOrder
+                          @context (Continuation) { Order }
+                        }
+                        route { UpdateOrder }
+                        route { SelectPlace }
+                        value: SelectedPlaceName(value(place.placeName))
+                      }
+                    }
                   }
                 }
               }
@@ -103,9 +108,20 @@ confirmation-view {
             content {
               for-each (action.order.item.placeAndEvent.events) {
                 as (event) {
-                  single-line {
-                    text {
-                      value ("#{value(event.eventName)}")
+                  input-cell {
+                    label {
+                      template ("#{value(event.eventName)}")
+                    }
+                    on-click {
+                      intent {
+                        goal {
+                          CommitOrder
+                          @context (Continuation) { Order }
+                        }
+                        route { UpdateOrder }
+                        route { SelectEvent }
+                        value: SelectedEventName(value(event.eventName))
+                      }
                     }
                   }
                 }
@@ -118,6 +134,54 @@ confirmation-view {
       // 		expression (action)
       // 	}
       // }
+      }
+      case("이동중"){
+        layout {
+          section {
+            title {
+              template (장소 또는 행사)
+            }
+            content {
+              input-cell {
+                label {
+                  template ()
+                }
+                value{
+                  template (도착 버튼)
+                }
+                on-click {
+                  intent {
+                    goal {
+                      CommitOrder
+                      @context (Continuation) { Order }
+                    }
+                    route { UpdateOrder }
+                    route { IsPressedArrivalButton }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      case("도착"){
+        layout {
+          section {
+            title {
+              template (해당 장소에 도착했습니다.)
+            }
+            content {
+              input-cell {
+                label {
+                  template ()
+                }
+                value{
+                  template ("#{value(action.order.destination.destinationDescription)}")
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
