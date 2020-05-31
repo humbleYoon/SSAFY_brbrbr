@@ -1,4 +1,11 @@
 action (CreateOrder) {
   type (BeginTransaction)
+  collect {
+    input (authenticationCode) {
+      type (AuthenticationCode)
+      min (Required)
+      max (One)
+    }
+  }
   output (Order)
 }

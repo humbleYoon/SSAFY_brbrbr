@@ -1,3 +1,7 @@
 module.exports.function = function selectEvent (selectedEventName) {
-  return selectedEventName
+  var destination = {
+    destinationName: selectedEventName,
+    destinationDescription: "더미 행사 설명",
+  }
+  return destination
 }

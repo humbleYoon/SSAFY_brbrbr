@@ -8,7 +8,6 @@ module.exports.function = function searchPlaceAndEvent () {
       places: placeAndEventList.places,
       events: placeAndEventList.events,
     },
-    robotState: "정지"
   }
   // console.log("placeAndEventList", placeAndEventList)
   // console.log(item)
