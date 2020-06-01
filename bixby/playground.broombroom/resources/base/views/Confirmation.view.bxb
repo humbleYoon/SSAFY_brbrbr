@@ -6,8 +6,51 @@ confirmation-view {
 			}
 		}
 	}
-	
-	message ("Are you sure you want to buy this?")
+
+  message {
+    switch ("#{value(action.order.step)}") {
+      case ("인증") {
+        template ("인증번호가 잘못 입력됐어요! 다시 입력해주세요.")
+      }
+      case ("가이드 타입 선택") {
+        template ("안내/투어 중 원하시는 서비스를 골라주세요!") {
+          speech("어떤 서비스가 필요하신가요?")
+        }
+      }
+      case ("안내") {
+        template ("어디로 안내해드릴까요?")
+      }
+      case ("정지") {
+        if (action.order.pressedCount > 0) {
+          template ("장소 : #{value(action.order.destination.destinationName)}") {
+            speech ("아직 도착하지 않았어요! 목적지에 도착하면 도착 버튼을 눌러주세요.")
+          }
+        }
+        else {
+          template ("장소 : #{value(action.order.destination.destinationName)}") {
+            speech ("목적지를 향해 이동중입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+          }
+        }
+      }
+      case ("이동중") {
+        if (action.order.pressedCount > 0) {
+          template ("장소 : #{value(action.order.destination.destinationName)}") {
+            speech ("아직 도착하지 않았어요! 목적지에 도착하면 도착 버튼을 눌러주세요.")
+          }
+        }
+        else {
+          template ("장소 : #{value(action.order.destination.destinationName)}") {
+            speech ("목적지를 향해 이동중입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+          }
+        }
+      }
+      case ("도착") {
+        template ("#{value(action.order.destination.destinationName)}에 도착했습니다!") {
+          speech ("#{value(action.order.destination.destinationName)}에 도착했습니다! #{value(action.order.destination.destinationDescription)}")
+        }
+      }
+    }
+  }
 	
 	mode (Transactional)
 	
@@ -93,7 +136,7 @@ confirmation-view {
                         }
                         route { UpdateOrder }
                         route { SelectPlace }
-                        value: SelectedPlaceName(value(place.placeName))
+                        value: SelectedPlaceName$expr(place.placeName)
                       }
                     }
                   }
@@ -167,17 +210,12 @@ confirmation-view {
       case("도착"){
         layout {
           section {
-            title {
-              template (해당 장소에 도착했습니다.)
-            }
             content {
-              input-cell {
-                label {
-                  template ()
-                }
-                value{
+              paragraph {
+                value {
                   template ("#{value(action.order.destination.destinationDescription)}")
                 }
+                style (Title_L)
               }
             }
           }

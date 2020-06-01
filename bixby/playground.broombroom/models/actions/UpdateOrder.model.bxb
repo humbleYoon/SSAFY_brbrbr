@@ -19,13 +19,8 @@ action (UpdateOrder) {
           min (Optional)
           max (One)
         }
-        input (selectedPlaceName) {
-          type (SelectedPlaceName)
-          min (Optional)
-          max (One)
-        }
-        input (selectedEventName) {
-          type (SelectedEventName)
+        input (destination) {
+          type (Destination)
           min (Optional)
           max (One)
         }

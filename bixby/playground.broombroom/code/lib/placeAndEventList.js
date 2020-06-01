@@ -8,6 +8,10 @@ module.exports = {
       placeName: "신촌",
       placeDescription: "신촌을 못 가~!",
     },
+    {
+      placeName: "1101호 강의실",
+      placeDescription: "이 곳은 싸피 교육 및 프로젝트를 수행하는 공간입니다!",
+    },
   ],
   events: [
     {

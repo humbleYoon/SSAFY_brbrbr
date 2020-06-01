@@ -12,7 +12,7 @@ structure (Order) {
   }
   property (pressedCount) {
     type (PressedCount)
-    min (Optional)
+    min (Required)
   }
   property (step){
     type(Step)
@@ -21,7 +21,7 @@ structure (Order) {
   }
   property (destination){
     type (Destination)
-    min (Optional)
+    min (Required)
     max (One)
   }
   features {

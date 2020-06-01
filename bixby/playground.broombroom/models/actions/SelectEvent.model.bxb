@@ -7,5 +7,5 @@ action (SelectEvent) {
       min (Optional) max (One)
     }
   }
-  output (SelectedEventName)
+  output (Destination)
 }
