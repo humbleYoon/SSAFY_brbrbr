@@ -1,0 +1,24 @@
+template-macro-def (Moving) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    if (commitOrder.order.pressedCount > 5) {
+      template ("장소 : #{value(commitOrder.order.destination.destinationName)}") {
+        speech ("장현진 짱짱")
+      }
+    }
+    else-if (commitOrder.order.pressedCount > 0) {
+      template ("장소 : #{value(commitOrder.order.destination.destinationName)}") {
+        speech ("아직 도착하지 않았어요!")
+      }
+    }
+    else {
+      template ("장소 : #{value(commitOrder.order.destination.destinationName)}") {
+        speech ("#{value(commitOrder.order.destination.destinationName)}로 가는 중입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+      }
+    }
+  }
+}

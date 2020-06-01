@@ -1,16 +1,20 @@
 module.exports = {
   places: [
     {
+      placeName: "1101호 강의실",
+      placeDescription: "이곳은 싸피 교육 및 프로젝트를 수행하는 공간입니다!",
+    },
+    {
+      placeName: "싸피 사무실",
+      placeDescription: "이곳은 싸피 교육생들이 원활한 교육을 들을 수 있도록 지원해주기 위한 사무실입니다!",
+    },
+    {
       placeName: "가산디지털단지",
       placeDescription: "감옥같은 이 곳.. 들어온지 이틀째만에 피곤에 찌들었다.",
     },
     {
       placeName: "신촌",
       placeDescription: "신촌을 못 가~!",
-    },
-    {
-      placeName: "1101호 강의실",
-      placeDescription: "이 곳은 싸피 교육 및 프로젝트를 수행하는 공간입니다!",
     },
   ],
   events: [
