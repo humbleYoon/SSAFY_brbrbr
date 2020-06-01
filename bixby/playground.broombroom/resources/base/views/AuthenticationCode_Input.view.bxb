@@ -1,6 +1,6 @@
 input-view {
   match: AuthenticationCode (this)
-  message (인증 번호를 입력해주세요!)
+  message (부릉이의 인증 번호를 입력해주세요!)
   render {
     form {
       elements {

@@ -1,0 +1,28 @@
+layout-macro-def (Authentication) {
+	params {
+		param (commitOrder) {
+			type (CommitOrder)
+		}
+	}
+  content {
+    section {
+      content {
+        input-cell {
+          label {
+            template (인증 번호가 틀렸습니다. 다시 입력해주세요.)
+          }
+          on-click {
+            intent {
+              goal {
+                CommitOrder
+                @context (Continuation) { Order }
+              }
+              route { UpdateOrder }
+              route { GetAuthenticationState }
+            }
+          }
+        }
+      }
+    }
+  }
+}

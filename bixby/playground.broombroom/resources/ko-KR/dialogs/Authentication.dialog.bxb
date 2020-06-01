@@ -1,0 +1,10 @@
+template-macro-def (Authentication) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("인증번호가 잘못 입력됐어요! 다시 입력해주세요.")
+  }
+}

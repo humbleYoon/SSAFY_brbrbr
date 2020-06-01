@@ -10,43 +10,45 @@ confirmation-view {
   message {
     switch ("#{value(action.order.step)}") {
       case ("인증") {
-        template ("인증번호가 잘못 입력됐어요! 다시 입력해주세요.")
+        template-macro (Authentication) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
       }
       case ("가이드 타입 선택") {
-        template ("안내/투어 중 원하시는 서비스를 골라주세요!") {
-          speech("어떤 서비스가 필요하신가요?")
+        template-macro (GuideTypeSelect) {
+          param (commitOrder) {
+            expression (action)
+          }
         }
       }
       case ("안내") {
-        template ("어디로 안내해드릴까요?")
-      }
-      case ("정지") {
-        if (action.order.pressedCount > 0) {
-          template ("장소 : #{value(action.order.destination.destinationName)}") {
-            speech ("아직 도착하지 않았어요! 목적지에 도착하면 도착 버튼을 눌러주세요.")
+        template-macro (Guide) {
+          param (commitOrder) {
+            expression (action)
           }
         }
-        else {
-          template ("장소 : #{value(action.order.destination.destinationName)}") {
-            speech ("목적지를 향해 이동중입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+      }
+      case ("대기") {
+        template-macro (Waiting) {
+          param (commitOrder) {
+            expression (action)
           }
         }
       }
       case ("이동중") {
-        if (action.order.pressedCount > 0) {
-          template ("장소 : #{value(action.order.destination.destinationName)}") {
-            speech ("아직 도착하지 않았어요! 목적지에 도착하면 도착 버튼을 눌러주세요.")
-          }
-        }
-        else {
-          template ("장소 : #{value(action.order.destination.destinationName)}") {
-            speech ("목적지를 향해 이동중입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+        template-macro (Moving) {
+          param (commitOrder) {
+            expression (action)
           }
         }
       }
       case ("도착") {
-        template ("#{value(action.order.destination.destinationName)}에 도착했습니다!") {
-          speech ("#{value(action.order.destination.destinationName)}에 도착했습니다! #{value(action.order.destination.destinationDescription)}")
+        template-macro (Arrival) {
+          param (commitOrder) {
+            expression (action)
+          }
         }
       }
     }
@@ -57,167 +59,37 @@ confirmation-view {
 	render {
     switch ("#{value(action.order.step)}") {
       case ("인증") {
-        layout {
-          section {
-            content {
-              input-cell {
-                label {
-                  template (인증 번호가 틀렸습니다. 다시 입력해주세요.)
-                }
-                on-click {
-                  intent {
-                    goal {
-                      CommitOrder
-                      @context (Continuation) { Order }
-                    }
-                    route { UpdateOrder }
-                    route { GetAuthenticationState }
-                  }
-                }
-              }
-            }
+        layout-macro (Authentication) {
+          param (commitOrder) {
+            expression (action)
           }
         }
       }
       case ("가이드 타입 선택") {
-        layout {
-          section {
-            content {
-              input-cell {
-                label {
-                  template ()
-                }
-                value {
-                  template (안내)
-                }
-                on-click {
-                  intent {
-                    goal {
-                      CommitOrder
-                      @context (Continuation) { Order }
-                    }
-                    route { UpdateOrder }
-                    route { SearchPlaceAndEvent }
-                  }
-                }
-              }
-              input-cell {
-                label (투어)
-                on-click {
-                }
-              }
-              input-cell {
-                label {
-                  template (니맘대로)
-                }
-              }  
-            }
+        layout-macro (GuideTypeSelect) {
+          param (commitOrder) {
+            expression (action)
           }
         }
       }
       case("안내"){
-        layout {
-          section {
-            title {
-              template (장소)
-            }
-            content {
-              for-each (action.order.item.placeAndEvent.places) {
-                as (place) {
-                  input-cell {
-                    label {
-                      template ("#{value(place.placeName)}")
-                    }
-                    on-click {
-                      intent {
-                        goal {
-                          CommitOrder
-                          @context (Continuation) { Order }
-                        }
-                        route { UpdateOrder }
-                        route { SelectPlace }
-                        value: SelectedPlaceName$expr(place.placeName)
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-          section {
-            title {
-              template (행사)
-            }
-            content {
-              for-each (action.order.item.placeAndEvent.events) {
-                as (event) {
-                  input-cell {
-                    label {
-                      template ("#{value(event.eventName)}")
-                    }
-                    on-click {
-                      intent {
-                        goal {
-                          CommitOrder
-                          @context (Continuation) { Order }
-                        }
-                        route { UpdateOrder }
-                        route { SelectEvent }
-                        value: SelectedEventName(value(event.eventName))
-                      }
-                    }
-                  }
-                }
-              }
-            }
+        layout-macro (Guide) {
+          param (commitOrder) {
+            expression (action)
           }
         }
-      // layout-macro (CommitOrder_Section) {
-      // 	param (commitOrder) {
-      // 		expression (action)
-      // 	}
-      // }
       }
       case("이동중"){
-        layout {
-          section {
-            title {
-              template (장소 또는 행사)
-            }
-            content {
-              input-cell {
-                label {
-                  template ()
-                }
-                value{
-                  template (도착 버튼)
-                }
-                on-click {
-                  intent {
-                    goal {
-                      CommitOrder
-                      @context (Continuation) { Order }
-                    }
-                    route { UpdateOrder }
-                    route { IsPressedArrivalButton }
-                  }
-                }
-              }
-            }
+        layout-macro (Moving) {
+          param (commitOrder) {
+            expression (action)
           }
         }
       }
       case("도착"){
-        layout {
-          section {
-            content {
-              paragraph {
-                value {
-                  template ("#{value(action.order.destination.destinationDescription)}")
-                }
-                style (Title_L)
-              }
-            }
+        layout-macro (Arrival) {
+          param (commitOrder) {
+            expression (action)
           }
         }
       }

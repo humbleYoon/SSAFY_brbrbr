@@ -1,0 +1,21 @@
+layout-macro-def (Arrival) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    layout {
+      section {
+        content {
+          paragraph {
+            value {
+              template ("#{value(commitOrder.order.destination.destinationDescription)}")
+            }
+            style (Title_L)
+          }
+        }
+      }
+    }
+  }
+}

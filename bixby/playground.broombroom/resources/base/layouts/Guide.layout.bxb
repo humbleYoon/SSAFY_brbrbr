@@ -1,0 +1,65 @@
+layout-macro-def (Guide) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    layout {
+      section {
+        title {
+          template (장소)
+        }
+        content {
+          for-each (commitOrder.order.item.placeAndEvent.places) {
+            as (place) {
+              input-cell {
+                label {
+                  template ("#{value(place.placeName)}")
+                }
+                on-click {
+                  intent {
+                    goal {
+                      CommitOrder
+                      @context (Continuation) { Order }
+                    }
+                    route { UpdateOrder }
+                    route { SelectPlace }
+                    value: SelectedPlaceName$expr(place.placeName)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      section {
+        title {
+          template (행사)
+        }
+        content {
+          for-each (commitOrder.order.item.placeAndEvent.events) {
+            as (event) {
+              input-cell {
+                label {
+                  template ("#{value(event.eventName)}")
+                }
+                on-click {
+                  intent {
+                    goal {
+                      CommitOrder
+                      @context (Continuation) { Order }
+                    }
+                    route { UpdateOrder }
+                    route { SelectEvent }
+                    value: SelectedEventName$expr(event.eventName)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

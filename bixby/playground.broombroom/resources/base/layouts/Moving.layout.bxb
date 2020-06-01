@@ -1,0 +1,36 @@
+layout-macro-def (Moving) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    layout {
+      section {
+        title {
+          template (장소 또는 행사)
+        }
+        content {
+          input-cell {
+            label {
+              template ()
+            }
+            value{
+              template (도착 버튼)
+            }
+            on-click {
+              intent {
+                goal {
+                  CommitOrder
+                  @context (Continuation) { Order }
+                }
+                route { UpdateOrder }
+                route { IsPressedArrivalButton }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
