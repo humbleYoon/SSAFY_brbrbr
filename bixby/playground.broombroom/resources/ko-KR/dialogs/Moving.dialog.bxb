@@ -12,7 +12,7 @@ template-macro-def (Moving) {
     }
     else-if (commitOrder.order.pressedCount > 0) {
       template ("장소 : #{value(commitOrder.order.destination.destinationName)}") {
-        speech ("아직 도착하지 않았어요!")
+        speech ("왜 벌써 눌러? 도착하면 누르세요. 두 번 말 안 합니다.")
       }
     }
     else {
