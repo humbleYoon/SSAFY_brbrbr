@@ -7,4 +7,8 @@ structure (Destination) {
     type (DestinationDescription)
     min (Required) max (One)
   }
+  property (floor) {
+    type (Floor)
+    min (Required)
+  }
 }

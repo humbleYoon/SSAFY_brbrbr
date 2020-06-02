@@ -19,10 +19,10 @@ structure (Order) {
     min (Required)
     max (One)
   }
-  property (destination){
+  property (destinations){
     type (Destination)
     min (Required)
-    max (One)
+    max (Many)
   }
   features {
     transaction

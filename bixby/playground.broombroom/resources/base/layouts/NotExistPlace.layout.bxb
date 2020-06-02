@@ -1,4 +1,4 @@
-layout-macro-def (Arrival) {
+layout-macro-def (NotExistPlace) {
   params {
     param (commitOrder) {
       type (CommitOrder)

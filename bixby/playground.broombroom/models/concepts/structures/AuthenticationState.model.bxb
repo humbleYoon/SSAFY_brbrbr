@@ -8,4 +8,9 @@ structure (AuthenticationState) {
     type (IsAuthenticated)
     min (Required) max (One)
   }
+  property (floor) {
+    type (Floor)
+    min (Required)
+    max (One)
+  }
 }

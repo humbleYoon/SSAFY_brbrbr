@@ -1,0 +1,10 @@
+template-macro-def (DifferentFloor) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("#{value(commitOrder.order.destinations[0].destinationName)}은 다른 층에 있어요.")
+  }
+}

@@ -9,7 +9,5 @@ module.exports.function = function searchPlaceAndEvent () {
       events: placeAndEventList.events,
     },
   }
-  // console.log("placeAndEventList", placeAndEventList)
-  // console.log(item)
   return item
 }

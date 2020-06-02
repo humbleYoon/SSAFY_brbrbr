@@ -19,13 +19,18 @@ action (UpdateOrder) {
           min (Optional)
           max (One)
         }
-        input (destination) {
+        input (destinations) {
           type (Destination)
           min (Optional)
-          max (One)
+          max (Many)
         }
         input (currentRobotState) {
           type (CurrentRobotState)
+          min (Optional)
+          max (One)
+        }
+        input (expectedStep) {
+          type (ExpectedStep)
           min (Optional)
           max (One)
         }

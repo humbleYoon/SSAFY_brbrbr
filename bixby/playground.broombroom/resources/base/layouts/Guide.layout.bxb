@@ -37,8 +37,8 @@ layout-macro-def (Guide) {
                       @context (Continuation) { Order }
                     }
                     route { UpdateOrder }
-                    route { SelectPlace }
-                    value: SelectedPlaceName$expr(place.placeName)
+                    route { SelectDestination }
+                    value: SearchTerm$expr(place.placeName)
                   }
                 }
               }
@@ -113,8 +113,8 @@ layout-macro-def (Guide) {
                       @context (Continuation) { Order }
                     }
                     route { UpdateOrder }
-                    route { SelectPlace }
-                    value: SelectedEventName$expr(event.eventName)
+                    route { SelectDestination }
+                    value: SearchTerm$expr(event.eventName)
                   }
                 }
               }
