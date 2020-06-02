@@ -57,7 +57,8 @@
 
 칼럼명|데이터 타입|설명|키 설명|
 |---|---|---|---|
-|id|Int|고유 ID|PK|
+|id|Int|고유 ID||
+|name|String|이름|PK|
 |floor|Int|로봇이 위치한 층 수||
 
 ### 로그 정보 (Log in MongoDB)
@@ -69,3 +70,4 @@
 |키|값|
 |---|---|
 |robot|[{id: Int, code: Int, floor: Int, available: true/false, status: '대기'/'이동중'/'도착'}]|
+
