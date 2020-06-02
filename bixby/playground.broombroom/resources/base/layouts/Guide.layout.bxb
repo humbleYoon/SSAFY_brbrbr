@@ -13,9 +13,22 @@ layout-macro-def (Guide) {
         content {
           for-each (commitOrder.order.item.placeAndEvent.places) {
             as (place) {
-              input-cell {
-                label {
-                  template ("#{value(place.placeName)}")
+              image-card {
+                image-url {
+                  template ("#{value(place.thumbUrl)}")
+                }
+                image-object-position (Center)
+                column-size (Two)
+                title-area {
+                  halign (Start)
+                  slot1 {
+                    text {
+                      value {
+                        template ("#{value(place.placeName)}")
+                      }
+                      style (Detail_L)
+                    }
+                  }
                 }
                 on-click {
                   intent {
@@ -29,6 +42,43 @@ layout-macro-def (Guide) {
                   }
                 }
               }
+              // thumbnail-card {
+              //   image-url {
+              //     template ("#{value(place.thumbUrl)}")
+              //   }
+              //   title-area {
+              //     halign (Center)
+              //     slot1 {
+              //       single-line {
+              //         text {
+              //           style (Title_M)
+              //           value {
+              //             template ("#{value(place.placeName)}")
+              //           }
+              //         }
+              //       }
+              //     }
+              //     slot2 {
+              //       paragraph {
+              //         value {
+              //           template ("#{value(place.placeDescription)}")
+              //         }
+              //         style (Legal)
+              //       }
+              //     }
+              //   }
+              //   on-click {
+              //     intent {
+              //       goal {
+              //         CommitOrder
+              //         @context (Continuation) { Order }
+              //       }
+              //       route { UpdateOrder }
+              //       route { SelectPlace }
+              //       value: SelectedPlaceName$expr(place.placeName)
+              //     }
+              //   }
+              // }
             }
           }
         }
@@ -40,9 +90,21 @@ layout-macro-def (Guide) {
         content {
           for-each (commitOrder.order.item.placeAndEvent.events) {
             as (event) {
-              input-cell {
-                label {
-                  template ("#{value(event.eventName)}")
+              image-card {
+                image-url {
+                  template ("#{value(event.thumbUrl)}")
+                }
+                image-object-position (Center)
+                title-area {
+                  halign (Start)
+                  slot1 {
+                    text {
+                      value {
+                        template ("#{value(event.eventName)}")
+                      }
+                      style (Title_S)
+                    }
+                  }
                 }
                 on-click {
                   intent {
@@ -51,7 +113,7 @@ layout-macro-def (Guide) {
                       @context (Continuation) { Order }
                     }
                     route { UpdateOrder }
-                    route { SelectEvent }
+                    route { SelectPlace }
                     value: SelectedEventName$expr(event.eventName)
                   }
                 }

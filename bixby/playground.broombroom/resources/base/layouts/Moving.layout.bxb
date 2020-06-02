@@ -7,16 +7,19 @@ layout-macro-def (Moving) {
   content {
     layout {
       section {
-        title {
-          template (장소 또는 행사)
-        }
         content {
-          input-cell {
-            label {
-              template ()
+          image-card {
+            image-url {
+              template ("/images/imgUrls/arrival4.png")
             }
-            value{
-              template (도착 버튼)
+            aspect-ratio (TwentyOne_Nine)
+            image-background-color (Transparent)
+            image-object-fit (Contain)
+            text-position (Below)
+            title-area {
+              slot1 {
+                text ("도착")
+              }
             }
             on-click {
               intent {

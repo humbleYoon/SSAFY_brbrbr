@@ -6,18 +6,18 @@ template-macro-def (Moving) {
   }
   content {
     if (commitOrder.order.pressedCount > 5) {
-      template ("장소 : #{value(commitOrder.order.destination.destinationName)}") {
+      template ("아직 #{value(commitOrder.order.destination.destinationName)}에 도착하지 않았어요!") {
         speech ("장현진 짱짱")
       }
     }
     else-if (commitOrder.order.pressedCount > 0) {
-      template ("장소 : #{value(commitOrder.order.destination.destinationName)}") {
+      template ("아직 #{value(commitOrder.order.destination.destinationName)}에 도착하지 않았어요!") {
         speech ("왜 벌써 눌러? 도착하면 누르세요. 두 번 말 안 합니다.")
       }
     }
     else {
-      template ("장소 : #{value(commitOrder.order.destination.destinationName)}") {
-        speech ("#{value(commitOrder.order.destination.destinationName)}로 가는 중입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+      template ("#{value(commitOrder.order.destination.destinationName)}") {
+        speech ("목적지는 #{value(commitOrder.order.destination.destinationName)}입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
       }
     }
   }

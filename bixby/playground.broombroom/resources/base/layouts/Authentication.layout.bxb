@@ -1,4 +1,4 @@
-layout-macro-def (Authentication) {
+  layout-macro-def (Authentication) {
 	params {
 		param (commitOrder) {
 			type (CommitOrder)
