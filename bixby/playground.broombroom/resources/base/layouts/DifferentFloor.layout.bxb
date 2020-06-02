@@ -1,0 +1,24 @@
+layout-macro-def (DifferentFloor) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    section {
+      content {
+        for-each (commitOrder.order.destinations) {
+          as (destination) {
+            single-line {
+              text {
+                value {
+                  template ("#{value(destination.floor)}층")
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

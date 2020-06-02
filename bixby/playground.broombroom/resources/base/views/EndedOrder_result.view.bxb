@@ -1,0 +1,25 @@
+result-view {
+  match {
+    EndedOrder(this)
+  }
+  render {
+    layout {
+      section {
+        content {
+          single-line {
+            text {
+              value {
+                template ("다음에 또 만나요!")
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  message {
+    template () {
+      speech ("다음에 또 만나요!")
+    }
+  }
+}

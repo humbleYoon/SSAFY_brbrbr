@@ -1,0 +1,4 @@
+train (t-9iao1eq8pd0mcof34dn26z0r3) {
+  utterance ([g:CommitOrder:continue,r:UpdateOrder,r:SearchPlaceAndEvent] 다른 곳 안내해줘)
+  last-modified (1591079706388)
+}

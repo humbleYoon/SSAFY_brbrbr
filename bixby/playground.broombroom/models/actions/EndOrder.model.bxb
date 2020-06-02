@@ -1,0 +1,11 @@
+action (EndOrder) {
+  description (__DESCRIPTION__)
+  type (Constructor)
+  collect {
+    input (order) {
+      type (Order)
+      min (Optional) max (One)
+    }
+  }
+  output (EndedOrder)
+}

@@ -38,6 +38,7 @@ layout-macro-def (GuideTypeSelect) {
                 }
                 route { UpdateOrder }
                 route { SearchPlaceAndEvent }
+                value: ExpectedStep(안내)
               }
             }
           }

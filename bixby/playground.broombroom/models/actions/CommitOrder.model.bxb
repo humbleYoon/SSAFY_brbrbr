@@ -11,5 +11,5 @@ action (CommitOrder) {
     by (core.Confirmation)
   }
 
-  output (Receipt)
+  output (EndedOrder)
 }

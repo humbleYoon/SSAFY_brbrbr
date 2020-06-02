@@ -1,23 +1,21 @@
 var console = require('console');
 
-module.exports.function = function createOrder (authenticationCode) {
+module.exports.function = function createOrder () {
   var order = {
     authenticationState: {
-      authenticationCode: authenticationCode,
+      authenticationCode: -1,
       isAuthenticated: false,
+      floor: 20,
     },
     step: "",
-    destination: {
-      destinationName: "ㅇ",
-      destinationDescription: "ㅇ",
-    },
+    destinations: [{
+      destinationName: "null",
+      destinationDescription: "null",
+      floor: -1
+    }],
     pressedCount: 0,
+    step: "인증"
   }
-
-  if (authenticationCode == 1124) {
-    order.step = "가이드 타입 선택"
-  }
-  else order.step = "인증"
 
   console.log(order);
 

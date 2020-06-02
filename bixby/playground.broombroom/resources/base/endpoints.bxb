@@ -17,11 +17,11 @@ endpoints {
       local-endpoint (SearchPlaceAndEvent.js)
     }
     action-endpoint (CreateOrder) {
-      accepted-inputs (authenticationCode)
+      accepted-inputs ()
       local-endpoint ("CreateOrder.js")
     }
     action-endpoint (UpdateOrder) {
-      accepted-inputs (order, changedAuthenticationState, changedItem, destination, currentRobotState)
+      accepted-inputs (order, changedAuthenticationState, changedItem, destinations, currentRobotState, expectedStep)
       local-endpoint ("UpdateOrder.js")
     }
     // action-endpoint (CancelOrder) {
@@ -36,17 +36,17 @@ endpoints {
       accepted-inputs (authenticationCode)
       local-endpoint ("GetAuthenticationState.js")
     }
-    action-endpoint (SelectPlace) {
-      accepted-inputs (selectedPlaceName)
-      local-endpoint ("SelectPlace.js")
-    }
-    action-endpoint (SelectEvent) {
-      accepted-inputs (selectedEventName)
-      local-endpoint ("SelectEvent.js")
+    action-endpoint (SelectDestination) {
+      accepted-inputs (searchTerm)
+      local-endpoint ("SelectDestination.js")
     }
     action-endpoint (IsPressedArrivalButton) {
       accepted-inputs ()
       local-endpoint ("IsPressedArrivalButton.js")
+    }
+    action-endpoint (EndOrder) {
+      accepted-inputs (order)
+      local-endpoint ("EndOrder.js")
     }
   }
 }

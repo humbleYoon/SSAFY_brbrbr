@@ -1,4 +1,4 @@
-template-macro-def (Authentication) {
+template-macro-def (AuthenticationMiss) {
   params {
     param (commitOrder) {
       type (CommitOrder)

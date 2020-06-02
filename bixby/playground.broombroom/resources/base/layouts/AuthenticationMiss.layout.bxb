@@ -1,4 +1,4 @@
-  layout-macro-def (Authentication) {
+  layout-macro-def (AuthenticationMiss) {
 	params {
 		param (commitOrder) {
 			type (CommitOrder)

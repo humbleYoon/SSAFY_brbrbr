@@ -5,8 +5,8 @@ template-macro-def (Arrival) {
     }
   }
   content {
-    template ("#{value(commitOrder.order.destination.destinationName)}에 도착했습니다!") {
-          speech ("#{value(commitOrder.order.destination.destinationName)}에 도착했습니다! #{value(commitOrder.order.destination.destinationDescription)}")
+    template ("#{value(commitOrder.order.destinations[0].destinationName)}에 도착했습니다!") {
+          speech ("#{value(commitOrder.order.destinations[0].destinationName)}에 도착했습니다! #{value(commitOrder.order.destinations[0].destinationDescription)}")
         }
   }
 }
