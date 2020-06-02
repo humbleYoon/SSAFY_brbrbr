@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Place {
+  id           Int      @default(autoincrement()) @id
+  name         String
+  description  String
+  floor        Int
+  xaxis        Float   
+  yaxis        Float
+  thumburl     String
+  mapurl       String
+}
+
+model Event {
+  id           Int      @default(autoincrement()) @id
+  name         String
+  description  String
+  starttime    DateTime
+  endtime      DateTime
+  place        Place    @relation(fields: [placeId], references: [id])
+  placeId      Int      
+}
