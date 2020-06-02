@@ -1,4 +1,5 @@
 import redis from 'redis'
+import util from 'util'
 import prisma from '../prisma/client'
 import getRandomCode from '../utils/getRandomCode'
 
@@ -7,6 +8,7 @@ import { Robot } from '@prisma/client'
 export interface RobotStatus extends Robot {
   available?: boolean
   status?: '대기' | '이동중' | '도착'
+  onService?: boolean
 }
 
 export interface RobotsByCode {
@@ -14,14 +16,17 @@ export interface RobotsByCode {
 }
 
 const redisUrl = 'redis://localhost:6379'
-const client = redis.createClient(redisUrl)
+export const client = redis.createClient(redisUrl)
 
-const getRobots = async () => {
+const get = util.promisify(client.get).bind(client)
+
+export const initRobots = async () => {
   const robots = await prisma.robot.findMany()
 
   const robotStatus = robots.map((robot: RobotStatus) => {
     robot.available = true
     robot.status = '대기'
+    robot.onService = false
     return robot
   })
 
@@ -39,7 +44,40 @@ const getRobots = async () => {
   //     console.log(JSON.parse(value))
   //   })
 }
+export const getRobotsByCode = async () => {
+  try {
+    const data = await get('robot')
+    return JSON.parse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-getRobots()
+export const getRobotCodes = async () => {
+  try {
+    const robotsByCode = await getRobotsByCode()
+    return Object.keys(robotsByCode)
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-export { client, getRobots }
+export const getRobotsNotOnService = async () => {
+  const robotsNotOnService = [] as RobotStatus[]
+
+  try {
+    const robotsByCode = await getRobotsByCode()
+    const robotCodes = await getRobotCodes()
+
+    robotCodes?.forEach((robotCode) => {
+      if (!robotsByCode[robotCode].onService)
+        robotsNotOnService.push(robotsByCode[robotCode])
+    })
+  } catch (error) {
+    console.error(error)
+  }
+
+  return robotsNotOnService
+}
+
+initRobots()
