@@ -8,11 +8,46 @@ layout-macro-def (Arrival) {
     layout {
       section {
         content {
-          paragraph {
-            value {
-              template ("#{value(commitOrder.order.destination.destinationDescription)}")
+          title-area {
+            halign (Center)
+            slot2 {
+              paragraph {
+                value {
+                  template ("다른 장소도 안내해드릴까요?")
+                }
+                style (Title_S)
+              }
             }
-            style (Title_L)
+          }
+          image-card {
+            image-url ("images/imgUrls/robot.gif")
+            column-size (Two)
+            aspect-ratio (Sixteen_Nine)
+            title-area {
+              halign (Center)
+              slot1 {
+                text ("")
+              }
+            }
+            on-click {
+
+            }
+          }
+          image-card {
+            column-size (Two)
+            title-area {
+              halign (Center)
+              slot1 {
+                text {
+                  value {
+                    template ("괜찮아")
+                  }
+                }
+              }
+            }
+            on-click {
+
+            }
           }
         }
       }

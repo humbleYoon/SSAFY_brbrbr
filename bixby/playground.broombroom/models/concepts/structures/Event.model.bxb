@@ -24,4 +24,8 @@ structure (Event) {
     type (EventRoomNumber)
     min (Required) max (One)
   }
+  property (thumbUrl) {
+    type (ThumbUrl)
+    min (Required) max (One)
+  }
 }
