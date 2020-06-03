@@ -36,7 +36,8 @@ layout-macro-def (Arrival) {
                   @context (Continuation) { Order }
                 }
                 route { UpdateOrder }
-                route { SearchPlaceAndEvent }
+                route { SelectGuideType }
+                value: GuideType(안내)
               }
             }
           }

@@ -5,9 +5,8 @@ module.exports.function = function createOrder () {
     authenticationState: {
       authenticationCode: -1,
       isAuthenticated: false,
-      floor: 20,
+      floor: 11,
     },
-    step: "",
     destinations: [{
       destinationName: "null",
       destinationDescription: "null",

@@ -1,0 +1,8 @@
+train (t-ag5x5opdii2ww3lcncexkzq85) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder,v:GuideType:안내] (신촌)[v:SearchTerm]으로 안내해")
+  last-modified (1591163781928)
+}
+train (t-az4a1vlun57g4npfmdlu644j1) {
+  utterance ([g:CommitOrder:continue,r:UpdateOrder] 인증하자인증)
+  last-modified (1591171659155)
+}

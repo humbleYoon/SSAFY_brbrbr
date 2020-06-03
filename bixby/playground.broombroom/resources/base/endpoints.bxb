@@ -21,7 +21,7 @@ endpoints {
       local-endpoint ("CreateOrder.js")
     }
     action-endpoint (UpdateOrder) {
-      accepted-inputs (order, changedAuthenticationState, changedItem, destinations, currentRobotState, expectedStep)
+      accepted-inputs (order, changedAuthenticationState, changedItem, destinations, currentRobotState)
       local-endpoint ("UpdateOrder.js")
     }
     // action-endpoint (CancelOrder) {
@@ -47,6 +47,10 @@ endpoints {
     action-endpoint (EndOrder) {
       accepted-inputs (order)
       local-endpoint ("EndOrder.js")
+    }
+    action-endpoint (SelectGuideType) {
+      accepted-inputs (guideType)
+      local-endpoint ("SelectGuideType.js")
     }
   }
 }
