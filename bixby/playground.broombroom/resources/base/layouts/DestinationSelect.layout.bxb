@@ -1,4 +1,4 @@
-layout-macro-def (Guide) {
+layout-macro-def (DestinationSelect) {
   params {
     param (commitOrder) {
       type (CommitOrder)

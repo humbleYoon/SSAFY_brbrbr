@@ -1,4 +1,4 @@
-template-macro-def (Guide) {
+template-macro-def (DestinationSelect) {
   params {
     param (commitOrder) {
       type (CommitOrder)

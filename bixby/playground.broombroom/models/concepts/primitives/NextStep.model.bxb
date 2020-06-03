@@ -1,3 +1,0 @@
-enum (ExpectedStep) {
-  role-of (Step)
-}

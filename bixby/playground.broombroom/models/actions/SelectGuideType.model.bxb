@@ -1,0 +1,11 @@
+action (SelectGuideType) {
+  type (Constructor)
+  description (가이드타입을 선택합니다.(안내/투어))
+  collect {
+    input (guideType) {
+      type (GuideType)
+      min (Required) max (One)
+    }
+  }
+  output (ChangedItem)
+}

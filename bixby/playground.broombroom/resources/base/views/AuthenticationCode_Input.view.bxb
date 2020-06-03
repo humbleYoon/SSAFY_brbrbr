@@ -13,7 +13,8 @@ input-view {
         }
       }
       on-submit {
-        goal: AuthenticationCode
+        
+        goal { AuthenticationCode }
         value: viv.core.FormElement(this)
       }
     }

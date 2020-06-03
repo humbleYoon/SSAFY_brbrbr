@@ -37,8 +37,8 @@ confirmation-view {
           }
         }
       }
-      case ("안내") {
-        template-macro (Guide) {
+      case ("목적지 선택") {
+        template-macro (DestinationSelect) {
           param (commitOrder) {
             expression (action)
           }
@@ -100,8 +100,8 @@ confirmation-view {
           }
         }
       }
-      case("안내"){
-        layout-macro (Guide) {
+      case("목적지 선택"){
+        layout-macro (DestinationSelect) {
           param (commitOrder) {
             expression (action)
           }

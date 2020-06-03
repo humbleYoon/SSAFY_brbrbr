@@ -2,3 +2,7 @@ train (t-f35f5wxq8mqo4u5doo1kiean5) {
   utterance ([g:CommitOrder:continue,r:UpdateOrder,r:GetAuthenticationState] 인증번호 입력할래)
   last-modified (1590651512903)
 }
+train (t-fz4gb6yx5ar4satyucao36yye) {
+  utterance ([g:CommitOrder:continue,r:UpdateOrder,r:SelectGuideType,v:GuideType:안내] 안내해줘)
+  last-modified (1591150468378)
+}

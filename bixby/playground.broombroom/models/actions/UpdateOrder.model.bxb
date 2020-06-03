@@ -9,11 +9,6 @@ action (UpdateOrder) {
     input-group (updates){
       requires (OneOrMoreOf)
       collect {
-        input (changedAuthenticationState) {
-          type (ChangedAuthenticationState)
-          min (Optional)
-          max (One)
-        }
         input (changedItem) {
           type (ChangedItem)
           min (Optional)
@@ -29,10 +24,17 @@ action (UpdateOrder) {
           min (Optional)
           max (One)
         }
-        input (expectedStep) {
-          type (ExpectedStep)
-          min (Optional)
-          max (One)
+        input (changedAuthenticationState) {
+          type (ChangedAuthenticationState)
+          min (Required) max (One)
+          default-init {
+            intent {
+              goal: GetAuthenticationState
+              if (order.authenticationState.isAuthenticated) {
+                value: $expr(order.authenticationState.authenticationCode)
+              }
+            }
+          }
         }
       }
     }
