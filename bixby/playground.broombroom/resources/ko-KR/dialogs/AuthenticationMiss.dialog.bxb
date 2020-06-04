@@ -5,6 +5,6 @@ template-macro-def (AuthenticationMiss) {
     }
   }
   content {
-    template ("인증번호가 잘못 입력됐어요! 다시 입력해주세요.")
+    template ("인증번호가 달라요. 다시 확인 해주세요.")
   }
 }

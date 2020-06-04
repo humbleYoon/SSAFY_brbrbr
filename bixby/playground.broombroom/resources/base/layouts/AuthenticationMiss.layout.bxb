@@ -7,9 +7,18 @@
   content {
     section {
       content {
-        input-cell {
-          label {
-            template (인증 번호가 틀렸습니다. 다시 입력해주세요.)
+        title-card {
+          title-area {
+            halign (Center)
+            slot2 {
+              single-line {
+                text {
+                  value {
+                    template ("다시 입력하기")
+                  }
+                }
+              }
+            }
           }
           on-click {
             intent {
@@ -18,7 +27,6 @@
                 @context (Continuation) { Order }
               }
               route { UpdateOrder }
-              route { GetAuthenticationState }
             }
           }
         }

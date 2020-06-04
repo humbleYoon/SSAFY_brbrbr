@@ -3,17 +3,9 @@ result-view {
     EndedOrder(this)
   }
   render {
-    layout {
-      section {
-        content {
-          single-line {
-            text {
-              value {
-                template ("다음에 또 만나요!")
-              }
-            }
-          }
-        }
+    layout-macro (EndedOrder) {
+      param (endedOrder) {
+        expression (this)
       }
     }
   }

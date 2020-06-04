@@ -42,43 +42,6 @@ layout-macro-def (DestinationSelect) {
                   }
                 }
               }
-              // thumbnail-card {
-              //   image-url {
-              //     template ("#{value(place.thumbUrl)}")
-              //   }
-              //   title-area {
-              //     halign (Center)
-              //     slot1 {
-              //       single-line {
-              //         text {
-              //           style (Title_M)
-              //           value {
-              //             template ("#{value(place.placeName)}")
-              //           }
-              //         }
-              //       }
-              //     }
-              //     slot2 {
-              //       paragraph {
-              //         value {
-              //           template ("#{value(place.placeDescription)}")
-              //         }
-              //         style (Legal)
-              //       }
-              //     }
-              //   }
-              //   on-click {
-              //     intent {
-              //       goal {
-              //         CommitOrder
-              //         @context (Continuation) { Order }
-              //       }
-              //       route { UpdateOrder }
-              //       route { SelectPlace }
-              //       value: SelectedPlaceName$expr(place.placeName)
-              //     }
-              //   }
-              // }
             }
           }
         }

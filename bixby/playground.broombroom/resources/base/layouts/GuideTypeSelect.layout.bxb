@@ -64,6 +64,7 @@ layout-macro-def (GuideTypeSelect) {
                 }
               }
             }
+            // 투어 서비스 사용시 아래에 작성
             on-click {
             }
           }
