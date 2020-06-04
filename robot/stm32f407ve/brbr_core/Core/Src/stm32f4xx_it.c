@@ -23,6 +23,7 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "wheel_encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -226,6 +227,56 @@ void EXTI1_IRQHandler(void)
 
   /* USER CODE END EXTI1_IRQn 1 */
 }
+
+
+/**
+  * @brief This function handles EXTI line1 interrupt.
+  */
+void EXTI2_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
+
+  /* USER CODE END EXTI1_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
+
+  /* USER CODE END EXTI1_IRQn 1 */
+}
+
+
+
+/**
+  * @brief This function handles EXTI line1 interrupt.
+  */
+void EXTI3_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
+
+  /* USER CODE END EXTI1_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
+
+  /* USER CODE END EXTI1_IRQn 1 */
+}
+
+
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  /* Prevent unused argument(s) compilation warning */
+//  UNUSED(GPIO_Pin);
+  /* NOTE: This function Should not be modified, when the callback is needed,
+           the HAL_GPIO_EXTI_Callback could be implemented in the user file
+   */
+  if (GPIO_Pin == MOTOR_LEFT_ENCODER1_Pin) {
+	  uint16_t left_encoder_pulse =  HAL_GPIO_ReadPin(MOTOR_ENCODER_GPIO_Port, MOTOR_LEFT_ENCODER2_Pin);
+	  left_encoder_count -= left_encoder_pulse ? -1 : 1;
+  } else if (GPIO_Pin == MOTOR_RIGHT_ENCODER1_Pin) {
+	  uint16_t right_encoder_pulse =  HAL_GPIO_ReadPin(MOTOR_ENCODER_GPIO_Port, MOTOR_LEFT_ENCODER2_Pin);
+	  right_encoder_count -= right_encoder_pulse ? -1 : 1;
+  }
+}
+
 
 /**
   * @brief This function handles USART1 global interrupt.
