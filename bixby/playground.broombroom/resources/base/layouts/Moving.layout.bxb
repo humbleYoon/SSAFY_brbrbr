@@ -29,6 +29,7 @@ layout-macro-def (Moving) {
                 }
                 route { UpdateOrder }
                 route { IsPressedArrivalButton }
+                value: Order$expr(commitOrder.order)
               }
             }
           }

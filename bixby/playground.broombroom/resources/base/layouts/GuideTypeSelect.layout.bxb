@@ -37,7 +37,9 @@ layout-macro-def (GuideTypeSelect) {
                   @context (Continuation) { Order }
                 }
                 route { UpdateOrder }
-                route { SearchPlaceAndEvent }
+                route { SelectGuideType }
+                value: GuideType(안내)
+                value: Order$expr(commitOrder.order)
               }
             }
           }

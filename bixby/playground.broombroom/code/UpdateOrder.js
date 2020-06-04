@@ -3,6 +3,10 @@ var console = require('console');
 module.exports.function = function updateOrder (order, changedAuthenticationState, changedItem, destinations, currentRobotState) {
   var beforeStep
 
+  if (!changedAuthenticationState.isAuthenticated) {
+    order.step == "인증 실패";
+  }
+
   do {
     beforeStep = order.step
     if ((order.step == "인증" || order.step == "인증 실패")) {

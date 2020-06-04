@@ -12,10 +12,6 @@ endpoints {
     //     method (__HTTP_METHOD_USED__)
     //   }
     // }
-    action-endpoint (SearchPlaceAndEvent) {
-      accepted-inputs ()
-      local-endpoint (SearchPlaceAndEvent.js)
-    }
     action-endpoint (CreateOrder) {
       accepted-inputs ()
       local-endpoint ("CreateOrder.js")
@@ -37,11 +33,11 @@ endpoints {
       local-endpoint ("GetAuthenticationState.js")
     }
     action-endpoint (SelectDestination) {
-      accepted-inputs (searchTerm)
+      accepted-inputs (searchTerm, order)
       local-endpoint ("SelectDestination.js")
     }
     action-endpoint (IsPressedArrivalButton) {
-      accepted-inputs ()
+      accepted-inputs (order)
       local-endpoint ("IsPressedArrivalButton.js")
     }
     action-endpoint (EndOrder) {
@@ -49,7 +45,7 @@ endpoints {
       local-endpoint ("EndOrder.js")
     }
     action-endpoint (SelectGuideType) {
-      accepted-inputs (guideType)
+      accepted-inputs (guideType, order)
       local-endpoint ("SelectGuideType.js")
     }
   }
