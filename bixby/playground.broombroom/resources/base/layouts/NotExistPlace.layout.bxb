@@ -13,16 +13,15 @@ layout-macro-def (NotExistPlace) {
             slot2 {
               paragraph {
                 value {
-                  template ("다른 장소도 안내해드릴까요?")
+                  template ("다른 곳을 안내 받으시겠어요?")
                 }
                 style (Title_S)
               }
             }
           }
           image-card {
-            image-url ("images/imgUrls/robot.gif")
+            image-url ("images/imgUrls/go.png")
             column-size (Two)
-            aspect-ratio (Sixteen_Nine)
             title-area {
               halign (Center)
               slot1 {
@@ -36,20 +35,17 @@ layout-macro-def (NotExistPlace) {
                   @context (Continuation) { Order }
                 }
                 route { UpdateOrder }
-                route { SearchPlaceAndEvent }
+                route { SelectGuideType }
+                value: GuideType(안내)
               }
             }
           }
           image-card {
+            image-url ("images/imgUrls/thanks.png")
             column-size (Two)
             title-area {
-              halign (Center)
               slot1 {
-                text {
-                  value {
-                    template ("괜찮아")
-                  }
-                }
+                text ("")
               }
             }
             on-click {

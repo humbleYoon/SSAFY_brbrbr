@@ -7,6 +7,13 @@ layout-macro-def (DifferentFloor) {
   content {
     section {
       content {
+        single-line {
+          text {
+            value {
+              template ("이곳은 아래의 층에 있습니다.")
+            }
+          }
+        }
         for-each (commitOrder.order.destinations) {
           as (destination) {
             single-line {

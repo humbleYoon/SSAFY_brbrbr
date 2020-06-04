@@ -13,6 +13,18 @@ layout-macro-def (Arrival) {
             slot2 {
               paragraph {
                 value {
+                  template ("자세한 내용은 부릉이를 확인해주세요!")
+                }
+                style (Detail_L)
+              }
+            }
+          }
+          divider
+          title-area {
+            halign (Center)
+            slot2 {
+              paragraph {
+                value {
                   template ("다른 장소도 안내해드릴까요?")
                 }
                 style (Title_S)
@@ -20,9 +32,8 @@ layout-macro-def (Arrival) {
             }
           }
           image-card {
-            image-url ("images/imgUrls/robot.gif")
+            image-url ("images/imgUrls/go.png")
             column-size (Two)
-            aspect-ratio (Sixteen_Nine)
             title-area {
               halign (Center)
               slot1 {
@@ -42,15 +53,11 @@ layout-macro-def (Arrival) {
             }
           }
           image-card {
+            image-url ("images/imgUrls/thanks.png")
             column-size (Two)
             title-area {
-              halign (Center)
               slot1 {
-                text {
-                  value {
-                    template ("괜찮아")
-                  }
-                }
+                text ("")
               }
             }
             on-click {

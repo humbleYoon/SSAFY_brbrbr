@@ -1,5 +1,5 @@
 action (EndOrder) {
-  description (__DESCRIPTION__)
+  description (안내를 끝내고 난 상태입니다.)
   type (Constructor)
   collect {
     input (order) {

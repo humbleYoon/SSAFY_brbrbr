@@ -5,7 +5,7 @@ template-macro-def (GuideTypeSelect) {
     }
   }
   content {
-    template ("안내/투어 중 원하시는 서비스를 골라주세요!") {
+    template ("원하시는 서비스를 말씀 해주세요!") {
       speech("어떤 서비스가 필요하신가요?")
     }
   }

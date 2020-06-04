@@ -5,6 +5,6 @@ template-macro-def (NotExistPlace) {
     }
   }
   content {
-    template ("#{value(commitOrder.order.destinations[0].destinationName)}(은)는 없는 장소입니다.")
+    template ("이곳에는 없는 장소네요. 다른 곳을 안내 받으시겠어요?")
   }
 }
