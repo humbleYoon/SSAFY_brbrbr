@@ -1,0 +1,52 @@
+version: "3.3"
+
+services:
+  client:
+    image: yopidev/broom-react:0.1.1
+    networks:
+      - web
+    ports:
+      - 80:80
+    depends_on: 
+      - redis
+      - postgres
+      - express
+
+  express:
+    image: yopidev/broom-express:0.1.1
+    networks:
+      - web
+      - server
+    ports:
+      - 3064:3064
+    depends_on: 
+      - postgres
+    env_file: back-end/.env.prod
+
+  postgres:
+    image: postgres:13-alpine
+    networks:
+      - server
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    env_file: .env.prod.db
+
+  redis:
+    image: redis:6.0.4-alpine
+    networks:
+      - server
+    volumes:
+      - redis_data:/data
+    env_file: .env.prod.db
+
+networks:
+  web:
+    driver: overlay
+  server:
+    driver: overlay
+
+volumes:
+  postgres_data:
+  redis_data:
