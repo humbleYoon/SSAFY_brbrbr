@@ -1,0 +1,124 @@
+confirmation-view {
+	match {
+		core.Confirmation {
+			confirming {
+				CommitOrder (action)
+			}
+		}
+	}
+	
+	message ("Are you sure you want to buy this?")
+	
+	mode (Transactional)
+	
+	render {
+    switch ("#{value(action.order.step)}") {
+      case ("인증 페이지") {
+        layout {
+          section {
+            content {
+              input-cell {
+                label {
+                  template (인증 번호가 틀렸습니다. 다시 입력해주세요.)
+                }
+                on-click {
+                  intent {
+                    goal {
+                      CommitOrder
+                      @context (Continuation) { Order }
+                    }
+                    route { UpdateOrder }
+                    route { GetAuthenticationState }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      case ("가이드 타입 선택 페이지") {
+        layout {
+          section {
+            content {
+              input-cell {
+                label {
+                  template ()
+                }
+                value {
+                  template (안내)
+                }
+                on-click {
+                  intent {
+                    goal {
+                      CommitOrder
+                      @context (Continuation) { Order }
+                    }
+                    route { UpdateOrder }
+                    route { SearchPlaceAndEvent }
+                  }
+                }
+              }
+              input-cell {
+                label (투어)
+                on-click {
+                }
+              }
+              input-cell {
+                label {
+                  template (니맘대로)
+                }
+              }  
+            }
+          }
+        }
+      }
+      case("안내 페이지"){
+        layout {
+          section {
+            title {
+              template (장소)
+            }
+            content {
+              for-each (action.order.item.placeAndEvent.places) {
+                as (place) {
+                  input-cell {
+                    label {
+                      template ("#{value(place.placeName)}")
+                    }
+                    // on-click {
+                    //   intent {
+                    //     goal: CommitOrder
+                    //     value: Item(this)
+                    //   }
+                    // }
+                  }
+                }
+              }
+            }
+          }
+          section {
+            title {
+              template (행사)
+            }
+            content {
+              for-each (action.order.item.placeAndEvent.events) {
+                as (event) {
+                  single-line {
+                    text {
+                      value ("#{value(event.eventName)}")
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      // layout-macro (CommitOrder_Section) {
+      // 	param (commitOrder) {
+      // 		expression (action)
+      // 	}
+      // }
+      }
+    }
+  }
+}

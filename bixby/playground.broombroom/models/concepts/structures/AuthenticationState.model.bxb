@@ -1,0 +1,11 @@
+structure (AuthenticationState) {
+  description (__DESCRIPTION__)
+  property (authenticationCode) {
+    type (AuthenticationCode)
+    min (Required) max (One)
+  }
+  property (isAuthenticated) {
+    type (IsAuthenticated)
+    min (Required) max (One)
+  }
+}
