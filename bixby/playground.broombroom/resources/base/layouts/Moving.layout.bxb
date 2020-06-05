@@ -30,6 +30,7 @@ layout-macro-def (Moving) {
                 }
                 route { UpdateOrder }
                 route { IsPressedArrivalButton }
+                value: ArrivalButtonState(도착했어)
               }
             }
           }

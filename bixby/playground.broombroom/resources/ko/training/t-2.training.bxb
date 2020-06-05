@@ -1,0 +1,8 @@
+train (t-2sjovc2aua5lcrls8szpy3pyo) {
+  utterance ([g:CommitOrder:continue,r:UpdateOrder] 다시 입력할래)
+  last-modified (1591255321129)
+}
+train (t-2lzciweb9jxxhqqzjp3wdcqku) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (1101호 강의실)[v:SearchTerm]로 (안내)[v:GuideType:안내]해줘")
+  last-modified (1591258531423)
+}

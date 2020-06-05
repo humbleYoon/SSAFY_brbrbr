@@ -1,0 +1,5 @@
+vocab (ArrivalButtonState) {
+  "도착했어" {
+    "도착" "도착이야" "도착했어" "다왔어"
+  }
+}

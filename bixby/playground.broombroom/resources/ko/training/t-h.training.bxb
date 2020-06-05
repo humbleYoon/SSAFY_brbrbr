@@ -1,4 +1,0 @@
-train (t-hukd6zfhhnljcylylv3j60no4) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder,v:GuideType:안내] (1101호 강의실)[v:SearchTerm] 안내해줘")
-  last-modified (1591173406486)
-}

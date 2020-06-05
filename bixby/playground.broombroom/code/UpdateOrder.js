@@ -29,7 +29,8 @@ module.exports.function = function updateOrder (order, changedAuthenticationStat
     }
     else if (order.step == "목적지 선택") {
       if (destinations.length == 0) continue
-      order.step = "안내"
+      if (destinations[0].destinationName != "null") order.step = "안내"
+      else if (order.item.guideType == "안내") continue
     }
     else if (order.step == "안내") {
       if (destinations.length == 1) {
