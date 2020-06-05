@@ -1,0 +1,14 @@
+capsule-info {
+  display-name (부릉부릉)
+  developer-name (brrrbrrr)
+  description ("부릉부릉은 로봇을 사용한 안내 서비스입니다.")
+  dispatch-name (부릉부릉)
+  dispatch-aliases {
+    alias (부릉부렁)
+  }
+  // Set your own image for your capsule's icon
+  icon-asset (images/icons/brrrbrrr_logo.png)
+  search-keywords {
+    keyword (부릉부릉)
+  }
+}

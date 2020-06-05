@@ -1,0 +1,165 @@
+confirmation-view {
+	match {
+		core.Confirmation {
+			confirming {
+				CommitOrder (action)
+			}
+		}
+	}
+
+  confirm-options {
+    on-confirm {
+      replan {
+        intent {
+          goal: EndOrder
+          value: Order$expr(action.order)
+        }
+      }
+    }
+    label {
+      template ("고마워")
+    }
+  }
+
+  message {
+    switch ("#{value(action.order.step)}") {
+      case ("인증 실패") {
+        template-macro (AuthenticationMiss) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("가이드 타입 선택") {
+        template-macro (GuideTypeSelect) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("목적지 선택") {
+        template-macro (DestinationSelect) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("대기") {
+        template-macro (Waiting) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("이동중") {
+        template-macro (Moving) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("도착") {
+        template-macro (Arrival) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("다른 층") {
+        template-macro (DifferentFloor) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("없는 장소") {
+        template-macro (NotExistPlace) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+    }
+  }
+	
+	mode (Transactional)
+	
+	render {
+    switch ("#{value(action.order.step)}") {
+      case ("인증 실패") {
+        layout-macro (AuthenticationMiss) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case ("가이드 타입 선택") {
+        layout-macro (GuideTypeSelect) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case("목적지 선택"){
+        layout-macro (DestinationSelect) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case("이동중"){
+        layout-macro (Moving) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case("도착"){
+        layout-macro (Arrival) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case("다른 층") {
+        layout-macro (DifferentFloor) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+      case("없는 장소") {
+        layout-macro (NotExistPlace) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
+    }
+  }
+
+  conversation-drivers {
+    switch ("#{value(action.order.step)}") {
+      case ("인증") {
+        conversation-driver {
+          template ("다시 인증할래")
+        }
+      }
+      case ("도착") {
+        conversation-driver {
+          template ("다른 곳 안내해줘")
+        }
+      }
+      case ("다른 층") {
+        conversation-driver {
+          template ("다른 곳 안내해줘")
+        }
+      }
+      case ("없는 장소") {
+        conversation-driver {
+          template ("다른 곳 안내해줘")
+        }
+      }
+    }
+  }
+}

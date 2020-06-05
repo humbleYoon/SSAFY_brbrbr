@@ -1,0 +1,57 @@
+action (UpdateOrder) {
+  type (UpdateTransaction)
+  collect {
+    //the order that is updated
+    input (order) {
+      type (Order)
+      min (Required)
+    }
+    input-group (updates){
+      requires (OneOrMoreOf)
+      collect {
+        input (changedItem) {
+          type (ChangedItem)
+          min (Optional)
+          max (One)
+        }
+        input (destinations) {
+          type (Destination)
+          min (Optional)
+          max (Many)
+        }
+        input (currentRobotState) {
+          type (CurrentRobotState)
+          min (Optional)
+          max (One)
+        }
+        input (changedAuthenticationState) {
+          type (ChangedAuthenticationState)
+          min (Required) max (One)
+          default-init {
+            intent {
+              goal: GetAuthenticationState
+              if (order.authenticationState.isAuthenticated) {
+                value: $expr(order.authenticationState.authenticationCode)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //returns the updated order
+  output (Order) {
+    // throws {
+
+    //    error(NoItems) {
+    //     on-catch {
+    //       halt {
+    //         dialog {
+    //           template-macro (NoItemsInCart)
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+  }
+}

@@ -1,0 +1,30 @@
+structure (Order) {
+  description (오더)
+  property (authenticationState) {
+    type (AuthenticationState)
+    min (Required)
+    max (One)
+  }
+  property (item) {
+    type(Item)
+    min (Optional)
+    max (One)
+  }
+  property (pressedCount) {
+    type (PressedCount)
+    min (Required)
+  }
+  property (step){
+    type(Step)
+    min (Required)
+    max (One)
+  }
+  property (destinations){
+    type (Destination)
+    min (Optional)
+    max (Many)
+  }
+  features {
+    transaction
+  }
+}

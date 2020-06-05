@@ -1,0 +1,40 @@
+endpoints {
+  action-endpoints {
+    action-endpoint (CreateOrder) {
+      accepted-inputs ()
+      local-endpoint ("CreateOrder.js")
+    }
+    action-endpoint (UpdateOrder) {
+      accepted-inputs (order, changedAuthenticationState, changedItem, destinations, currentRobotState)
+      local-endpoint ("UpdateOrder.js")
+    }
+    // action-endpoint (CancelOrder) {
+    //   accepted-inputs (order)
+    //   local-endpoint ("CancelOrder.js")
+    // }
+    action-endpoint (CommitOrder) {
+      accepted-inputs (order)
+      local-endpoint ("CommitOrder.js")
+    }
+    action-endpoint (GetAuthenticationState) {
+      accepted-inputs (authenticationCode)
+      local-endpoint ("GetAuthenticationState.js")
+    }
+    action-endpoint (SelectDestination) {
+      accepted-inputs (searchTerm)
+      local-endpoint ("SelectDestination.js")
+    }
+    action-endpoint (IsPressedArrivalButton) {
+      accepted-inputs (arrivalButtonState)
+      local-endpoint ("IsPressedArrivalButton.js")
+    }
+    action-endpoint (EndOrder) {
+      accepted-inputs (order)
+      local-endpoint ("EndOrder.js")
+    }
+    action-endpoint (SelectGuideType) {
+      accepted-inputs (guideType)
+      local-endpoint ("SelectGuideType.js")
+    }
+  }
+}

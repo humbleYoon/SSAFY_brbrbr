@@ -1,0 +1,90 @@
+layout-macro-def (DestinationSelect) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    layout {
+      section {
+        title {
+          template (장소)
+        }
+        content {
+          for-each (commitOrder.order.item.placeAndEvent.places) {
+            as (place) {
+              image-card {
+                image-url {
+                  template ("#{value(place.thumbUrl)}")
+                }
+                image-object-position (Center)
+                column-size (Two)
+                title-area {
+                  halign (Start)
+                  slot1 {
+                    text {
+                      value {
+                        template ("#{value(place.placeName)}")
+                      }
+                      style (Detail_L)
+                    }
+                  }
+                }
+                on-click {
+                  intent {
+                    goal {
+                      CommitOrder
+                      @context (Continuation) { Order }
+                    }
+                    route { UpdateOrder }
+                    route { SelectDestination }
+                    value: SearchTerm$expr(place.placeName)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      section {
+        title {
+          template (행사)
+        }
+        content {
+          for-each (commitOrder.order.item.placeAndEvent.events) {
+            as (event) {
+              image-card {
+                image-url {
+                  template ("#{value(event.thumbUrl)}")
+                }
+                image-object-position (Center)
+                title-area {
+                  halign (Start)
+                  slot1 {
+                    text {
+                      value {
+                        template ("#{value(event.eventName)}")
+                      }
+                      style (Title_S)
+                    }
+                  }
+                }
+                on-click {
+                  intent {
+                    goal {
+                      CommitOrder
+                      @context (Continuation) { Order }
+                    }
+                    route { UpdateOrder }
+                    route { SelectDestination }
+                    value: SearchTerm$expr(event.eventName)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

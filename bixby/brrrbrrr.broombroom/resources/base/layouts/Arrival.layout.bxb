@@ -1,0 +1,74 @@
+layout-macro-def (Arrival) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    layout {
+      section {
+        content {
+          title-area {
+            halign (Center)
+            slot2 {
+              paragraph {
+                value {
+                  template ("자세한 내용은 부릉이를 확인해주세요!")
+                }
+                style (Detail_L)
+              }
+            }
+          }
+          divider
+          title-area {
+            halign (Center)
+            slot2 {
+              paragraph {
+                value {
+                  template ("다른 장소도 안내해드릴까요?")
+                }
+                style (Title_S)
+              }
+            }
+          }
+          image-card {
+            image-url ("images/imgUrls/go.png")
+            column-size (Two)
+            title-area {
+              halign (Center)
+              slot1 {
+                text ("")
+              }
+            }
+            on-click {
+              intent {
+                goal {
+                  CommitOrder
+                  @context (Continuation) { Order }
+                }
+                route { UpdateOrder }
+                route { SelectGuideType }
+                value: GuideType(안내)
+              }
+            }
+          }
+          image-card {
+            image-url ("images/imgUrls/thanks.png")
+            column-size (Two)
+            title-area {
+              slot1 {
+                text ("")
+              }
+            }
+            on-click {
+              intent {
+                goal: EndOrder
+                value: Order$expr(commitOrder.order)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
