@@ -21,7 +21,7 @@ structure (Order) {
   }
   property (destinations){
     type (Destination)
-    min (Required)
+    min (Optional)
     max (Many)
   }
   features {

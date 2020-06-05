@@ -1,4 +1,4 @@
-module.exports.function = function isPressedArrivalButton () {
+module.exports.function = function isPressedArrivalButton (arrivalButtonState) {
   var number = Math.ceil(Math.random() * 3) % 3;
   var result;
   if (number == 0) {

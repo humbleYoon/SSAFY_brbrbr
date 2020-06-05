@@ -1,0 +1,4 @@
+train (t-llgy17bz8yu017zx84eyhpsby) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (신촌)[v:SearchTerm]으로 (가자)[v:GuideType:안내]")
+  last-modified (1591321459123)
+}

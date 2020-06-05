@@ -1,5 +1,0 @@
-action (SearchPlaceAndEvent) {
-  type (Search)
-  description (인증 코드와 가이드 타입을 받아 장소/행사 리스트를 반환합니다.)
-  output (ChangedItem)
-}

@@ -7,11 +7,6 @@ module.exports.function = function createOrder () {
       isAuthenticated: false,
       floor: 11,
     },
-    destinations: [{
-      destinationName: "null",
-      destinationDescription: "null",
-      floor: -1
-    }],
     pressedCount: 0,
     step: "인증"
   }
