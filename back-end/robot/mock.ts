@@ -1,4 +1,4 @@
-import { client as redis } from '../redis/client'
+import redis from '../redis/client'
 
 const startGuide = (robotCode: string) => {
   redis.get('robot', (err, robots) => {
