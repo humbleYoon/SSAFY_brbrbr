@@ -1,0 +1,36 @@
+  layout-macro-def (AuthenticationMiss) {
+	params {
+		param (commitOrder) {
+			type (CommitOrder)
+		}
+	}
+  content {
+    section {
+      content {
+        title-card {
+          title-area {
+            halign (Center)
+            slot2 {
+              single-line {
+                text {
+                  value {
+                    template ("다시 입력하기")
+                  }
+                }
+              }
+            }
+          }
+          on-click {
+            intent {
+              goal {
+                CommitOrder
+                @context (Continuation) { Order }
+              }
+              route { UpdateOrder }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+action (SelectDestination) {
+  type(Constructor)
+  description (특정 장소에 대해 이동)
+  collect {
+    input (searchTerm) {
+      type (SearchTerm)
+      min (Optional) max (One)
+    }
+  }
+  output (Destination)
+}

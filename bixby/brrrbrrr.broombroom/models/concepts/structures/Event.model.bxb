@@ -1,0 +1,31 @@
+structure (Event) {
+  description (이벤트)
+  property (eventName) {
+    type (EventName)
+    min (Required) max (One)
+  }
+  property (eventDescription) {
+    type (EventDescription)
+    min (Required) max (One)
+  }
+  property (eventStartTime) {
+    type (EventStartTime)
+    min (Required) max (One)
+  }
+  property (eventEndTime) {
+    type (EventEndTime)
+    min (Required) max (One)
+  }
+  property (eventFloor) {
+    type (EventFloor)
+    min (Required) max (One)
+  }
+  property (eventRoomNumber) {
+    type (EventRoomNumber)
+    min (Required) max (One)
+  }
+  property (thumbUrl) {
+    type (ThumbUrl)
+    min (Required) max (One)
+  }
+}

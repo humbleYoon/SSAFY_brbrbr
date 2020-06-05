@@ -1,0 +1,6 @@
+action (CreateOrder) {
+  type (BeginTransaction)
+  collect {
+  }
+  output (Order)
+}
