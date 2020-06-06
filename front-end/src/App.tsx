@@ -1,27 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import socket from './utils/socketConn'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+
+import RobotPage from './pages/RobotPage'
+import AdminPage from './pages/AdminPage'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Switch>
+      <Route path="/" component={RobotPage} exact />
+      <Route
+        path="/everyoneisadmineveryoneisadmineveryoneisadmin"
+        component={AdminPage}
+        exact
+      />
+    </Switch>
+  )
 }
 
-export default App;
+export default App
