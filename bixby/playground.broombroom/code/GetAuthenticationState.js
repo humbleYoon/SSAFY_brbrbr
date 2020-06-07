@@ -22,12 +22,12 @@ module.exports.function = function getAuthenticationState (authenticationCode) {
     var response = http.postUrl(url, data, options);
     // console.log(response)
   }
-
+  
   if (response) {
     var authenticationState = {
       authenticationCode: authenticationCode,
-      isAuthenticated: response.data.isAuthenticated,
-      floor: response.data.floor
+      isAuthenticated: response.parsed.isAuthenticated,
+      floor: response.parsed.floor
     };
   }
   else {

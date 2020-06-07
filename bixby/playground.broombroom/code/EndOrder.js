@@ -7,10 +7,13 @@ const baseURL = config.get("baseURL");
 module.exports.function = function cancelOrder (order) {
   // 백엔드에 커넥션 종료를 요청한다.
   var url = baseURL + "/robots/finished";
+  var authCode = order.authenticationState.authenticationCode.toString();
   var options = {
     format: 'json',
     cacheTime: 0,
-    headers: order.authenticationState.authenticationCode
+    headers: {
+      'authCode': authCode
+    }
   };
   response = http.getUrl(url, options);
   // console.log(response)

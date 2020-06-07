@@ -9,13 +9,16 @@ module.exports.function = function isPressedArrivalButton (order) {
   var result;
   var response;
   var url = baseURL + "/robots/arrived";
+  var authCode = order.authenticationState.authenticationCode.toString();
   var options = {
     format: 'json',
     cacheTime: 0,
-    headers: order.authenticationState.authenticationCode
+    headers: {
+      'authCode': authCode
+    }
   };
   response = http.getUrl(url, options);
-  // console.log(response)
+  console.log(response);
 
   if (response){
     if (response.data.isArrived == true) {
