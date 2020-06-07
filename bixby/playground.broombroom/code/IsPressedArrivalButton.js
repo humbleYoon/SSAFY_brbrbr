@@ -1,11 +1,12 @@
 module.exports.function = function isPressedArrivalButton (arrivalButtonState) {
-  var number = Math.ceil(Math.random() * 3) % 3;
+  if (arrivalButtonState == "정지") {
+    return "정지"
+  }
+  
+  var number = Math.ceil(Math.random() * 2) % 2;
   var result;
   if (number == 0) {
     result = "도착"
-  }
-  else if (number == 1) {
-    result = "정지"
   }
   else {
     result = "이동중"

@@ -79,6 +79,13 @@ confirmation-view {
           }
         }
       }
+      case ("정지") {
+        template-macro (StopMoving) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
     }
   }
 	
@@ -135,30 +142,42 @@ confirmation-view {
           }
         }
       }
+      case("정지") {
+        layout-macro (StopMoving) {
+          param (commitOrder) {
+            expression (action)
+          }
+        }
+      }
     }
   }
 
   conversation-drivers {
     switch ("#{value(action.order.step)}") {
-      case ("인증") {
-        conversation-driver {
-          template ("다시 인증할래")
-        }
+      case ("인증 실패") {
+        conversation-driver ("다시 인증할래")
+      }
+      case ("가이드 타입 선택") {
+        conversation-driver ("안내 해줘")
+      }
+      case ("목적지 선택") {
+        conversation-driver ("#{value(action.order.item.placeAndEvent.places[0].placeName)}로 안내해줘")
+      }
+      case ("이동중") {
+        conversation-driver ("도착")
+        conversation-driver ("멈춰")
       }
       case ("도착") {
-        conversation-driver {
-          template ("다른 곳 안내해줘")
-        }
+        conversation-driver ("다른 곳 안내해줘")
       }
       case ("다른 층") {
-        conversation-driver {
-          template ("다른 곳 안내해줘")
-        }
+        conversation-driver ("다른 곳 안내해줘")
       }
       case ("없는 장소") {
-        conversation-driver {
-          template ("다른 곳 안내해줘")
-        }
+        conversation-driver ("다른 곳 안내해줘")
+      }
+      case ("정지") {
+        conversation-driver ("다른 곳 안내해줘")
       }
     }
   }

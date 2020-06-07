@@ -1,4 +1,5 @@
 enum (ArrivalButtonState) {
   description (__DESCRIPTION__)
   symbol ("도착했어")
+  symbol ("정지")
 }

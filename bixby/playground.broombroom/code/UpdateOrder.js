@@ -26,7 +26,7 @@ module.exports.function = function updateOrder (order, changedAuthenticationStat
         if (destinations.length > 0) order.destinations = destinations
       }
     }
-    else if (order.step == "도착" || order.step == "없는 장소" || order.step == "다른 층") {
+    else if (order.step == "도착" || order.step == "없는 장소" || order.step == "다른 층" || order.step == "정지") {
       if (changedItem) {
         order.step = "목적지 선택"
         order.destinations = []
@@ -76,7 +76,11 @@ module.exports.function = function updateOrder (order, changedAuthenticationStat
         order.step = "도착"
         break
       }
-      else{
+      else if (currentRobotState == "정지") {
+        order.step = "정지"
+        break
+      }
+      else {
         order.pressedCount += 1
       }
     }
