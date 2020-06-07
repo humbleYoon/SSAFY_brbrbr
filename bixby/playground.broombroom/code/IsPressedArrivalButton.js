@@ -18,7 +18,7 @@ module.exports.function = function isPressedArrivalButton (order) {
     }
   };
   response = http.getUrl(url, options);
-  console.log(response);
+  // console.log(response);
 
   if (response){
     if (response.data.isArrived == true) {
