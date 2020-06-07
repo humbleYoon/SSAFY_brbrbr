@@ -1,7 +1,6 @@
 import io from 'socket.io-client'
 
-const SOCKET_HOST = 'http://localhost:8181'
-
-const socket = io.connect(SOCKET_HOST)
+const socket = io.connect(process.env.REACT_APP_SOCKET_HOST!)
+console.log(process.env.REACT_APP_SOCKET_HOST)
 
 export default socket
