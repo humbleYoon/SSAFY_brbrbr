@@ -1,8 +1,0 @@
-train (t-fz4gb6yx5ar4satyucao36yye) {
-  utterance ([g:CommitOrder:continue,r:UpdateOrder,r:SelectGuideType,v:GuideType:안내] 안내해줘)
-  last-modified (1591150468378)
-}
-train (t-fx50jsghjuyyx84n8ssvrc6v5) {
-  utterance ([g:EndOrder] 땡큐)
-  last-modified (1591538082942)
-}

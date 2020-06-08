@@ -44,12 +44,16 @@ layout-macro-def (Arrival) {
               intent {
                 goal {
                   CommitOrder
-                  @context (Continuation) { Order }
+                  @context (Continuation) { CommitOrder }
                 }
-                route { UpdateOrder }
-                route { SelectGuideType }
-                value: GuideType(안내)
-                value: Order$expr(commitOrder.order)
+                subplan {
+                  goal: UpdateOrder
+                  subplan {
+                    goal: SelectGuideType
+                    value: GuideType(안내)
+                    value: Order$expr(commitOrder.order)
+                  }
+                }
               }
             }
           }

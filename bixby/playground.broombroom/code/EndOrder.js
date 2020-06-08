@@ -16,7 +16,8 @@ module.exports.function = function cancelOrder (order) {
     }
   };
   response = http.getUrl(url, options);
-  // console.log(response)
+
+  if (response.status == 200) return order;
   
   if(!response) {
     throw fail.checkedError("NoResult", "NoResult")

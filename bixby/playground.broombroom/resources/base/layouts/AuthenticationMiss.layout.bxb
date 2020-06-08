@@ -24,7 +24,7 @@
             intent {
               goal {
                 CommitOrder
-                @context (Continuation) { Order }
+                @context (Continuation) { CommitOrder }
               }
               route { UpdateOrder }
             }

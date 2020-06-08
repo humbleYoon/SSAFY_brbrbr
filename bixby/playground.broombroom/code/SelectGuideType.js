@@ -28,7 +28,7 @@ module.exports.function = function selectGuideType (guideType, order) {
       placeResult[i] = {
         placeName: responsePlaces[i].name,
         placeDescription: responsePlaces[i].description,
-        thumbUrl: responsePlaces[i].thumburl
+        thumbUrl: !!responsePlaces[i].thumburl ? responsePlaces[i].thumburl : "images/imgUrls/default.png"
       };
     }
     let eventResult = [];
@@ -36,7 +36,7 @@ module.exports.function = function selectGuideType (guideType, order) {
       eventResult[i] = {
         eventName: responseEvents[i].name,
         eventDescription: responseEvents[i].description,
-        thumbUrl: responseEvents[i].thumburl
+        thumbUrl: !!responseEvents[i].thumburl ? responseEvents[i].thumburl : "images/imgUrls/default.png"
       };
     }
       placeAndEventList = {
@@ -52,6 +52,8 @@ module.exports.function = function selectGuideType (guideType, order) {
     guideType: guideType,
     placeAndEvent: placeAndEventList
   };
-  // console.log(changedItem)
+  console.log(changedItem)
+  console.log(placeAndEventList)
+
   return changedItem
 }
