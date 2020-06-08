@@ -1,14 +1,14 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import RobotPage from './pages/RobotPage'
+import WelcomePage from './pages/WelcomePage'
 import AdminPage from './pages/AdminPage'
 import LandingPage from './pages/LandingPage'
 
 function App() {
   return (
     <Switch>
-      <Route path="/" component={RobotPage} exact />
+      <Route path="/" component={WelcomePage} exact />
       <Route
         path="/everyoneisadmineveryoneisadmineveryoneisadmin"
         component={AdminPage}
