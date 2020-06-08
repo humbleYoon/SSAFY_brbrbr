@@ -1,3 +1,0 @@
-integer (EventStartTime) {
-  description (나중에 시간으로 반드시 수정)
-}

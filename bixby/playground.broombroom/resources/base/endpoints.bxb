@@ -21,11 +21,11 @@ endpoints {
       local-endpoint ("GetAuthenticationState.js")
     }
     action-endpoint (SelectDestination) {
-      accepted-inputs (searchTerm)
+      accepted-inputs (searchTerm, order)
       local-endpoint ("SelectDestination.js")
     }
     action-endpoint (IsPressedArrivalButton) {
-      accepted-inputs (arrivalButtonState)
+      accepted-inputs (arrivalButtonState, order)
       local-endpoint ("IsPressedArrivalButton.js")
     }
     action-endpoint (EndOrder) {
@@ -33,7 +33,7 @@ endpoints {
       local-endpoint ("EndOrder.js")
     }
     action-endpoint (SelectGuideType) {
-      accepted-inputs (guideType)
+      accepted-inputs (guideType, order)
       local-endpoint ("SelectGuideType.js")
     }
   }

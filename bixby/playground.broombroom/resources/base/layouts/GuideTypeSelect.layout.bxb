@@ -39,6 +39,7 @@ layout-macro-def (GuideTypeSelect) {
                 route { UpdateOrder }
                 route { SelectGuideType }
                 value: GuideType(안내)
+                value: Order$expr(commitOrder.order)
               }
             }
           }

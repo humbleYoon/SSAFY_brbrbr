@@ -39,6 +39,7 @@ layout-macro-def (DestinationSelect) {
                     route { UpdateOrder }
                     route { SelectDestination }
                     value: SearchTerm$expr(place.placeName)
+                    value: Order$expr(commitOrder.order)
                   }
                 }
               }
@@ -78,6 +79,7 @@ layout-macro-def (DestinationSelect) {
                     route { UpdateOrder }
                     route { SelectDestination }
                     value: SearchTerm$expr(event.eventName)
+                    value: Order$expr(commitOrder.order)
                   }
                 }
               }
