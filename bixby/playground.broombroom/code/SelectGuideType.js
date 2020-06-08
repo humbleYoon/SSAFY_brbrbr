@@ -52,8 +52,6 @@ module.exports.function = function selectGuideType (guideType, order) {
     guideType: guideType,
     placeAndEvent: placeAndEventList
   };
-  console.log(changedItem)
-  console.log(placeAndEventList)
-
+  
   return changedItem
 }
