@@ -10,4 +10,5 @@ enum (Step) {
   symbol (종료)
   symbol (다른 층)
   symbol (없는 장소)
+  symbol (정지)
 }

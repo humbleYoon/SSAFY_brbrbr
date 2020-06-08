@@ -1,0 +1,12 @@
+template-macro-def (StopMoving) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("멈췄습니다.") {
+      speech ("멈췄습니다. 다른 곳을 안내 받으시겠어요?")
+    }
+  }
+}

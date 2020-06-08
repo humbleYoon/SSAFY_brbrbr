@@ -6,6 +6,10 @@ action (SelectDestination) {
       type (SearchTerm)
       min (Optional) max (One)
     }
+    input (order) {
+      type (Order)
+      min (Required) max (One)
+    }
   }
   output (Destination)
 }

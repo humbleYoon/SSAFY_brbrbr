@@ -1,4 +1,4 @@
-layout-macro-def (NotExistPlace) {
+layout-macro-def (StopMoving) {
   params {
     param (commitOrder) {
       type (CommitOrder)
@@ -34,14 +34,9 @@ layout-macro-def (NotExistPlace) {
                   CommitOrder
                   @context (Continuation) { CommitOrder }
                 }
-                subplan {
-                  goal: UpdateOrder
-                  subplan {
-                    goal: SelectGuideType
-                    value: GuideType(안내)
-                    value: Order$expr(commitOrder.order)
-                  }
-                }
+                route { UpdateOrder }
+                route { SelectGuideType }
+                value: GuideType(안내)
               }
             }
           }

@@ -4,6 +4,10 @@ action (IsPressedArrivalButton) {
   collect {
     input (arrivalButtonState) {
       type (ArrivalButtonState)
+      min (Required) max(One)
+    }
+    input (order) {
+      type (Order)
       min (Required) max (One)
     }
   }

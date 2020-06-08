@@ -2,3 +2,11 @@ train (t-e4zd55nwxxsu71pq157lik62i) {
   utterance ("[g:CommitOrder:continue,r:UpdateOrder] (1234)[v:AuthenticationCode]")
   last-modified (1591254927297)
 }
+train (t-e6re2vwhqt6400o8yajuy8gjc) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (13층 강의실)[v:SearchTerm]로 (안내)[v:GuideType:안내]해줘")
+  last-modified (1591577552953)
+}
+train (t-efd49454r11fjixx0x1cwcni8) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (식당)[v:SearchTerm]이 (어디)[v:GuideType:안내]야")
+  last-modified (1591597939131)
+}

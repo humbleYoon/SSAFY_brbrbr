@@ -16,8 +16,8 @@ template-macro-def (Moving) {
       }
     }
     else {
-      template ("#{value(commitOrder.order.destinations[0].destinationName)}에 가는 중") {
-        speech ("목적지는 #{value(commitOrder.order.destinations[0].destinationName)}입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+      template ("#{value(commitOrder.order.destinations[0].destinationName)}에 가는 중입니다.") {
+        speech ("목적지는 #{value(commitOrder.order.destinations[0].destinationName)}입니다. 목적지에 도착하면 도착 버튼을 눌러주세요! 팔로팔로미")
       }
     }
   }
