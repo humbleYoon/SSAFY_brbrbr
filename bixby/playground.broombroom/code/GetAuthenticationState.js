@@ -27,7 +27,7 @@ module.exports.function = function getAuthenticationState (authenticationCode) {
     var authenticationState = {
       authenticationCode: authenticationCode,
       isAuthenticated: response.parsed.isAuthenticated,
-      floor: response.parsed.floor
+      floor: !!response.parsed.floor ? response.parsed.floor : -999
     };
   }
   else {

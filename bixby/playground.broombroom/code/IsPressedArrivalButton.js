@@ -25,7 +25,7 @@ module.exports.function = function isPressedArrivalButton (arrivalButtonState, o
   // console.log(response);
 
   if (response){
-    if (response.data.isArrived == true) {
+    if (response.isArrived == true) {
       result = "도착";
     }
     else {

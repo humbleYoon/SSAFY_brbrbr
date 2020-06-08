@@ -39,12 +39,16 @@ layout-macro-def (Moving) {
               intent {
                 goal {
                   CommitOrder
-                  @context (Continuation) { Order }
+                  @context (Continuation) { CommitOrder }
                 }
-                route { UpdateOrder }
-                route { IsPressedArrivalButton }
-                value: ArrivalButtonState(도착했어)
-                value: Order$expr(commitOrder.order)
+                subplan {
+                  goal: UpdateOrder
+                  subplan {
+                    goal: IsPressedArrivalButton
+                    value: ArrivalButtonState(도착했어)
+                    value: Order$expr(commitOrder.order)
+                  }
+                }
               }
             }
           }

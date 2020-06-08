@@ -7,22 +7,34 @@ layout-macro-def (DifferentFloor) {
   content {
     section {
       content {
-        single-line {
-          text {
-            value {
-              template ("이곳은 아래의 층에 있습니다.")
+        title-area {
+          halign (Center)
+          slot1 {
+            single-line {
+              text {
+                value {
+                  template ("이곳은 아래의 층에 있습니다.")
+                }
+              }
             }
           }
         }
         for-each (commitOrder.order.destinations) {
           as (destination) {
-            single-line {
-              text {
-                value {
-                  template ("#{value(destination.floor)}층")
+            title-area {
+              halign (Center)
+              slot1 {
+                single-line {
+                  text {
+                    color (Amber)
+                    value {
+                      template ("#{value(destination.floor)}층")
+                    }
+                  }
                 }
               }
             }
+            
           }
         }
         divider
@@ -50,11 +62,15 @@ layout-macro-def (DifferentFloor) {
             intent {
               goal {
                 CommitOrder
-                @context (Continuation) { Order }
+                @context (Continuation) { CommitOrder }
               }
-              route { UpdateOrder }
-              route { SelectGuideType }
-              value: GuideType(안내)
+              subplan {
+                goal: UpdateOrder
+                subplan {
+                  goal: SelectGuideType
+                  value: GuideType(안내)
+                }
+              }
             }
           }
         }
