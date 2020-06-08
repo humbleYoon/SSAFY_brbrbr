@@ -46,7 +46,9 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/service_client.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/STM32Hardware.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h \
- C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h \
+ ../Core/Inc/wheel_motor.h ../Core/Inc/main.h ../Core/Inc/wheel_encoder.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Float32.h
 
 ../Core/Inc/main.h:
 
@@ -145,3 +147,11 @@ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/STM32Hardw
 C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h:
 
 C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h:
+
+../Core/Inc/wheel_motor.h:
+
+../Core/Inc/main.h:
+
+../Core/Inc/wheel_encoder.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Float32.h:

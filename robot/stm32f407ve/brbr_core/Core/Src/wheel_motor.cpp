@@ -8,15 +8,13 @@
 
 extern TIM_HandleTypeDef htim3;
 
-long long
-static float encoder_low_wrap;
-static float encoder_high_wrap;
 
 static float pid_dt;
 
+
 // motor encoder
 float wheel_prev[WHEEL_NUM];
-float wheel_lastest[WHEEL_NUM];
+float wheel_latest[WHEEL_NUM];
 float wheel_mult[WHEEL_NUM];
 
 // motor PID control(velocity)
@@ -28,7 +26,7 @@ float prev_vel_error[WHEEL_NUM];
 float vel_integral[WHEEL_NUM];
 float vel_derivative[WHEEL_NUM];
 
-// motor PID control gain parameter
+
 float vel_Kp[WHEEL_NUM];
 float vel_Ki[WHEEL_NUM];
 float vel_Kd[WHEEL_NUM];
@@ -181,23 +179,19 @@ void moveRight() {
 }
 
 void lwheel_vtargetCB(const std_msgs::Float32 &msg) {
-	target_vel[LEFT] = msg.data;
+	vel_target[LEFT] = msg.data;
 }
 
 void rwheel_vtargetCB(const std_msgs::Float32 &msg) {
-	target_vel[RIGHT] = msg.data;
+	vel_target[RIGHT] = msg.data;
 }
 
 void PIDcontrollInit() {
-	encoder_low_wrap = ((int64_t) ENCODER_MAX - ENCODER_MIN)
-			* 0.3f+ ENCODER_MIN;
-	encoder_high_wrap = ((int64_t) ENCODER_MAX - ENCODER_MIN)
-			* 0.3f+ ENCODER_MIN;
 
 	for (int i = 0; i < WHEEL_NUM; i++) {
 		// motor encoder
 		wheel_prev[i] = 0.f;
-		wheel_lastest[i] = 0.f;
+		wheel_latest[i] = 0.f;
 		wheel_mult[i] = 0.f;
 
 		// motor PID control(velocity)
@@ -209,47 +203,43 @@ void PIDcontrollInit() {
 		vel_integral[i] = 0.f;
 		vel_derivative[i] = 0.f;
 	}
-	// motor PID control gain parameter
-	vel_Kp[LEFT];
-	vel_Ki[LEFT];
-	vel_Kd[LEFT];
-
-	vel_Kp[RIGHT];
-	vel_Ki[RIGHT];
-	vel_Kd[RIGHT];
+//	// motor PID control gain parameter
+//	vel_Kp[LEFT];
+//	vel_Ki[LEFT];
+//	vel_Kd[LEFT];
+//
+//	vel_Kp[RIGHT];
+//	vel_Ki[RIGHT];
+//	vel_Kd[RIGHT];
 
 }
 
-void calcVelocity() {
-	static uint32_t pev_calcVel_time[WHEEL_NUM] = { };
-	static uin32_t cur_calcVel_time[WHEEL_NUM] = { };
+void calcVelocity(uint16_t left_tick, uint16_t right_tick) {
+	uint16_t cur_tick[WHEEL_NUM] = {left_tick, right_tick};
+	static uint32_t prev_calcVel_time[WHEEL_NUM] = { };
+	static uint32_t cur_calcVel_time[WHEEL_NUM] = { };
 	static uint32_t calcVel_time[WHEEL_NUM] = { };
 
-	for (int i = 0; i < WHEEL_NUM; i++) {
-		cur_calcVel_time[i] = micros();
-		calcVel_time[i] = cur_calcVel_time[i] - prev_calcVel_time[i];
-		prev_calcVel_time[i] = cur_calcVel_time[i];
+	for (int idx = 0; idx < WHEEL_NUM; idx++) {
+		cur_calcVel_time[idx] = micros();
+		calcVel_time[idx] = cur_calcVel_time[idx] - prev_calcVel_time[idx];
+		prev_calcVel_time[idx] = cur_calcVel_time[idx];
 
-		double dt = (double) calcVel_time[i] * 0.000001;
+		double dt = (double) calcVel_time[idx] * 0.000001;
 
-		if (enc[i] < encoder_low_wrap && prev_encoder[i] > encoder_high_wrap) {
-			wheel_mult[i] = wheel_mult[i] + 1;
+		if (cur_tick[idx] < low_encoder_wrap && last_tick[idx] > high_encoder_wrap) {
+			wheel_mult[idx] = wheel_mult[idx] + 1;
 		}
 
-		if (enc[i] > encoder_high_wrap && prev_encoder[i] < encoder_low_wrap) {
-			wheel_mult[i] = wheel_mult[i] - 1;
+		if (cur_tick[idx] > high_encoder_wrap && last_tick[idx] < low_encoder_wrap) {
+			wheel_mult[idx] = wheel_mult[idx] - 1;
 		} //오버플로우를 막으려고 한 것
 
-		wheel_latest[i] = (double) (enc[i]
-				+ wheel_mult[i] * ((long long) ENCODER_MAX - ENCODER_MIN))
-				* METER_PER_TICKS;
-		//wheel_latest[i] = enc[i] * METER_PER_TICKS;
-		cur_vel[i] = (double) (wheel_latest[i] - wheel_prev[i]) / dt;
-		wheel_prev[i] = wheel_latest[i];
-
-		prev_encoder[i] = enc[i];
-
-		debugging_msgs.data = dt;
+		wheel_latest[idx] = (double) (cur_tick[idx]
+				+ wheel_mult[idx] * UNSIGNED16_MAX) * TICK2METER;
+		//wheel_latest[idx] = enc[idx] * METER_PER_TICKS;
+		vel_ouput[idx] = (double) (wheel_latest[idx] - wheel_prev[idx]) / dt;
+		wheel_prev[idx] = wheel_latest[idx];
 	}
 }
 

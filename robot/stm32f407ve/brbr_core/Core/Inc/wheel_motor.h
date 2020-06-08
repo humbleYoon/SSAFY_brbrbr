@@ -20,16 +20,28 @@
 #define WHEEL_NUM						2
 #define LEFT							0
 #define RIGHT							1
-#define ENCODER_MIN						-2147483648
-#define ENCODER_MAX						2147483648
 
 #include "main.h"
 #include "stm32f4xx_hal.h"
-
+#include "wheel_encoder.h"
+#include <std_msgs/Float32.h>
+#include <ros.h>
+#include <math.h>
 
 static TIM_HandleTypeDef htim3;
+
 extern float vel_target[WHEEL_NUM];
 extern float vel_ouput[WHEEL_NUM];
+
+// motor encoder
+extern float wheel_prev[WHEEL_NUM];
+extern float wheel_latest[WHEEL_NUM];
+extern float wheel_mult[WHEEL_NUM];
+
+// motor PID control gain parameter
+extern float vel_Kp[WHEEL_NUM];
+extern float vel_Ki[WHEEL_NUM];
+extern float vel_Kd[WHEEL_NUM];
 
 // 모터 방향과 PWM 조절
 void wheelDirInit();

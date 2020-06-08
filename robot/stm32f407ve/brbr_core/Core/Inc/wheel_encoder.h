@@ -18,6 +18,9 @@
 #define WHEEL_NUM		2
 
 #define TICK2RAD		0.1377302392
+#define TICK2METER		0.008952465548
+#define WHEEL_RADIUS	0.065
+#define WHEEL_SPARATION 0.393
 
 #include "main.h"
 #include "stm32f4xx_hal.h"
@@ -27,11 +30,11 @@ extern volatile long long right_encoder_count;
 
 extern float low_encoder_wrap;
 extern float high_encoder_wrap;
+
 extern uint8_t init_encoder;
 extern int32_t last_diff_tick[WHEEL_NUM];
 extern uint16_t last_tick[WHEEL_NUM];
 extern double last_rad[WHEEL_NUM];
-extern double last_vel[WHEEL_NUM];
 
 extern char encoder_log[200];
 

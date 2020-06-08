@@ -19,7 +19,7 @@ uint8_t init_encoder;
 int32_t last_diff_tick[WHEEL_NUM];
 uint16_t last_tick[WHEEL_NUM];
 double last_rad[WHEEL_NUM];
-double last_vel[WHEEL_NUM];
+//double last_vel[WHEEL_NUM];
 
 
 void encoderInit() {
@@ -165,7 +165,6 @@ void updateEncoderInfo(uint16_t left_tick, uint16_t right_tick) {
 		for (int i = 0; i < WHEEL_NUM; i++) {
 			last_diff_tick[i] = 0;
 			last_rad[i] = 0.f;
-			last_vel[i] = 0.f;
 		}
 
 		last_tick[LEFT] = left_tick;
@@ -180,7 +179,7 @@ void updateEncoderInfo(uint16_t left_tick, uint16_t right_tick) {
 				&& last_tick[idx] > high_encoder_wrap) {
 			last_diff_tick[idx] = cur_tick[idx] + (UNSIGNED16_MAX - last_tick[idx]);
 		} else if (cur_tick[idx] > high_encoder_wrap
-				&& last_tick[idx] < low_encoder_warp) {
+				&& last_tick[idx] < low_encoder_wrap) {
 			last_diff_tick[idx] = cur_tick[idx] - UNSIGNED16_MAX - last_tick[idx];
 		} else {
 			last_diff_tick[idx] = cur_tick[idx] - last_tick[idx];
@@ -188,6 +187,4 @@ void updateEncoderInfo(uint16_t left_tick, uint16_t right_tick) {
 
 		last_rad[idx] += TICK2RAD * (double) last_diff_tick[idx];
 	}
-
-
 }

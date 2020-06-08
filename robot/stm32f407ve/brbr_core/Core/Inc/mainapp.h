@@ -34,7 +34,7 @@ static ros::Subscriber<std_msgs::Float32> lwheel_vtarget_sub("/lwheel_vtarget", 
 static ros::Subscriber<std_msgs::Float32> rwheel_vtarget_sub("/rwheel_vtarget", rwheel_vtargetCB);
 
 
-float target_vel[WHEEL_UM];
+//float target_vel[WHEEL_NUM];
 
 
 void setup(void);
