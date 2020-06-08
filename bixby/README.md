@@ -1,18 +1,17 @@
-# BrrrBrrr Bixby
+# BrrrBrrr Broombroom 💋
 
 ![빅스비 뱃지](https://img.shields.io/badge/Bixby-8.0.1-informational) 
 
 
-
 ## Usage
 
+```
 1. 스마트폰의 빅스비를 실행합니다.
-
 2. 부릉부릉 캡슐을 검색 후 추가합니다.
+3. 빅스비에게 다음과 같이 음성으로 말합니다. **'부릉부릉 시작!'**
+```
 
-3. 빅스비에게 '부릉부릉 시작'
-
-   <img src="./images/bixby_market.png" alt="bixby_market" style="zoom:20%;" />	<img src="./images/bixby_market_brr.png" alt="bixby_market_brr" style="zoom:20%;" />	<img src="./images/bixby_market_brr_2.png" alt="bixby_market_brr_2" style="zoom:20%;" />
+![bixby_market](./images/bixby_market.png) ![bixby_market_brr](./images/bixby_market_brr.png) ![bixby_market_brr_2](./images/bixby_market_brr_2.png)
 
 
 
