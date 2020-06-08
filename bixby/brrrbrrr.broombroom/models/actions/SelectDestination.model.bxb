@@ -1,5 +1,5 @@
 action (SelectDestination) {
-  type(Constructor)
+  type(Search)
   description (특정 장소에 대해 이동)
   collect {
     input (searchTerm) {
