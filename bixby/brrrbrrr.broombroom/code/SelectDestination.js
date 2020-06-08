@@ -20,10 +20,11 @@ module.exports.function = function selectDestination (searchTerm, order) {
       'authCode': authCode
     }
   };
+  // var responseEvents = http.getUrl(urlEvents, options);
+  // console.log(responseEvents);
+  var responseEvents = [];
   var responsePlaces = http.getUrl(urlPlaces, options);
   // console.log(responsePlaces);
-  var responseEvents = http.getUrl(urlEvents, options);
-  // console.log(responseEvents);
 
   if(responsePlaces || responseEvents) {
     // 0. 데이터에 장소랑 행사가 이름이 같은 경우는 없다고 하면,
@@ -41,14 +42,16 @@ module.exports.function = function selectDestination (searchTerm, order) {
       destinations[0] = {
         destinationName: responsePlaces.length == 1 ? responsePlaces[0].name : responseEvents[0].name,
         destinationDescription: responsePlaces.length == 1 ? responsePlaces[0].description : responseEvents[0].description,
-        floor: responsePlaces.length == 1 ? responsePlaces[0].floor : responseEvents[0].placeFloor
+        floor: responsePlaces.length == 1 ? responsePlaces[0].floor : responseEvents[0].placeFloor,
+        thumbUrl: responsePlaces.length == 1 ? responsePlaces[0].thumburl : responseEvents[0].thumburl
       }
     }
     else if(responsePlaces.length == 0 && responseEvents.length == 0) {
       destinations[0] = {
         destinationName: "null",
         destinationDescription: "null",
-        floor: -1
+        floor: -1,
+        thumbUrl: "/images/imgUrls/default.png"
       }
     }
     else {
@@ -57,7 +60,8 @@ module.exports.function = function selectDestination (searchTerm, order) {
           destinations[i] = {
             destinationName: responsePlaces[i].name,
             destinationDescription: responsePlaces[i].description,
-            floor: responsePlaces[i].floor
+            floor: responsePlaces[i].floor,
+            thumbUrl: responsePlaces[i].thumburl
           }
         }
       }
@@ -66,7 +70,8 @@ module.exports.function = function selectDestination (searchTerm, order) {
           destinations[i] = {
             destinationName: responseEvents[i].name,
             destinationDescription: responseEvents[i].description,
-            floor: responseEvents[i].placeFloor
+            floor: responseEvents[i].placeFloor,
+            thumbUrl: responseEvents[i].thumburl,
           }
         }
       }

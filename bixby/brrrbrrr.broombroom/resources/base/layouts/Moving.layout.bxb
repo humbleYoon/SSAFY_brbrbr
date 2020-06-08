@@ -23,11 +23,11 @@ layout-macro-def (Moving) {
           }
           image-card {
             image-url {
-              template ("/images/imgUrls/arrival4.png")
+              template ("#{value(commitOrder.order.destinations[0].thumbUrl)}")
             }
             aspect-ratio (TwentyOne_Nine)
             image-background-color (Transparent)
-            image-object-fit (Contain)
+            image-object-fit (Cover)
             text-position (Below)
             title-area {
               halign (Center)

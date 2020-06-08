@@ -5,7 +5,7 @@ module.exports.function = function createOrder () {
     authenticationState: {
       authenticationCode: -1,
       isAuthenticated: false,
-      floor: 11,
+      floor: -1,
     },
     pressedCount: 0,
     step: "인증"

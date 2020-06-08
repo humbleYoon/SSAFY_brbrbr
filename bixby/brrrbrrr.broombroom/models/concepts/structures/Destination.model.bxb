@@ -11,4 +11,8 @@ structure (Destination) {
     type (Floor)
     min (Required)
   }
+  property (thumbUrl) {
+    type (ThumbUrl)
+    min (Required)
+  }
 }
