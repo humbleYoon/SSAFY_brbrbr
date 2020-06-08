@@ -7,17 +7,17 @@ template-macro-def (Moving) {
   content {
     if (commitOrder.order.pressedCount > 5) {
       template ("아직 #{value(commitOrder.order.destinations[0].destinationName)}에 도착하지 않았어요!") {
-        speech ("장현진 짱짱")
+        speech ("짱현진 짱짱")
       }
     }
     else-if (commitOrder.order.pressedCount > 0) {
       template ("아직 #{value(commitOrder.order.destinations[0].destinationName)}에 도착하지 않았어요!") {
-        speech ("왜 벌써 눌러? 도착하면 누르세요. 두 번 말 안 합니다.")
+        speech ("아직 도착하지 않았네요. 도착하시면 도착 버튼을 눌러주세요.")
       }
     }
     else {
-      template ("#{value(commitOrder.order.destinations[0].destinationName)}") {
-        speech ("목적지는 #{value(commitOrder.order.destinations[0].destinationName)}입니다. 목적지에 도착하면 도착 버튼을 눌러주세요!")
+      template ("#{value(commitOrder.order.destinations[0].destinationName)}에 가는 중입니다.") {
+        speech ("목적지는 #{value(commitOrder.order.destinations[0].destinationName)}입니다. 목적지에 도착하면 도착 버튼을 눌러주세요! 팔로팔로미")
       }
     }
   }

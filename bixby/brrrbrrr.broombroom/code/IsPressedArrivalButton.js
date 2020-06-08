@@ -1,14 +1,41 @@
-module.exports.function = function isPressedArrivalButton (arrivalButtonState) {
-  var number = Math.ceil(Math.random() * 3) % 3;
+var console = require('console');
+var http = require('http');
+var fail = require('fail');
+var secret = require('secret');
+const baseURL = secret.get("baseURL");
+
+module.exports.function = function isPressedArrivalButton (arrivalButtonState, order) {
+  // if (arrivalButtonState == "정지") {
+  //   return "정지"
+  // }
+
+  // 로봇 상태 정보(대기, 이동중, 도착)에 대해 요청한다.
   var result;
-  if (number == 0) {
-    result = "도착"
-  }
-  else if (number == 1) {
-    result = "정지"
+  var response;
+  var url = baseURL + "/robots/arrived";
+  var authCode = order.authenticationState.authenticationCode.toString();
+  var options = {
+    format: 'json',
+    cacheTime: 0,
+    headers: {
+      'authCode': authCode
+    }
+  };
+  response = http.getUrl(url, options);
+  // console.log(response);
+
+  if (response){
+    if (response.isArrived == true) {
+      result = "도착";
+    }
+    else {
+      result = "이동중";
+    }
+    
   }
   else {
-    result = "이동중"
+    throw fail.checkedError("NoResult", "NoResult")
   }
+
   return result
 }

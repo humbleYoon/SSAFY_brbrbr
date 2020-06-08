@@ -8,6 +8,19 @@ layout-macro-def (Moving) {
     layout {
       section {
         content {
+          title-area {
+            halign (Center)
+             slot2 {
+               single-line {
+                 text {
+                   style (Title_S)
+                   value {
+                     template ("도착하면 아래의 버튼을 눌러주세요!")
+                   }
+                 }
+               }
+             }
+          }
           image-card {
             image-url {
               template ("/images/imgUrls/arrival4.png")
@@ -19,18 +32,23 @@ layout-macro-def (Moving) {
             title-area {
               halign (Center)
               slot1 {
-                text ("#{value(commitOrder.order.destinations.destinationName)}에 도착하셨나요?")
+                text ("도착")
               }
             }
             on-click {
               intent {
                 goal {
                   CommitOrder
-                  @context (Continuation) { Order }
+                  @context (Continuation) { CommitOrder }
                 }
-                route { UpdateOrder }
-                route { IsPressedArrivalButton }
-                value: ArrivalButtonState(도착했어)
+                subplan {
+                  goal: UpdateOrder
+                  subplan {
+                    goal: IsPressedArrivalButton
+                    value: ArrivalButtonState(도착했어)
+                    value: Order$expr(commitOrder.order)
+                  }
+                }
               }
             }
           }
