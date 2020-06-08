@@ -29,12 +29,15 @@
 ### 안내/투어 선택
 - 안내 : 안내를 받을 수 있는 장소/행사로 안내 서비스를 받을 수 있습니다.
 - 투어 : 지정된 투어 코스를 따라서 장소/행사에 대한 설명을 들으며 투어합니다.
+
 현재 투어 서비스는 사용이 불가능하며, 안내 서비스를 이용하실 수 있습니다.
+
 ![select_guideType](./images/bixby_frame/select_guideType.png)
 
 ### 장소/행사 선택
 - 장소 : 현재 로미가 있는 층에서 이동할 수 있는 장소의 리스트를 확인할 수 있습니다.
 - 행사 : 로미가 있는 건물 내에서 오늘 진행하고 있는 행사의 리스트를 확인할 수 있습니다.
+
 ![place](./images/bixby_frame/place.png)
 
 ![event_1](./images/bixby_frame/event_1.png) ![event_2](./images/bixby_frame/event_2.png)
@@ -42,6 +45,7 @@
 ### 이동 및 도착
 - 이동 : 로미와 함께 목적지를 향해 이동합니다.
 - 도착 : 이동 중에 목적지에 도착하게 되면 도착 버튼을 눌러 목적지에 대한 자세한 설명을 듣습니다.
+
 ![moving](./images/bixby_frame/moving.png) ![arrival](./images/bixby_frame/arrival.png)
 
 ## Flow
