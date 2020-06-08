@@ -143,6 +143,8 @@ function RobotPage() {
       case 'service':
         return <ServicePage socket={socket} setPageToChange={setPageToChange} />
       default:
+        // return
+        // return <WelcomePage />
         return <WelcomePage socket={socket} setPageToChange={setPageToChange} />
     }
   }
