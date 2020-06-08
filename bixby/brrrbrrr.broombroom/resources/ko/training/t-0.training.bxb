@@ -4,7 +4,7 @@ train (t-0r2uaq421gcoshsm58u0wywjj) {
 }
 train (t-0rzvjzxwlsqnsf364q5k77z0u) {
   utterance ("[g:CommitOrder:continue,r:UpdateOrder,v:GuideType:안내] (일타싸피)[v:SearchTerm] 할래")
-  last-modified (1591321589417)
+  last-modified (1591613556718)
 }
 train (t-0koaq57302mb3su567iw7us4n) {
   utterance ("[g:CommitOrder:continue,r:UpdateOrder] (스타벅스)[v:SearchTerm]로 (안내)[v:GuideType:안내]해줘")
