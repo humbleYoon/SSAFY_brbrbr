@@ -6,7 +6,7 @@ export interface PlaceInput {
   floor: number
   xaxis: number
   yaxis: number
-  thumburl: string
+  thumbUrl: string
   mapurl: string
 }
 

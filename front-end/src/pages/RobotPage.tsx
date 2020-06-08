@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react'
+/** @jsx jsx */
+import { useState, useEffect } from 'react'
 import socket from '../utils/socketConn'
+import { css, jsx } from '@emotion/core'
+import robotApi from '../api/robot'
 
 import HomePage from './HomePage'
 import WelcomePage from './WelcomePage'
@@ -23,7 +26,7 @@ export interface Place {
   floor: number
   xaxis: number
   yaxis: number
-  thumburl: string
+  thumbUrl: string
   mapurl: string
 }
 
@@ -36,6 +39,7 @@ export interface Event {
   placeName: string
   placeFloor: number
   place?: Place
+  thumbUrl: string
 }
 
 export interface Robot {
@@ -48,6 +52,21 @@ export interface PageParams {
   socket: SocketIOClient.Socket
   setPageToChange: React.Dispatch<React.SetStateAction<PageToChange>>
 }
+
+const Button = css`
+  /* position: absolute; */
+  /* margin-top: 70%; */
+  font-size: 14px;
+  font-weight: 600;
+  width: 120px;
+  height: 27px;
+  /* margin-left: auto; */
+  border-radius: 12px;
+  background-color: #e0e5ec;
+  /* background-color: #C2CBD9; */
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+`
 
 function RobotPage() {
   const [pageToChange, setPageToChange] = useState<PageToChange>('home')
@@ -105,19 +124,52 @@ function RobotPage() {
     }
   }
   return (
-    <div className="App">
-      <button
-        onClick={() =>
-          fetch('http://localhost:3064/robots/finished', {
-            headers: {
-              authCode: authCode,
-            },
-          }).then(() => {})
-        }
+    <div
+      css={css`
+        margin: 20px;
+        padding: 30px;
+        width: 800px;
+        height: 400px;
+        /* width: 100%;
+        height: 100%; */
+        display: flex;
+        /* border: 1px solid black; */
+        justify-content: center;
+        align-items: center;
+      `}
+    >
+      <div
+        css={css`
+          /* position: relative; */
+
+          /* margin: 50px; */
+          padding: 30px;
+          width: 700px;
+          height: 300px;
+          border-radius: 4px;
+          background-color: #e0e5ec;
+          box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+            -9px -9px 16px rgba(255, 255, 255, 0.5);
+        `}
       >
-        처음으로
-      </button>
-      {showPage(pageToChange)}
+        <div
+          css={css`
+            display: flex;
+            justify-content: flex-end;
+          `}
+        >
+          <button
+            css={Button}
+            onClick={async () => {
+              await robotApi.returnRobot(authCode)
+            }}
+          >
+            처음으로
+          </button>
+        </div>
+
+        {showPage(pageToChange)}
+      </div>
     </div>
   )
 }

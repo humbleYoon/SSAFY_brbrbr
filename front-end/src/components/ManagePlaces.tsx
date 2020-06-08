@@ -8,7 +8,7 @@ const initialState: PlaceInput = {
   floor: 1,
   xaxis: 1.1,
   yaxis: 1.1,
-  thumburl: '',
+  thumbUrl: '',
   mapurl: '',
 }
 
@@ -31,7 +31,7 @@ function ManagePlaces() {
   const [places, setPlaces] = useState<Place[]>([])
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const { name, description, floor, xaxis, yaxis, thumburl, mapurl } = state
+  const { name, description, floor, xaxis, yaxis, thumbUrl, mapurl } = state
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(e.target)
   }
@@ -147,7 +147,7 @@ function ManagePlaces() {
               <input name="yaxis" value={yaxis} onChange={onChange} />
             </td>
             <td>
-              <input name="thumburl" value={thumburl} onChange={onChange} />
+              <input name="thumbUrl" value={thumbUrl} onChange={onChange} />
             </td>
             <td>
               <input name="mapurl" value={mapurl} onChange={onChange} />
