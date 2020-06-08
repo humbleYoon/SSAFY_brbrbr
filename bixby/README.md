@@ -12,7 +12,7 @@
 
 3. 빅스비에게 '부릉부릉 시작'
 
-   <img src="./images/bixby_market.png" alt="bixby_market" style="zoom:40%;" />	<img src="./images/bixby_market_brr.png" alt="bixby_market_brr" style="zoom:40%;" />	<img src="./images/bixby_market_brr_2.png" alt="bixby_market_brr_2" style="zoom:40%;" />
+   <img src="./images/bixby_market.png" alt="bixby_market" style="zoom:20%;" />	<img src="./images/bixby_market_brr.png" alt="bixby_market_brr" style="zoom:20%;" />	<img src="./images/bixby_market_brr_2.png" alt="bixby_market_brr_2" style="zoom:20%;" />
 
 
 
@@ -20,11 +20,11 @@
 
 ### 인증
 
-<img src="./images/bixby_frame/authentication.png" alt="authentication" style="zoom:40%;" /> 
+<img src="./images/bixby_frame/authentication.png" alt="authentication" style="zoom:20%;" /> 
 
 ### 안내
 
-<img src="./images/bixby_frame/select_guideType.png" alt="select_guideType" style="zoom:40%;" /> **안내 선택**<img src="./images/bixby_frame/place.png" alt="place" style="zoom:40%;" />
+<img src="./images/bixby_frame/select_guideType.png" alt="select_guideType" style="zoom:20%;" /> **안내 선택**<img src="./images/bixby_frame/place.png" alt="place" style="zoom:20%;" />
 
 - 안내 : 안내를 받을 수 있는 장소/행사로 안내 서비스를 이용할 수 있습니다.
 
@@ -32,7 +32,7 @@
 
 ### 이동 및 도착
 
-<img src="./images/bixby_frame/moving.png" alt="moving" style="zoom:40%;" />**도착 선택**<img src="./images/bixby_frame/arrival.png" alt="arrival" style="zoom:40%;" />
+<img src="./images/bixby_frame/moving.png" alt="moving" style="zoom:20%;" />**도착 선택**<img src="./images/bixby_frame/arrival.png" alt="arrival" style="zoom:20%;" />
 
 - 로봇이 이동중일 때의 화면입니다.
 - 도착했을 시, 도착 버튼을 누르면 이동한 장소/행사에 대한 설명을 들을 수 있습니다.
