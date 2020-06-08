@@ -38,11 +38,6 @@ Int64.h:23:17:virtual int std_msgs::Int64::serialize(unsigned char*) const	32	st
 Int64.h:43:17:virtual int std_msgs::Int64::deserialize(unsigned char*)	56	static
 Int64.h:64:18:virtual const char* std_msgs::Int64::getType()	16	static
 Int64.h:65:18:virtual const char* std_msgs::Int64::getMD5()	16	static
-Int32.h:18:5:std_msgs::Int32::Int32()	16	static
-Int32.h:23:17:virtual int std_msgs::Int32::serialize(unsigned char*) const	24	static
-Int32.h:39:17:virtual int std_msgs::Int32::deserialize(unsigned char*)	24	static
-Int32.h:56:18:virtual const char* std_msgs::Int32::getType()	16	static
-Int32.h:57:18:virtual const char* std_msgs::Int32::getMD5()	16	static
 wheel_motor.cpp:34:6:void wheelDirInit()	32	static
 wheel_motor.cpp:55:6:void wheelPWMInit()	64	static
 wheel_motor.cpp:104:6:void moveStop()	8	static

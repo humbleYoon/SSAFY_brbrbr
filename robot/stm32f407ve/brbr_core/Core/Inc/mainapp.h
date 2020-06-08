@@ -36,16 +36,16 @@ static std_msgs::String debug_msg;
 static std_msgs::Int64 left_encoder_msg;
 static std_msgs::Int64 right_encoder_msg;
 
-static std_msgs::Int32 sec_msg;
-static std_msgs::Int32 nsec_msg;
+static std_msgs::Int64 dddddsec_msg;
+static std_msgs::Int64 dddddnsec_msg;
 
 // ROS message publisher handler
 static ros::Publisher debug_pub("debug", &debug_msg);
 static ros::Publisher left_encoder_pub("left_encoder", &left_encoder_msg);
 static ros::Publisher right_encoder_pub("right_encoder", &right_encoder_msg);
 
-static ros::Publisher sec_pub("time_sec", &sec_msg);
-static ros::Publisher nsec_pub("time_nsec", &nsec_msg);
+static ros::Publisher sec_pub("ddddd_sec", &dddddsec_msg);
+static ros::Publisher nsec_pub("ddddd_nsec", &dddddnsec_msg);
 
 // target callback function
 void lwheel_vtargetCB(const std_msgs::Float32& msg);

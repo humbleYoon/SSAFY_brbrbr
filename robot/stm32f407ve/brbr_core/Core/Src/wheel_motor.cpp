@@ -238,21 +238,25 @@ void calcVelocity(uint16_t left_tick, uint16_t right_tick) {
 
 
 void moveLeftWheel(){
-	if (vel_target[LEFT] == 1.0f && vel_target[RIGHT] == 0.0f) {
-		moveLeft();
-	} else if (vel_target[LEFT] == 0.0f && vel_target[RIGHT] == 1.0f) {
-		moveRight();
-	} else if (vel_target[LEFT] == 1.0f && vel_target[RIGHT] == 1.0f) {
-		moveForword();
-	} else {
-		moveStop();
+	if (vel_target[LEFT] > 0) {
+
+	}
+	else if (vel_target[LEFT] < 0) {
+
+	}else {
+
 	}
 
 }
 void moveRightWheel() {
-//	if (vel_target[RIGHT] == 1.0f) {
-//			MoveRight();
-//		}
+	if (vel_target[RIGHT] > 0) {
+
+	}
+	else if (vel_target[RIGHT] < 0) {
+
+	}else {
+
+	}
 
 }
 

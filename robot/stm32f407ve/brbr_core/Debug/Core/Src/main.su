@@ -1,5 +1,5 @@
-time.h:51:3:ros::Time::Time()	16	static
 msg.h:45:7:constexpr ros::Msg::Msg()	16	static
+time.h:51:3:ros::Time::Time()	16	static
 Time.h:19:5:std_msgs::Time::Time()	16	static
 Time.h:24:17:virtual int std_msgs::Time::serialize(unsigned char*) const	24	static
 Time.h:40:17:virtual int std_msgs::Time::deserialize(unsigned char*)	24	static
@@ -38,11 +38,6 @@ Int64.h:23:17:virtual int std_msgs::Int64::serialize(unsigned char*) const	32	st
 Int64.h:43:17:virtual int std_msgs::Int64::deserialize(unsigned char*)	56	static
 Int64.h:64:18:virtual const char* std_msgs::Int64::getType()	16	static
 Int64.h:65:18:virtual const char* std_msgs::Int64::getMD5()	16	static
-Int32.h:18:5:std_msgs::Int32::Int32()	16	static
-Int32.h:23:17:virtual int std_msgs::Int32::serialize(unsigned char*) const	24	static
-Int32.h:39:17:virtual int std_msgs::Int32::deserialize(unsigned char*)	24	static
-Int32.h:56:18:virtual const char* std_msgs::Int32::getType()	16	static
-Int32.h:57:18:virtual const char* std_msgs::Int32::getMD5()	16	static
 main.cpp:74:5:int main()	8	static
 main.cpp:120:6:void SystemClock_Config()	88	static
 main.cpp:161:13:void MX_I2C1_Init()	8	static

@@ -34,6 +34,7 @@ static TIM_HandleTypeDef htim3;
 
 extern float vel_target[WHEEL_NUM];
 extern float vel_ouput[WHEEL_NUM];
+extern float last_vel[WHEEL_NUM];
 
 // motor encoder
 extern float wheel_prev[WHEEL_NUM];

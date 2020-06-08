@@ -78,12 +78,12 @@ void loop(void) {
 	right_encoder_pub.publish(&right_encoder_msg);
 
 //	ros::Time t = nh.now();
-//	sec_msg.data = t.sec;
-//	nsec_msg.data = t.nsec;
+//	dddddsec_msg.data = (uint64_t)1;
+//	dddddnsec_msg.data = (uint64_t)1;
 //
-//	sec_pub.publish(&sec_msg);
-//	nsec_pub.publish(&nsec_msg);
-
+//	sec_pub.publish(&dddddsec_msg);
+//	nsec_pub.publish(&dddddnsec_msg);
+//
 	debug_msg.data = log_msg;
 	debug_pub.publish(&debug_msg);
 
@@ -92,6 +92,6 @@ void loop(void) {
 	moveRightWheel();
 
 	nh.spinOnce();
-	HAL_Delay(100);
+	HAL_Delay(1000);
 
 }

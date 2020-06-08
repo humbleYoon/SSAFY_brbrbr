@@ -8,22 +8,31 @@
 #ifndef INC_ODOMETRY_H_
 #define INC_ODOMETRY_H_
 
+#include <ros.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/JointState.h>
+#include <tf/tf.h>
+#include <tf/transform_broadcaster.h>
 
+#define LFET	0
+#define RIGHT	1
+
+extern float odom_pose[3];
+extern double odom_vel[3];
 
 extern nav_msgs::Odometry odom;
+extern geometry_msgs::TransformStamped odom_tf;
+extern tf::TransformBroadcaster tf_broadcaster;
 extern sensor_msgs::JointState joint_states;
 
-extern ros::Publisher odom_pub("odom", &odom);
-extern ros::Publisher joint_states_pub("joint_states", &joint_states);
+extern ros::Publisher odom_pub;
+extern ros::Publisher joint_states_pub;
 
-
+void initOdom();
 void initJointStates();
 
 void updateOdometry();
 void updateJointStates();
-void updateTF(geometry_msgs::TransformStamped& odom_tf);
-
+void updateTF(geometry_msgs::TransformStamped &odom_tf);
 
 #endif /* INC_ODOMETRY_H_ */
