@@ -38,25 +38,18 @@ Int64.h:23:17:virtual int std_msgs::Int64::serialize(unsigned char*) const	32	st
 Int64.h:43:17:virtual int std_msgs::Int64::deserialize(unsigned char*)	56	static
 Int64.h:64:18:virtual const char* std_msgs::Int64::getType()	16	static
 Int64.h:65:18:virtual const char* std_msgs::Int64::getMD5()	16	static
-Float32.h:18:5:std_msgs::Float32::Float32()	16	static
-Float32.h:23:17:virtual int std_msgs::Float32::serialize(unsigned char*) const	24	static
-Float32.h:39:17:virtual int std_msgs::Float32::deserialize(unsigned char*)	24	static
-Float32.h:56:18:virtual const char* std_msgs::Float32::getType()	16	static
-Float32.h:57:18:virtual const char* std_msgs::Float32::getMD5()	16	static
+Int32.h:18:5:std_msgs::Int32::Int32()	16	static
+Int32.h:23:17:virtual int std_msgs::Int32::serialize(unsigned char*) const	24	static
+Int32.h:39:17:virtual int std_msgs::Int32::deserialize(unsigned char*)	24	static
+Int32.h:56:18:virtual const char* std_msgs::Int32::getType()	16	static
+Int32.h:57:18:virtual const char* std_msgs::Int32::getMD5()	16	static
 wheel_encoder.cpp:25:6:void encoderInit()	64	static
-wheel_encoder.cpp:124:6:void encoderInit1()	40	static
-wheel_encoder.cpp:161:6:void updateEncoderInfo(uint16_t, uint16_t)	40	static
+wheel_encoder.cpp:100:6:void updateEncoderInfo(uint16_t, uint16_t)	40	static
 msg.h:129:15:static void ros::Msg::varToArr(A, V) [with A = unsigned char*; V = long unsigned int]	24	static
 msg.h:137:15:static void ros::Msg::arrToVar(V&, A) [with V = long unsigned int; A = unsigned char*]	24	static
 node_handle.h:50:7:constexpr ros::NodeHandleBase_::NodeHandleBase_()	16	static
 node_handle.h:128:3:ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::NodeHandle_() [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	32	static
-subscriber.h:44:7:ros::Subscriber_::Subscriber_()	16	static
-subscriber.h:107:3:ros::Subscriber<MsgT, void>::Subscriber(const char*, ros::Subscriber<MsgT, void>::CallbackT, int) [with MsgT = std_msgs::Float32]	24	static
-wheel_encoder.cpp:190:1:void __static_initialization_and_destruction_0(int, int)	16	static
-subscriber.h:114:16:void ros::Subscriber<MsgT, void>::callback(unsigned char*) [with MsgT = std_msgs::Float32]	16	static
-subscriber.h:128:15:int ros::Subscriber<MsgT, void>::getEndpointType() [with MsgT = std_msgs::Float32]	16	static
-subscriber.h:120:24:const char* ros::Subscriber<MsgT, void>::getMsgType() [with MsgT = std_msgs::Float32]	16	static
-subscriber.h:124:24:const char* ros::Subscriber<MsgT, void>::getMsgMD5() [with MsgT = std_msgs::Float32]	16	static
+wheel_encoder.cpp:129:1:void __static_initialization_and_destruction_0(int, int)	16	static
 node_handle.h:511:15:int ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::publish(int, const ros::Msg*) [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	40	static
 node_handle.h:212:15:int ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::spinOnce() [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
 node_handle.h:363:16:bool ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::connected() [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	16	static
@@ -66,4 +59,4 @@ node_handle.h:480:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISH
 node_handle.h:379:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::syncTime(uint8_t*) [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	32	static
 node_handle.h:552:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::log(char, const char*) [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	40	static
 node_handle.h:402:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::setNow(ros::Time&) [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
-wheel_encoder.cpp:190:1:cpp)	8	static
+wheel_encoder.cpp:129:1:cpp)	8	static

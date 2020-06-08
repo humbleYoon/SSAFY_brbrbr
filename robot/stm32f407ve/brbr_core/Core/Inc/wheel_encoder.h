@@ -36,10 +36,9 @@ extern int32_t last_diff_tick[WHEEL_NUM];
 extern uint16_t last_tick[WHEEL_NUM];
 extern double last_rad[WHEEL_NUM];
 
-extern char encoder_log[200];
+//extern char encoder_log[200];
 
 void encoderInit();
-void encoderInit1();
 void updateEncoderInfo();
 
 #endif /* INC_WHEEL_ENCODER_H_ */

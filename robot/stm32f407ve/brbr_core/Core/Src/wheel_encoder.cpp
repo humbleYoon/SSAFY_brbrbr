@@ -10,7 +10,7 @@
 
 volatile long long left_encoder_count;
 volatile long long right_encoder_count;
-char encoder_log[200];
+//char encoder_log[200];
 
 
 float low_encoder_wrap;
@@ -28,29 +28,8 @@ void encoderInit() {
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOE_CLK_ENABLE();
 
-//	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-//
-//	GPIO_InitStruct.Pin = GPIO_PIN_12 | GPIO_PIN_13;
-//	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-//	GPIO_InitStruct.Pull = GPIO_PULLUP;
-//	GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
-//	HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-////	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
-////	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
-//
-//	GPIO_InitStruct = { 0 };
-//	GPIO_InitStruct.Pin = GPIO_PIN_0 | GPIO_PIN_1;
-//	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-//	GPIO_InitStruct.Pull = GPIO_PULLUP;
-//	GPIO_InitStruct.Alternate = GPIO_AF2_TIM5;
-//	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
 	TIM_Encoder_InitTypeDef sConfig = { 0 };
 	TIM_MasterConfigTypeDef sMasterConfig = { 0 };
-
-	/* USER CODE BEGIN TIM4_Init 1 */
-//	__HAL_RCC_GPIOD_CLK_ENABLE();
-	/* USER CODE END TIM4_Init 1 */
 
 	htim4.Instance = TIM4;
 	htim4.Init.Prescaler = 0;
@@ -77,16 +56,10 @@ void encoderInit() {
 		Error_Handler();
 	}
 
-	/* USER CODE BEGIN TIM5_Init 0 */
-
-	/* USER CODE END TIM5_Init 0 */
 
 	sConfig = { 0 };
 	sMasterConfig = { 0 };
 
-	/* USER CODE BEGIN TIM5_Init 1 */
-
-	/* USER CODE END TIM5_Init 1 */
 	htim5.Instance = TIM5;
 	htim5.Init.Prescaler = 0;
 	htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
@@ -112,6 +85,8 @@ void encoderInit() {
 		Error_Handler();
 	}
 
+
+	// Encoder start
 	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 	HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
 
@@ -120,42 +95,6 @@ void encoderInit() {
 	high_encoder_wrap = UNSIGNED16_MAX * 0.8f;
 	init_encoder = true;
 }
-
-void encoderInit1() {
-	__HAL_RCC_GPIOD_CLK_ENABLE();
-	__HAL_RCC_GPIOA_CLK_ENABLE();
-
-	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-
-	/*Configure GPIO pins : PE3 PE4 */
-	GPIO_InitStruct.Pin = MOTOR_LEFT_ENCODER1_Pin | MOTOR_RIGHT_ENCODER1_Pin;
-	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-	GPIO_InitStruct.Pull = GPIO_PULLUP;
-	HAL_GPIO_Init(MOTOR_ENCODER_GPIO_Port, &GPIO_InitStruct);
-//	HAL_GPIO_WritePin(MOTOR_ENCODER_GPIO_Port, MOTOR_LEFT_ENCODER1_Pin, GPIO_PIN_SET);
-//	HAL_GPIO_WritePin(MOTOR_ENCODER_GPIO_Port, MOTOR_RIGHT_ENCODER1_Pin, GPIO_PIN_SET);
-
-	GPIO_InitStruct.Pin = MOTOR_LEFT_ENCODER2_Pin | MOTOR_RIGHT_ENCODER2_Pin;
-	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-	GPIO_InitStruct.Pull = GPIO_PULLUP;
-//	GPIO_InitStruct.Speed = GPIO_LOW
-	HAL_GPIO_Init(MOTOR_ENCODER_GPIO_Port, &GPIO_InitStruct);
-//	HAL_GPIO_WritePin(MOTOR_ENCODER_GPIO_Port, MOTOR_LEFT_ENCODER2_Pin, GPIO_PIN_SET);
-//	HAL_GPIO_WritePin(MOTOR_ENCODER_GPIO_Port, MOTOR_RIGHT_ENCODER2_Pin, GPIO_PIN_SET);
-
-	/* EXTI interrupt init*/
-	HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
-	HAL_NVIC_EnableIRQ(EXTI0_IRQn);
-
-	HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);
-	HAL_NVIC_EnableIRQ(EXTI2_IRQn);
-
-
-
-
-
-}
-
 
 // 모터가 바라보는 방향을 구함
 void updateEncoderInfo(uint16_t left_tick, uint16_t right_tick) {

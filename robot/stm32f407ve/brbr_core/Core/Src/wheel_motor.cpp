@@ -36,8 +36,6 @@ void wheelDirInit() {
 
 	/* GPIO Ports Clock Enable */
 	__HAL_RCC_GPIOE_CLK_ENABLE();
-//	__HAL_RCC_GPIOH_CLK_ENABLE();
-//	__HAL_RCC_GPIOB_CLK_ENABLE();
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOE,
@@ -101,6 +99,7 @@ void wheelPWMInit() {
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 }
+
 
 void moveStop() {
 	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
@@ -178,16 +177,7 @@ void moveRight() {
 	TIM3->CCR2 = (uint16_t) 21000 - 1;
 }
 
-void lwheel_vtargetCB(const std_msgs::Float32 &msg) {
-	vel_target[LEFT] = msg.data;
-}
-
-void rwheel_vtargetCB(const std_msgs::Float32 &msg) {
-	vel_target[RIGHT] = msg.data;
-}
-
 void PIDcontrollInit() {
-
 	for (int i = 0; i < WHEEL_NUM; i++) {
 		// motor encoder
 		wheel_prev[i] = 0.f;
@@ -220,28 +210,53 @@ void calcVelocity(uint16_t left_tick, uint16_t right_tick) {
 	static uint32_t cur_calcVel_time[WHEEL_NUM] = { };
 	static uint32_t calcVel_time[WHEEL_NUM] = { };
 
-	for (int idx = 0; idx < WHEEL_NUM; idx++) {
-		cur_calcVel_time[idx] = micros();
-		calcVel_time[idx] = cur_calcVel_time[idx] - prev_calcVel_time[idx];
-		prev_calcVel_time[idx] = cur_calcVel_time[idx];
-
-		double dt = (double) calcVel_time[idx] * 0.000001;
-
-		if (cur_tick[idx] < low_encoder_wrap && last_tick[idx] > high_encoder_wrap) {
-			wheel_mult[idx] = wheel_mult[idx] + 1;
-		}
-
-		if (cur_tick[idx] > high_encoder_wrap && last_tick[idx] < low_encoder_wrap) {
-			wheel_mult[idx] = wheel_mult[idx] - 1;
-		} //오버플로우를 막으려고 한 것
-
-		wheel_latest[idx] = (double) (cur_tick[idx]
-				+ wheel_mult[idx] * UNSIGNED16_MAX) * TICK2METER;
-		//wheel_latest[idx] = enc[idx] * METER_PER_TICKS;
-		vel_ouput[idx] = (double) (wheel_latest[idx] - wheel_prev[idx]) / dt;
-		wheel_prev[idx] = wheel_latest[idx];
-	}
+//	for (int idx = 0; idx < WHEEL_NUM; idx++) {
+//		ros::Time h = nh.now();
+////		h.nsec;
+////		h.sec;
+////		cur_calcVel_time[idx] = micros();
+//		calcVel_time[idx] = cur_calcVel_time[idx] - prev_calcVel_time[idx];
+//		prev_calcVel_time[idx] = cur_calcVel_time[idx];
+//
+//		double dt = (double) calcVel_time[idx] * 0.000001;
+//
+//		if (cur_tick[idx] < low_encoder_wrap && last_tick[idx] > high_encoder_wrap) {
+//			wheel_mult[idx] = wheel_mult[idx] + 1;
+//		}
+//
+//		if (cur_tick[idx] > high_encoder_wrap && last_tick[idx] < low_encoder_wrap) {
+//			wheel_mult[idx] = wheel_mult[idx] - 1;
+//		} //오버플로우를 막으려고 한 것
+//
+//		wheel_latest[idx] = (double) (cur_tick[idx]
+//				+ wheel_mult[idx] * UNSIGNED16_MAX) * TICK2METER;
+//		//wheel_latest[idx] = enc[idx] * METER_PER_TICKS;
+//		vel_ouput[idx] = (double) (wheel_latest[idx] - wheel_prev[idx]) / dt;
+//		wheel_prev[idx] = wheel_latest[idx];
+//	}
 }
+
+
+void moveLeftWheel(){
+	if (vel_target[LEFT] == 1.0f && vel_target[RIGHT] == 0.0f) {
+		moveLeft();
+	} else if (vel_target[LEFT] == 0.0f && vel_target[RIGHT] == 1.0f) {
+		moveRight();
+	} else if (vel_target[LEFT] == 1.0f && vel_target[RIGHT] == 1.0f) {
+		moveForword();
+	} else {
+		moveStop();
+	}
+
+}
+void moveRightWheel() {
+//	if (vel_target[RIGHT] == 1.0f) {
+//			MoveRight();
+//		}
+
+}
+
+
 
 //
 //void doPID() {

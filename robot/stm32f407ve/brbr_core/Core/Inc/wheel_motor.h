@@ -27,6 +27,8 @@
 #include <std_msgs/Float32.h>
 #include <ros.h>
 #include <math.h>
+#include <string.h>
+#include "mainapp.h"
 
 static TIM_HandleTypeDef htim3;
 
@@ -60,14 +62,13 @@ void driveRightWheel(float servo_value);
 
 // PID 컨트롤 초기화
 void PIDcontrollInit();
-// PID 컨트롤에서 사용할 모터 속도 계산하기
 void calcVelocity();
-// PID 컨트롤
 void doPID();
 
-// target callback function
-void lwheel_vtargetCB(const std_msgs::Float32& msg);
-void rwheel_vtargetCB(const std_msgs::Float32& msg);
+// 모터 조작하기
+void moveLeftWheel();
+void moveRightWheel();
+
 
 
 #endif /* INC_WHEEL_MOTOR_H_ */
