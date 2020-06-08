@@ -29,7 +29,25 @@ Core/Src/wheel_encoder.o: ../Core/Src/wheel_encoder.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ ../Core/Inc/mainapp.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/node_handle.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Time.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/msg.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/time.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/duration.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/rosserial_msgs/TopicInfo.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/rosserial_msgs/Log.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/rosserial_msgs/RequestParam.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/publisher.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/node_handle.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/subscriber.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/service_server.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/service_client.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/STM32Hardware.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h
 
 ../Core/Inc/wheel_encoder.h:
 
@@ -94,3 +112,39 @@ Core/Src/wheel_encoder.o: ../Core/Src/wheel_encoder.cpp \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+
+../Core/Inc/mainapp.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/node_handle.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Time.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/msg.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/time.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/duration.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/rosserial_msgs/TopicInfo.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/rosserial_msgs/Log.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/rosserial_msgs/RequestParam.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/publisher.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/node_handle.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/subscriber.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/service_server.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/ros/service_client.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/STM32Hardware.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h:
+
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h:

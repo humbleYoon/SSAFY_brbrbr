@@ -8,14 +8,38 @@
 
 extern TIM_HandleTypeDef htim3;
 
+long long
+static float encoder_low_wrap;
+static float encoder_high_wrap;
+
+static float pid_dt;
+
+// motor encoder
+float wheel_prev[WHEEL_NUM];
+float wheel_lastest[WHEEL_NUM];
+float wheel_mult[WHEEL_NUM];
+
+// motor PID control(velocity)
+float vel_target[WHEEL_NUM];
+float vel_ouput[WHEEL_NUM];
+
+float vel_error[WHEEL_NUM];
+float prev_vel_error[WHEEL_NUM];
+float vel_integral[WHEEL_NUM];
+float vel_derivative[WHEEL_NUM];
+
+// motor PID control gain parameter
+float vel_Kp[WHEEL_NUM];
+float vel_Ki[WHEEL_NUM];
+float vel_Kd[WHEEL_NUM];
+
 void wheelDirInit() {
 	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 
 	/* GPIO Ports Clock Enable */
 	__HAL_RCC_GPIOE_CLK_ENABLE();
-	__HAL_RCC_GPIOH_CLK_ENABLE();
-	__HAL_RCC_GPIOA_CLK_ENABLE();
-	__HAL_RCC_GPIOB_CLK_ENABLE();
+//	__HAL_RCC_GPIOH_CLK_ENABLE();
+//	__HAL_RCC_GPIOB_CLK_ENABLE();
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOE,
@@ -33,6 +57,7 @@ void wheelDirInit() {
 }
 
 void wheelPWMInit() {
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 
 	TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
 	TIM_MasterConfigTypeDef sMasterConfig = { 0 };
@@ -80,11 +105,15 @@ void wheelPWMInit() {
 }
 
 void moveStop() {
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+			GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+			GPIO_PIN_RESET);
 
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+			GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+			GPIO_PIN_RESET);
 
 	TIM3->CCR1 = (uint16_t) 0;
 	TIM3->CCR2 = (uint16_t) 0;
@@ -92,95 +121,138 @@ void moveStop() {
 }
 
 void moveForword() {
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+			GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+			GPIO_PIN_SET);
 
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+			GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+			GPIO_PIN_SET);
 
 	TIM3->CCR1 = (uint16_t) 31000 - 1;
 	TIM3->CCR2 = (uint16_t) 31000 - 1;
 }
 
 void moveBackword() {
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+			GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+			GPIO_PIN_RESET);
 
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+			GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+			GPIO_PIN_RESET);
 
 	TIM3->CCR1 = (uint16_t) 21000 - 1;
 	TIM3->CCR2 = (uint16_t) 21000 - 1;
 }
 
 void moveLeft() {
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+			GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+			GPIO_PIN_RESET);
 
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+			GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+			GPIO_PIN_SET);
 
 	TIM3->CCR1 = (uint16_t) 21000 - 1;
 	TIM3->CCR2 = (uint16_t) 21000 - 1;
 }
 
 void moveRight() {
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+			GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+			GPIO_PIN_SET);
 
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+			GPIO_PIN_SET);
+	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+			GPIO_PIN_RESET);
 
 	TIM3->CCR1 = (uint16_t) 21000 - 1;
 	TIM3->CCR2 = (uint16_t) 21000 - 1;
 }
 
-static float encoder_low_wrap;
-static float encoder_high_wrap;
+void lwheel_vtargetCB(const std_msgs::Float32 &msg) {
+	target_vel[LEFT] = msg.data;
+}
 
-static float pid_dt;
-static float prev_vel_error[WHEEL_NUM];
-static float vel_error[WHEEL_NUM];
-static float vel_intergral[WHEEL_NUM];
-static float vel_derivative[WHEEL_NUM];
-static float Kp[WHEEL_NUM];
-static float Ki[WHEEL_NUM];
-static float Kd[WHEEL_NUM];
+void rwheel_vtargetCB(const std_msgs::Float32 &msg) {
+	target_vel[RIGHT] = msg.data;
+}
 
-static float vel_target[WHEEL_NUM];
-static float vel_ouput[WHEEL_NUM];
+void PIDcontrollInit() {
+	encoder_low_wrap = ((int64_t) ENCODER_MAX - ENCODER_MIN)
+			* 0.3f+ ENCODER_MIN;
+	encoder_high_wrap = ((int64_t) ENCODER_MAX - ENCODER_MIN)
+			* 0.3f+ ENCODER_MIN;
 
-//void PIDcontrollInit() {
-//	encoder_low_wrap = ((long long) ENCODER_MAX - ENCODER_MIN)
-//			* 0.3f+ ENCODER_MIN;
-//	encoder_high_wrap = ((long long) ENCODER_MAX - ENCODER_MIN)
-//			* 0.3f+ ENCODER_MIN;
-//
-//	for (int i = 0; i < WHEEL_NUM; i++) {
-//		vel_target[i] = 0.f;
-//		cur_vel[i] = 0.0;
-//		vel_output[i] = 0.f;
-//
-//		vel_error[i] = 0.f;
-//		previous_vel_error[i] = 0.f;
-//		vel_intergral[i] = 0.f;
-//		vel_derivative[i] = 0.f;
-//
-//		wheel_prev[i] = 0.0;
-//		wheel_latest[i] = 0.0;
-//		wheel_mult[i] = 0;
-//
-//	}
-//
-//	Kp[LEFT] = 550.f;
-//	Ki[LEFT] = 200.f;
-//	Kd[LEFT] = 40.f;
-//
-//	Kp[RIGHT] = 550.f;
-//	Ki[RIGHT] = 200.f;
-//	Kd[RIGHT] = 40.f;
-//
-//}
+	for (int i = 0; i < WHEEL_NUM; i++) {
+		// motor encoder
+		wheel_prev[i] = 0.f;
+		wheel_lastest[i] = 0.f;
+		wheel_mult[i] = 0.f;
+
+		// motor PID control(velocity)
+		vel_target[i] = 0.f;
+		vel_ouput[i] = 0.f;
+
+		vel_error[i] = 0.f;
+		prev_vel_error[i] = 0.f;
+		vel_integral[i] = 0.f;
+		vel_derivative[i] = 0.f;
+	}
+	// motor PID control gain parameter
+	vel_Kp[LEFT];
+	vel_Ki[LEFT];
+	vel_Kd[LEFT];
+
+	vel_Kp[RIGHT];
+	vel_Ki[RIGHT];
+	vel_Kd[RIGHT];
+
+}
+
+void calcVelocity() {
+	static uint32_t pev_calcVel_time[WHEEL_NUM] = { };
+	static uin32_t cur_calcVel_time[WHEEL_NUM] = { };
+	static uint32_t calcVel_time[WHEEL_NUM] = { };
+
+	for (int i = 0; i < WHEEL_NUM; i++) {
+		cur_calcVel_time[i] = micros();
+		calcVel_time[i] = cur_calcVel_time[i] - prev_calcVel_time[i];
+		prev_calcVel_time[i] = cur_calcVel_time[i];
+
+		double dt = (double) calcVel_time[i] * 0.000001;
+
+		if (enc[i] < encoder_low_wrap && prev_encoder[i] > encoder_high_wrap) {
+			wheel_mult[i] = wheel_mult[i] + 1;
+		}
+
+		if (enc[i] > encoder_high_wrap && prev_encoder[i] < encoder_low_wrap) {
+			wheel_mult[i] = wheel_mult[i] - 1;
+		} //오버플로우를 막으려고 한 것
+
+		wheel_latest[i] = (double) (enc[i]
+				+ wheel_mult[i] * ((long long) ENCODER_MAX - ENCODER_MIN))
+				* METER_PER_TICKS;
+		//wheel_latest[i] = enc[i] * METER_PER_TICKS;
+		cur_vel[i] = (double) (wheel_latest[i] - wheel_prev[i]) / dt;
+		wheel_prev[i] = wheel_latest[i];
+
+		prev_encoder[i] = enc[i];
+
+		debugging_msgs.data = dt;
+	}
+}
+
 //
 //void doPID() {
 //	static uint32_t prev_PID_time[WHEEL_NUM] = { 0, 0 };

@@ -44,9 +44,9 @@ Core/Src/mainapp.o: ../Core/Src/mainapp.cpp ../Core/Inc/mainapp.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h \
- ../Core/Inc/wheel_motor.h ../Core/Inc/main.h ../Core/Inc/wheel_encoder.h \
- C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h
+ ../Core/Inc/wheel_motor.h ../Core/Inc/main.h ../Core/Inc/wheel_encoder.h
 
 ../Core/Inc/mainapp.h:
 
@@ -140,6 +140,8 @@ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/STM32Hardw
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h:
+
 C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h:
 
 ../Core/Inc/wheel_motor.h:
@@ -147,5 +149,3 @@ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/I
 ../Core/Inc/main.h:
 
 ../Core/Inc/wheel_encoder.h:
-
-C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h:

@@ -28,6 +28,8 @@
 
 
 static TIM_HandleTypeDef htim3;
+extern float vel_target[WHEEL_NUM];
+extern float vel_ouput[WHEEL_NUM];
 
 // 모터 방향과 PWM 조절
 void wheelDirInit();
@@ -50,6 +52,10 @@ void PIDcontrollInit();
 void calcVelocity();
 // PID 컨트롤
 void doPID();
+
+// target callback function
+void lwheel_vtargetCB(const std_msgs::Float32& msg);
+void rwheel_vtargetCB(const std_msgs::Float32& msg);
 
 
 #endif /* INC_WHEEL_MOTOR_H_ */
