@@ -25,4 +25,8 @@ const returnRobot = (authCode: string) => {
   })
 }
 
-export default { fetchRobots, addRobot, deleteRobot, returnRobot }
+const initRobots = () => {
+  return client.get('/robots/init')
+}
+
+export default { fetchRobots, addRobot, deleteRobot, returnRobot, initRobots }

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useState, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
-import { PageToChange, PageParams } from './RobotPage'
+import { PageToChange, PageParams, Robot } from './RobotPage'
 
 interface RobotStatus {
   id: number
@@ -14,21 +14,24 @@ interface RobotStatus {
 
 const Button = css`
   /* position: absolute; */
-  margin: 0 auto;
   /* margin-top: 70%; */
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   width: 200px;
   height: 27px;
   margin-right: 10px;
+  margin-bottom: 20px;
   border-radius: 12px;
   background-color: #e0e5ec;
   /* background-color: #C2CBD9; */
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
 `
+interface HomePageParams extends PageParams {
+  setRobot: React.Dispatch<React.SetStateAction<Robot>>
+}
 
-function HomePage({ socket, setPageToChange }: PageParams) {
+function HomePage({ socket, setPageToChange, setRobot }: HomePageParams) {
   const [robotsToMatch, setRobotsToMatch] = useState<RobotStatus[]>([])
 
   useEffect(() => {
@@ -44,7 +47,11 @@ function HomePage({ socket, setPageToChange }: PageParams) {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const target = e.target as HTMLButtonElement
-    socket.emit('robotName', target.value)
+    const selectedRobot = robotsToMatch.filter((robot) => {
+      return robot.id === Number(target.value)
+    })[0]
+    setRobot(selectedRobot)
+    socket.emit('robotName', selectedRobot.name)
   }
   return (
     <div>
@@ -52,16 +59,17 @@ function HomePage({ socket, setPageToChange }: PageParams) {
       <div
         css={css`
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
         `}
       >
         {robotsToMatch.map((robot) => (
           <button
             css={Button}
             key={robot.id}
-            value={robot.name}
+            value={robot.id}
             onClick={handleClick}
-          >{`${robot.floor}층에서 일하는 ${robot.name}`}</button>
+          >{`${robot.floor}층 ${robot.name}`}</button>
         ))}
       </div>
     </div>

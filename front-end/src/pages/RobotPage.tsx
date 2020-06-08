@@ -1,15 +1,16 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import socket from '../utils/socketConn'
 import { css, jsx } from '@emotion/core'
 import robotApi from '../api/robot'
 
 import HomePage from './HomePage'
-import WelcomePage from './WelcomePage'
 import AuthCodePage from './AuthCodePage'
 import GuidePage from './GuidePage'
 import ListOnFloorPage from './ListOnFloorPage'
 import DestinationPage from './DestinationPage'
+import ServicePage from './ServicePage'
+import WelcomePage from './WelcomePage'
 
 export type PageToChange =
   | 'home'
@@ -18,6 +19,7 @@ export type PageToChange =
   | 'listOnFloor'
   | 'guide'
   | 'destination'
+  | 'service'
 
 export interface Place {
   id: number
@@ -26,7 +28,7 @@ export interface Place {
   floor: number
   xaxis: number
   yaxis: number
-  thumbUrl: string
+  thumburl: string
   mapurl: string
 }
 
@@ -39,13 +41,19 @@ export interface Event {
   placeName: string
   placeFloor: number
   place?: Place
-  thumbUrl: string
+  thumburl: string
 }
 
 export interface Robot {
   id: number
   name: string
   floor: number
+}
+
+export interface RobotStatus extends Robot {
+  available?: boolean
+  status?: '대기' | '이동중' | '도착'
+  onService?: boolean
 }
 
 export interface PageParams {
@@ -56,7 +64,7 @@ export interface PageParams {
 const Button = css`
   /* position: absolute; */
   /* margin-top: 70%; */
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   width: 120px;
   height: 27px;
@@ -71,7 +79,8 @@ const Button = css`
 function RobotPage() {
   const [pageToChange, setPageToChange] = useState<PageToChange>('home')
   const [authCode, setAuthCode] = useState('1111')
-  const [destinations, setDestinations] = useState<Place[]>([])
+  const [destinations, setDestinations] = useState<Place[] | Event[]>([])
+  const [robot, setRobot] = useState<RobotStatus>({} as RobotStatus)
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -90,18 +99,29 @@ function RobotPage() {
   const showPage = (pageToChange: PageToChange) => {
     switch (pageToChange) {
       case 'home':
-        return <HomePage socket={socket} setPageToChange={setPageToChange} />
+        return (
+          <HomePage
+            socket={socket}
+            setPageToChange={setPageToChange}
+            setRobot={setRobot}
+          />
+        )
       case 'authCode':
         return (
           <AuthCodePage
             authCode={authCode}
             socket={socket}
             setPageToChange={setPageToChange}
+            setDestinations={setDestinations}
           />
         )
       case 'listOnFloor':
         return (
-          <ListOnFloorPage socket={socket} setPageToChange={setPageToChange} />
+          <ListOnFloorPage
+            socket={socket}
+            setPageToChange={setPageToChange}
+            setDestinations={setDestinations}
+          />
         )
       case 'guide':
         return (
@@ -117,8 +137,11 @@ function RobotPage() {
             socket={socket}
             setPageToChange={setPageToChange}
             destinations={destinations}
+            matchedRobot={robot}
           />
         )
+      case 'service':
+        return <ServicePage socket={socket} setPageToChange={setPageToChange} />
       default:
         return <WelcomePage socket={socket} setPageToChange={setPageToChange} />
     }
@@ -128,8 +151,8 @@ function RobotPage() {
       css={css`
         margin: 20px;
         padding: 30px;
-        width: 800px;
-        height: 400px;
+        width: 1024px;
+        height: 600px;
         /* width: 100%;
         height: 100%; */
         display: flex;
@@ -142,10 +165,10 @@ function RobotPage() {
         css={css`
           /* position: relative; */
 
-          /* margin: 50px; */
+          margin: 50px;
           padding: 30px;
-          width: 700px;
-          height: 300px;
+          width: 924px;
+          height: 550px;
           border-radius: 4px;
           background-color: #e0e5ec;
           box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),

@@ -9,7 +9,7 @@ const initialState: EventInput = {
   endtime: new Date(),
   placeName: '',
   placeFloor: 1,
-  thumbUrl: '',
+  thumburl: '',
 }
 
 function reducer(
@@ -43,7 +43,7 @@ function ManageEvents() {
     endtime,
     placeName,
     placeFloor,
-    thumbUrl,
+    thumburl,
   } = state
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(e.target)
@@ -178,7 +178,7 @@ function ManageEvents() {
               <input name="placeFloor" value={placeFloor} onChange={onChange} />
             </td>
             <td>
-              <input name="thumbUrl" value={thumbUrl} onChange={onChange} />
+              <input name="thumburl" value={thumburl} onChange={onChange} />
             </td>
             <td>
               <button onClick={handleClick}>등록</button>

@@ -1,8 +1,11 @@
+/** @jsx jsx  */
 import React, { useEffect } from 'react'
-import { PageToChange, PageParams, Place } from './RobotPage'
+import { css, jsx } from '@emotion/core'
+import { PageToChange, PageParams, Place, Event } from './RobotPage'
+import Face from '../assets/face.gif'
 
 interface GuidePageParams extends PageParams {
-  setDestinations: React.Dispatch<React.SetStateAction<Place[]>>
+  setDestinations: React.Dispatch<React.SetStateAction<Place[] | Event[]>>
 }
 
 function GuidePage({
@@ -20,7 +23,19 @@ function GuidePage({
     })
   })
 
-  return <h1>이동중입니다 저를 따라오세요</h1>
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      `}
+    >
+      <img src={Face} alt="smiley face" height={350} width={350} />
+      <h2>*** 로미를 따라오세요 팔로팔로미~ ***</h2>
+    </div>
+  )
 }
 
 export default GuidePage

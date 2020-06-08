@@ -33,6 +33,14 @@ function ManageRobots() {
     dispatch(e.target)
   }
 
+  const initRobots = useCallback(async () => {
+    try {
+      await robotApi.initRobots()
+    } catch (error) {
+      console.error(error)
+    }
+  }, [])
+
   const getRobots = useCallback(async () => {
     try {
       const res = await robotApi.fetchRobots()
@@ -125,6 +133,7 @@ function ManageRobots() {
           </tr>
         </tbody>
       </table>
+      <button onClick={() => initRobots()}>로봇 연결 초기화</button>
     </div>
   )
 }
