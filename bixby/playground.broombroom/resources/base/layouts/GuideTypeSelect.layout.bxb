@@ -1,0 +1,81 @@
+layout-macro-def (GuideTypeSelect) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    layout {
+      section {
+        content {
+          title-card {
+            title-area {
+              halign (Center)
+              slot1 {
+                single-line {
+                  text {
+                    style (Title_M)
+                    value {
+                      template (안내)
+                    }
+                  }
+                }
+              }
+              slot2 {
+                paragraph {
+                  style (Detail_L)
+                  value {
+                    template (원하는 장소로 안내해드립니다.)
+                  }
+                }
+              }
+            }
+            on-click {
+              intent {
+                goal {
+                  CommitOrder
+                  @context (Continuation) { CommitOrder }
+                }
+                subplan {
+                  goal: UpdateOrder
+                  subplan {
+                    goal: SelectGuideType
+                    value: GuideType(안내)
+                    value: Order$expr(commitOrder.order)
+                  }
+                }
+              }
+            }
+          }
+          divider
+          title-card {
+            title-area {
+              halign (Center)
+              slot1 {
+                single-line {
+                  text {
+                    style (Title_M)
+                    value {
+                      template (투어)
+                    }
+                  }
+                }
+              }
+              slot2 {
+                paragraph {
+                  style (Detail_L)
+                  value {
+                    template (저와 함께 멀티캠퍼스를 탐험해볼까요?)
+                  }
+                }
+              }
+            }
+            // 투어 서비스 사용시 아래에 작성
+            on-click {
+            }
+          }
+        }
+      }
+    }
+  }
+}

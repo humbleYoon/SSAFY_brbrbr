@@ -1,0 +1,15 @@
+action (SelectGuideType) {
+  type (Constructor)
+  description (가이드타입을 선택하고(안내/투어), 그에 따른 행사, 장소 리스트를 받아온다.)
+  collect {
+    input (guideType) {
+      type (GuideType)
+      min (Required) max (One)
+    }
+    input (order) {
+      type (Order)
+      min (Required) max (One)
+    }
+  }
+  output (ChangedItem)
+}

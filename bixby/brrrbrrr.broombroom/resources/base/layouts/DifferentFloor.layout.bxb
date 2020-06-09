@@ -1,0 +1,95 @@
+layout-macro-def (DifferentFloor) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    section {
+      content {
+        title-area {
+          halign (Center)
+          slot1 {
+            single-line {
+              text {
+                value {
+                  template ("이곳은 아래의 층에 있습니다.")
+                }
+              }
+            }
+          }
+        }
+        for-each (commitOrder.order.destinations) {
+          as (destination) {
+            title-area {
+              halign (Center)
+              slot1 {
+                single-line {
+                  text {
+                    color (Amber)
+                    value {
+                      template ("#{value(destination.floor)}층")
+                    }
+                  }
+                }
+              }
+            }
+            
+          }
+        }
+        divider
+        title-area {
+          halign (Center)
+          slot2 {
+            paragraph {
+              value {
+                template ("다른 장소도 안내해드릴까요?")
+              }
+              style (Title_S)
+            }
+          }
+        }
+        image-card {
+          image-url ("images/imgUrls/go.png")
+          column-size (Two)
+          title-area {
+            halign (Center)
+            slot1 {
+              text ("")
+            }
+          }
+          on-click {
+            intent {
+              goal {
+                CommitOrder
+                @context (Continuation) { CommitOrder }
+              }
+              subplan {
+                goal: UpdateOrder
+                subplan {
+                  goal: SelectGuideType
+                  value: GuideType(안내)
+                }
+              }
+            }
+          }
+        }
+        image-card {
+          image-url ("images/imgUrls/thanks.png")
+          column-size (Two)
+          title-area {
+            slot1 {
+              text ("")
+            }
+          }
+          on-click {
+            intent {
+              goal: EndOrder
+              value: Order$expr(commitOrder.order)
+            }
+          }
+        }
+      }
+    }
+  }
+}

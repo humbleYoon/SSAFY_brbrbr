@@ -1,19 +1,14 @@
 var console = require('console');
-const placeAndEventList = require('lib/placeAndEventList');
 
-module.exports.function = function createOrder (authenticationState, item, step) {
+module.exports.function = function createOrder () {
   var order = {
     authenticationState: {
-      authenticationCode: 1124,
+      authenticationCode: -1,
       isAuthenticated: false,
+      floor: 11,
     },
-    item: {
-      guideType: "안내",
-      placeAndEvent: placeAndEventList,
-      robotState: "정지",
-    },
-    orderNumber: 1,
-    step: "인증 페이지",
+    pressedCount: 0,
+    step: "인증"
   }
 
   console.log(order);

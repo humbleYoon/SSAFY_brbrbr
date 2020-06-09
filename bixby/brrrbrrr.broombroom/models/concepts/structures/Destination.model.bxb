@@ -1,0 +1,18 @@
+structure (Destination) {
+  property (destinationName) {
+    type (DestinationName)
+    min (Required) max (One)
+  }
+  property (destinationDescription) {
+    type (DestinationDescription)
+    min (Required) max (One)
+  }
+  property (floor) {
+    type (Floor)
+    min (Required)
+  }
+  property (thumbUrl) {
+    type (ThumbUrl)
+    min (Required)
+  }
+}

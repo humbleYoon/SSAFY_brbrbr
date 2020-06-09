@@ -1,0 +1,12 @@
+template-macro-def (GuideTypeSelect) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("원하시는 서비스를 말씀 해주세요!") {
+      speech("어떤 서비스가 필요하신가요?")
+    }
+  }
+}

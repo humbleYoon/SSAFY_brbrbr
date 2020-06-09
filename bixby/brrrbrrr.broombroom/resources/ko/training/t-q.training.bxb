@@ -1,0 +1,8 @@
+train (t-qq9o9aw2vnydkstgidw1ut8w6) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (다왔어)[v:ArrivalButtonState:도착했어]")
+  last-modified (1591261765427)
+}
+train (t-qoe8h8o9bmak6a5dlqih84dgs) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (커피빈)[v:SearchTerm]으로 (가자)[v:GuideType:안내]")
+  last-modified (1591333965933)
+}

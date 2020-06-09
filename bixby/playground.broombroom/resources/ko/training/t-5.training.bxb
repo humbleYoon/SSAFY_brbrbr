@@ -1,0 +1,4 @@
+train (t-5tzhkrq5942kiy51lsnah9m8o) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (멈춰)[v:ArrivalButtonState:정지]")
+  last-modified (1591522375992)
+}

@@ -1,0 +1,17 @@
+result-view {
+  match {
+    EndedOrder(this)
+  }
+  render {
+    layout-macro (EndedOrder) {
+      param (endedOrder) {
+        expression (this)
+      }
+    }
+  }
+  message {
+    template () {
+      speech ("다음에 또 만나요!")
+    }
+  }
+}

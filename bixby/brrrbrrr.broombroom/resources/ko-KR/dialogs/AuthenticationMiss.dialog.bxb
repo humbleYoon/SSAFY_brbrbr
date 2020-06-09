@@ -1,0 +1,10 @@
+template-macro-def (AuthenticationMiss) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("인증번호가 달라요. 다시 확인 해주세요.")
+  }
+}
