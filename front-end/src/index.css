@@ -14,12 +14,12 @@ code {
 }
 
 /* landing */
-html, body {
+/* html, body {
   margin: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
-}
+} */
 
 li {
   list-style: none;
@@ -88,7 +88,8 @@ h2 {
   padding: 0;
 }
 
-.pagination-additional-class > li:not(:last-of-type) > a, .pagination-additional-class > li:not(:last-of-type) > span {
+.pagination-additional-class > li:not(:last-of-type) > a,
+.pagination-additional-class > li:not(:last-of-type) > span {
   margin-right: 50px;
 }
 
@@ -105,7 +106,8 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  .pagination-additional-class > li:not(:last-of-type) > a, .pagination-additional-class > li:not(:last-of-type) > span {
-      margin-right: 5px;
+  .pagination-additional-class > li:not(:last-of-type) > a,
+  .pagination-additional-class > li:not(:last-of-type) > span {
+    margin-right: 5px;
   }
 }
