@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import redisRobot from '../redis/robot'
-import { PrismaClientValidationError } from '@prisma/client'
 
 // 인증번호에 맞는 로봇에게 메시지를 전송합니다
 export async function emitToRobot(

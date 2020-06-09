@@ -39,14 +39,14 @@ if (prod) {
       methods: 'GET,HEAD,POST,PATCH,DELETE,OPTIONS',
       credentials: true, // required to pass
       allowedHeaders:
-        'Origin, Accept, Content-Type, Authorization, X-Requested-With',
+        'Origin, Accept, Content-Type, Authorization, X-Requested-With, authCode',
     })
   )
 } else {
   app.use(morgan('dev'))
   app.use(
     cors({
-      origin: 'aaaa',
+      origin: true,
       credentials: true,
     })
   )

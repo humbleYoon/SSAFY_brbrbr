@@ -2,8 +2,9 @@ import express from 'express'
 import prisma from '../prisma/client'
 import redis from '../redis/client'
 import redisRobot, { RobotsByCode } from '../redis/robot'
-import { emitToRobot, validateCode } from './helpers'
+import { emitToRobot } from './helpers'
 import getRandomCode from '../utils/getRandomCode'
+import validateCode from '../middlewares/validateCode'
 
 const router = express.Router()
 
@@ -27,21 +28,23 @@ router.post('/', async (req, res) => {
   redisRobot.initRobots()
 })
 
-router.post('/auth', async (req, res) => {
+router.post('/auth', validateCode, async (req, res) => {
   const {
     inputAuthenticationCode: codeReceived,
   }: { inputAuthenticationCode: number } = req.body
+  const robotCode = String(codeReceived)
 
   try {
     const robotsByCode = await redisRobot.getRobotsByCode()
     const robotCodes = Object.keys(robotsByCode)
-    const isHere = Boolean(robotCodes!.includes(String(codeReceived)))
+    const isHere = Boolean(robotCodes!.includes(robotCode))
 
     if (isHere) {
       res.send({
         isAuthenticated: true,
-        floor: robotsByCode[String(codeReceived)].floor,
+        floor: robotsByCode[robotCode].floor,
       })
+      emitToRobot(req, robotCode, 'changePageTo', 'service')
     } else {
       res.send({
         isAuthenticated: false,
@@ -62,9 +65,8 @@ router.delete('/:id', async (req, res) => {
   res.status(204).end()
 })
 
-router.get('/arrived', async (req, res) => {
+router.get('/arrived', validateCode, async (req, res) => {
   const codeReceived = req.header('authCode')!
-  validateCode(res, codeReceived)
 
   try {
     const robotsByCode = await redisRobot.getRobotsByCode()
@@ -85,9 +87,8 @@ router.get('/arrived', async (req, res) => {
   }
 })
 
-router.get('/finished', async (req, res) => {
+router.get('/finished', validateCode, async (req, res) => {
   const codeReceived = req.header('authCode')!
-  validateCode(res, codeReceived)
 
   try {
     const robotsByCode = await redisRobot.getRobotsByCode()
@@ -109,10 +110,16 @@ router.get('/finished', async (req, res) => {
     emitToRobot(req, newCode, 'changePageTo', 'welcome')
     emitToRobot(req, newCode, 'authCode', newCode)
 
-    res.status(204).end()
+    res.status(200).send({ isAuthenticated: false })
   } catch (error) {
     console.error(error)
   }
+})
+
+router.get('/init', async (req, res) => {
+  redisRobot.initRobots()
+
+  res.status(204).end()
 })
 
 export default router
