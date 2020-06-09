@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 import morgan from 'morgan'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
@@ -7,12 +8,22 @@ import dotenv from 'dotenv'
 import passport from 'passport'
 import hpp from 'hpp'
 import helmet from 'helmet'
+import socketio from 'socket.io'
+
+import socketMain from './socketMain'
 
 import eventRouter from './routes/event'
 import placeRouter from './routes/place'
 import robotRouter from './routes/robot'
 
-dotenv.config()
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: path.join(__dirname, '.env.prod') })
+} else if (process.env.NODE_ENV === 'development') {
+  dotenv.config({ path: path.join(__dirname, '.env') })
+} else {
+  throw new Error('process.env.NODE_ENV를 설정하지 않았습니다!')
+}
+
 const app = express()
 const prod = process.env.NODE_ENV === 'production'
 
@@ -24,8 +35,11 @@ if (prod) {
   app.use(morgan('combined'))
   app.use(
     cors({
-      origin: /broom\.com$/,
-      credentials: true,
+      origin: '*', // reqexp will match all prefixes
+      methods: 'GET,HEAD,POST,PATCH,DELETE,OPTIONS',
+      credentials: true, // required to pass
+      allowedHeaders:
+        'Origin, Accept, Content-Type, Authorization, X-Requested-With, authCode',
     })
   )
 } else {
@@ -55,10 +69,21 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 // }))
 // app.use(passport.initialize())
 // app.use(passport.session())
-app.use('/events', eventRouter)
-app.use('/places', placeRouter)
-app.use('/robots', robotRouter)
+app.use('/api/v1/events', eventRouter)
+app.use('/api/v1/places', placeRouter)
+app.use('/api/v1/robots', robotRouter)
 
-app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
   console.log(`${app.get('port')} 포트에 연결되었습니다.`)
 })
+
+const io = socketio(server)
+app.set('io', io)
+
+io.sockets.on('connect', async (socket) => {
+  app.set('socket', socket)
+
+  socketMain(io, socket)
+})
+
+io.origins(process.env.SOCKET_CLIENT_HOST!)

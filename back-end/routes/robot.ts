@@ -1,7 +1,10 @@
 import express from 'express'
 import prisma from '../prisma/client'
-import { client as redis, getRobots, RobotsByCode } from '../redis/client'
+import redis from '../redis/client'
+import redisRobot, { RobotsByCode } from '../redis/robot'
+import { emitToRobot } from './helpers'
 import getRandomCode from '../utils/getRandomCode'
+import validateCode from '../middlewares/validateCode'
 
 const router = express.Router()
 
@@ -17,133 +20,106 @@ router.post('/', async (req, res) => {
   const robot = await prisma.robot.create({
     data: {
       name,
-      floor,
+      floor: Number(floor),
     },
   })
 
   res.send(robot)
-
-  getRobots()
+  redisRobot.initRobots()
 })
 
-router.post('/auth', async (req, res) => {
+router.post('/auth', validateCode, async (req, res) => {
   const {
     inputAuthenticationCode: codeReceived,
-  }: { inputAuthenticationCode: string } = req.body
+  }: { inputAuthenticationCode: number } = req.body
+  const robotCode = String(codeReceived)
 
-  redis.get('robot', (err, robots) => {
-    if (!err) {
-      const robotCodes = Object.keys(JSON.parse(robots))
-      const isHere = Boolean(robotCodes.includes(codeReceived))
+  try {
+    const robotsByCode = await redisRobot.getRobotsByCode()
+    const robotCodes = Object.keys(robotsByCode)
+    const isHere = Boolean(robotCodes!.includes(robotCode))
 
+    if (isHere) {
       res.send({
-        isAuthenticated: isHere,
+        isAuthenticated: true,
+        floor: robotsByCode[robotCode].floor,
+      })
+      emitToRobot(req, robotCode, 'changePageTo', 'service')
+    } else {
+      res.send({
+        isAuthenticated: false,
       })
     }
-  })
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-router.get('/arrived', async (req, res) => {
+router.delete('/:id', async (req, res) => {
+  const robotId = Number(req.params.id)
+
+  await prisma.robot.delete({
+    where: { id: robotId },
+  })
+
+  res.status(204).end()
+})
+
+router.get('/arrived', validateCode, async (req, res) => {
   const codeReceived = req.header('authCode')!
 
-  redis.get('robot', (err, robots) => {
-    if (!err) {
-      const robotStatus = JSON.parse(robots)
-      const robotRequested = robotStatus[codeReceived]
+  try {
+    const robotsByCode = await redisRobot.getRobotsByCode()
+    const robot = robotsByCode[codeReceived]
 
-      if (robotRequested) {
-        res.send({
-          isArrived: robotRequested.status === '도착',
-        })
-      } else {
-        res.status(400).end()
-      }
+    if (robot.status === '도착') {
+      res.send({
+        isArrived: true,
+      })
+      emitToRobot(req, codeReceived, 'changoPageTo', 'destination')
+    } else {
+      res.send({
+        isArrived: false,
+      })
     }
-  })
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-router.get('/finished', async (req, res) => {
+router.get('/finished', validateCode, async (req, res) => {
   const codeReceived = req.header('authCode')!
 
-  redis.get('robot', (err, robots) => {
-    if (!err) {
-      const robotStatus = JSON.parse(robots)
-      const robotRequested = robotStatus[codeReceived]
-      robotRequested.status = '대기'
-      const robotCodes = Object.keys(JSON.parse(robots))
+  try {
+    const robotsByCode = await redisRobot.getRobotsByCode()
+    const robot = robotsByCode[codeReceived]
+    robot.status = '대기'
 
-      const newRobotStatus = {} as RobotsByCode
-      robotCodes
-        .filter((code) => code !== codeReceived)
-        .forEach((code) => {
-          newRobotStatus[code] = robotStatus[code]
-        })
+    const newRobotsByCode = {} as RobotsByCode
 
-      newRobotStatus[getRandomCode(1000, 9000, robotCodes)] = robotRequested
-      redis.set('robot', JSON.stringify(newRobotStatus))
+    const robotCodes = Object.keys(robotsByCode)
+    robotCodes
+      .filter((code) => code !== codeReceived)
+      .forEach((code) => {
+        newRobotsByCode[code] = robotsByCode[code]
+      })
+    const newCode = getRandomCode(1000, 9000, robotCodes)
+    newRobotsByCode[newCode] = robot
+    redis.set('robot', JSON.stringify(newRobotsByCode))
 
-      res.status(204).end()
-    }
-  })
+    emitToRobot(req, newCode, 'changePageTo', 'welcome')
+    emitToRobot(req, newCode, 'authCode', newCode)
+
+    res.status(200).send({ isAuthenticated: false })
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-// router.post('/start-guide', async (req, res) => {
-//     const codeReceived = Number(req.header('authCode'))
+router.get('/init', async (req, res) => {
+  redisRobot.initRobots()
 
-//     redis.get('robot', (err, robots) => {
-//         if (!err) {
-//           const robotStatus = JSON.parse(robots)
-
-//           if (robotRequested) {
-//               res.status(204).end()
-//               robotStatus[codeReceived].status = '이동중'
-//             await setTimeout(() => {
-//                 robotStatus[codeReceived].status = '도착'
-//             }, 10000)
-//           } else {
-//             res.status(400).end()
-//           }
-//         }
-//       })
-// })
-
-// router.post('/finish-guide', async (req, res) => {
-//     const codeReceived = Number(req.header('authCode'))
-
-//     redis.get('robot', (err, robots) => {
-//         if (!err) {
-//           const robotStatus = JSON.parse(robots)
-
-//           if (robotRequested) {
-//               res.status(204).end()
-//               robotStatus[codeReceived].status = '이동중'
-//             await setTimeout(() => {
-//                 robotStatus[codeReceived].status = '도착'
-//             }, 10000)
-//           } else {
-//             res.status(400).end()
-//           }
-//         }
-//       })
-// })
-
-// router.get('/status', async (req, res) => {
-//     const codeReceived = req.header('authCode')
-
-//     redis.get('robot', (err, robots) => {
-//       if (!err) {
-//         const robotStatus = JSON.parse(robots)
-//         const robotRequested = robotStatus[String(codeReceived)]
-
-//         if (robotRequested) {
-//           res.send({
-//             status: robotRequested.status,
-//           })
-//         } else {
-//           res.status(400).end()
-//         }
-//       }
-//     })
-//   })
+  res.status(204).end()
+})
 
 export default router

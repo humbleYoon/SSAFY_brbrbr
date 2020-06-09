@@ -1,46 +1,61 @@
 import express from 'express'
 import prisma from '../prisma/client'
-import { client as redis } from '../redis/client'
+import { emitToRobot } from './helpers'
+import validateCode from '../middlewares/validateCode'
+import { startGuide } from '../robot/mock'
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
+router.get('/', validateCode, async (req, res) => {
   const codeReceived = req.header('authCode')
   const eventName = req.query.name as string
 
   if (codeReceived) {
     // 로봇 인증 번호가 함께 올 때
+
     if (eventName) {
       // 특정 행사 요청이 들어오면 해당 행사 데이터와 행사가 열리는 장소 데이터를 보내준다
-      const events = await prisma.event.findMany({
-        where: {
-          name: eventName.replace('+', ' ') as string,
-        },
-        include: {
-          place: true,
-        },
-      })
+      try {
+        const events = await prisma.event.findMany({
+          where: {
+            name: eventName.replace('+', ' ') as string,
+          },
+          include: {
+            place: true,
+          },
+        })
 
-      res.send(events)
+        if (events.length > 0) {
+          res.send(events)
+
+          startGuide(codeReceived)
+          emitToRobot(req, codeReceived, 'changePageTo', 'guide')
+          emitToRobot(req, codeReceived, 'destinations', JSON.stringify(events))
+        } else {
+          res.send(events)
+          emitToRobot(req, codeReceived, 'changePageTo', 'destination')
+          emitToRobot(req, codeReceived, 'destinations', JSON.stringify(events))
+        }
+      } catch (error) {
+        console.error(error)
+        res.status(400).end()
+      }
     } else {
       // 전체 행사 요청이 들어오면 해당 층의 모든 행사를 보내준다
-      redis.get('robot', async (err, robots) => {
-        if (!err) {
-          const robotStatus = JSON.parse(robots)
-          const floorOfRobot = robotStatus[String(codeReceived)].floor
+      try {
+        const events = await prisma.event.findMany({
+          include: {
+            place: true,
+          },
+        })
 
-          const events = await prisma.event.findMany({
-            where: {
-              placeFloor: floorOfRobot,
-            },
-            include: {
-              place: true,
-            },
-          })
-
-          res.send(events)
-        }
-      })
+        res.send(events)
+        emitToRobot(req, codeReceived, 'changePageTo', 'listOnFloor')
+        emitToRobot(req, codeReceived, 'eventsOpened', JSON.stringify(events))
+      } catch (error) {
+        console.error(error)
+        res.status(400).end()
+      }
     }
   } else {
     // 로봇 인증 번호가 함께 오지 않을 때
@@ -58,26 +73,33 @@ router.post('/', async (req, res) => {
     endtime,
     placeName,
     placeFloor,
+    thumburl,
   } = req.body
 
-  const event = await prisma.event.create({
-    data: {
-      name,
-      description,
-      starttime: new Date(starttime),
-      endtime: new Date(endtime),
-      place: {
-        connect: {
-          name_floor: {
-            name: placeName,
-            floor: placeFloor,
+  try {
+    const event = await prisma.event.create({
+      data: {
+        name,
+        description,
+        starttime: new Date(starttime),
+        endtime: new Date(endtime),
+        thumburl,
+        place: {
+          connect: {
+            name_floor: {
+              name: placeName,
+              floor: Number(placeFloor),
+            },
           },
         },
       },
-    },
-  })
+    })
 
-  res.send(event)
+    res.send(event)
+  } catch (error) {
+    console.error(error)
+    res.status(400).end()
+  }
 })
 
 // router.put('/:id', async (req, res) => {
