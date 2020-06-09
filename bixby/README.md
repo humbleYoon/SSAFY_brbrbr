@@ -52,3 +52,39 @@
 
 ![bixby_flow](./images/bixby_flow.png)
 
+## Bixby flow
+
+### 인증
+
+- 사용자가 입력한 코드(AuthenticationCode)를 받아 서버에 인증 유효성 유무를 요청합니다.
+- 서버로부터 응답을 받아 order에 인증 상태를 저장하고(UpdateOrder), 인증 성공 혹은 실패 페이지를 보여줍니다.
+
+![bixbyflow_authentication](./images/bixby_technical_flow/bixbyflow_authentication.PNG)
+
+### 서비스 선택
+
+- 사용자가 선택한 서비스(GuideType)를 받아 장소, 행사 데이터를 서버에 요청합니다.
+- 서버로부터 응답을 받아 order에 장소, 행사 정보를 저장하고(UpdateOrder) 목적지 선택 페이지를 보여줍니다.
+
+![bixbyflow_selectguidetype](./images/bixby_technical_flow/bixbyflow_selectguidetype.PNG)
+
+### 목적지 선택
+
+- 사용자가 선택한 목적지(SearchTerm)를 받아 특정 장소, 행사의 세부 사항 정보를 요청합니다.
+- 서버로부터 응답을 받아 order에 목적지의 세부 정보(Destination)를 저장하고(UpdateOrder) 이동중 페이지를 보여줍니다.
+
+![bixbyflow_selectdestination](./images/bixby_technical_flow/bixbyflow_selectdestination.PNG)
+
+### 이동 및 도착
+
+- 사용자가 이동 중 페이지에서 도착 버튼을 눌렀을시 로봇의 도착 여부에 대한 정보를 요청합니다.
+- 서버로부터 응답을 받아 order에 로봇의 현재 상태(CurrentRobotState)를 저장하고(UpdateOrder), 도착 혹은 이동중 페이지를 보여줍니다.
+
+![bixbyflow_ispressedarrivalbutton](./images/bixby_technical_flow/bixbyflow_ispressedarrivalbutton.PNG)
+
+### 서비스 종료
+
+- 사용자가 서비스를 다 이용하고 난 후 서버에 서비스 종료를 요청합니다.
+- 서버로부터 정상 종료 응답을 받고, 종료 페이지를 보여줍니다.
+
+![bixbyflow_endedorder](./images/bixby_technical_flow/bixbyflow_endedorder.PNG)
