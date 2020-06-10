@@ -1,0 +1,8 @@
+train (t-on4winwiclojersli3mnt01xe) {
+  utterance ([g:CommitOrder:continue,r:UpdateOrder] 장소 찾아줘)
+  last-modified (1591599383864)
+}
+train (t-occy9j1a9gx1i0pzepx8jgyrn) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (에듀케이션)[v:SearchTerm]")
+  last-modified (1591636173924)
+}

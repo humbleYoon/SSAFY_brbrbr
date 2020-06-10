@@ -1,0 +1,10 @@
+template-macro-def (DifferentFloor) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("현재 층에는 없는 장소네요. 자세한 내용은 부릉이를 확인해주세요!")
+  }
+}

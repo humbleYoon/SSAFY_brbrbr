@@ -1,0 +1,15 @@
+layout-macro-def (EndedOrder) {
+  params {
+    param (endedOrder) {
+      type (EndedOrder)
+    }
+  }
+  content {
+    title-area {
+      halign (Center)
+      slot1 {
+        text ("다음에 또 만나요!")
+      }
+    }
+  }
+}

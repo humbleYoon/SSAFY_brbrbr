@@ -1,0 +1,8 @@
+train (t-nrbwh9wb6tupo5zcwh6uthg0m) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (인천)[v:SearchTerm]")
+  last-modified (1591332297261)
+}
+train (t-n2mpfbjczvcco8vh4lh5qukqw) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (강릉)[v:SearchTerm]")
+  last-modified (1591332342622)
+}

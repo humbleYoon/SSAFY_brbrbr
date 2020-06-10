@@ -1,0 +1,3 @@
+name (EventName) {
+  description (이벤트 이름)
+}

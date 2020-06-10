@@ -1,0 +1,10 @@
+template-macro-def (DestinationSelect) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("어디로 안내해드릴까요?")
+  }
+}

@@ -1,0 +1,13 @@
+structure (PlaceAndEvent) {
+  description (백엔드로부터 받은 place와 event 리스트)
+  property (places) {
+    type (Place)
+    min (Optional)
+    max (Many)
+  }
+  property (events) {
+    type (Event)
+    min (Optional)
+    max (Many)
+  }
+}

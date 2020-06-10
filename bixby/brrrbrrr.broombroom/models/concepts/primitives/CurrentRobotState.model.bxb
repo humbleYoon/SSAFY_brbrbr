@@ -1,0 +1,6 @@
+enum (CurrentRobotState) {
+  description (로봇의 상태)
+  symbol (정지)
+  symbol (이동중)
+  symbol (도착)
+}

@@ -1,0 +1,10 @@
+template-macro-def (NotExistPlace) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("이곳에는 없는 장소네요. 다른 곳을 안내 받으시겠어요?")
+  }
+}

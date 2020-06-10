@@ -1,0 +1,12 @@
+template-macro-def (Waiting) {
+  params {
+    param (commitOrder) {
+      type (CommitOrder)
+    }
+  }
+  content {
+    template ("현재 부릉이가 대기상태입니다.") {
+      speech ("알 수 없는 이유로 #{value(commitOrder.order.destinations[0].destinationName)}에 도착할 수 없습니다. 잠시 기다려주세요.")
+    }
+  }
+}

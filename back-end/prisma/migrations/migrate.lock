@@ -1,0 +1,8 @@
+# Prisma Migrate lockfile v1
+
+20200531160749-init
+20200531171451-init
+20200531200413-add-place-to-event
+20200601113540-add-robot
+20200601162454-add-robot-name
+20200605131355-add-thumnail

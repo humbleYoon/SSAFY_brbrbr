@@ -1,0 +1,8 @@
+train (t-8desfvvaju6hnud6u6rzfgmea) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (싸피 명예의 전당)[v:SearchTerm] (보여줘)[v:GuideType:안내]")
+  last-modified (1591321167717)
+}
+train (t-8p4wz6wf6lt54q1ee0y2iyrh0) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (정지)[v:ArrivalButtonState:정지]")
+  last-modified (1591522401547)
+}

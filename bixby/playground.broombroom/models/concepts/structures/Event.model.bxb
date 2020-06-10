@@ -1,0 +1,15 @@
+structure (Event) {
+  description (이벤트)
+  property (eventName) {
+    type (EventName)
+    min (Required) max (One)
+  }
+  property (eventDescription) {
+    type (EventDescription)
+    min (Required) max (One)
+  }
+  property (thumbUrl) {
+    type (ThumbUrl)
+    min (Required) max (One)
+  }
+}

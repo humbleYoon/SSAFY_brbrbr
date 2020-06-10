@@ -1,0 +1,3 @@
+text (ThumbUrl) {
+  description (이미지 url을 받습니다.)
+}

@@ -1,0 +1,3 @@
+structure (EndedOrder) {
+  role-of (Order)
+}

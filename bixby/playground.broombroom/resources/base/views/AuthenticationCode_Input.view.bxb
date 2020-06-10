@@ -1,0 +1,22 @@
+input-view {
+  match: AuthenticationCode (this)
+  message (부릉이의 인증 번호를 입력해주세요!)
+  render {
+    form {
+      elements {
+        number-input {
+          id (this)
+          allow-negative (false)
+          integer-limit (4)
+          type (AuthenticationCode)
+          label (인증번호)
+        }
+      }
+      on-submit {
+        
+        goal { AuthenticationCode }
+        value: viv.core.FormElement(this)
+      }
+    }
+  }
+}
