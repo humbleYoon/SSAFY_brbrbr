@@ -1,5 +1,6 @@
 /** @jsx jsx  */
 import React from "react";
+import { Link } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
 
@@ -26,6 +27,7 @@ const boxInner = css`
   display: table-cell;
   text-align: center;
   vertical-align: middle;
+  position: relative;
 `
 
 const faceWidth = window.innerWidth - (window.innerWidth / 2) - 300
@@ -36,19 +38,26 @@ const imageSize = css`
   display: inline-block;
 `
 
-const buttonLoca = css`
+const startButton = css`
   position: absolute;
-  margin: 0 7vw;
+  left: 46%;
+  top: 80%;
+  z-index: 100;
 `
+
+const romi = css`
+  color: purple;
+`
+
 
 export default () => {
   return (
     <div>
       <div css={boxPadding}>영역을차지하렴</div>
-      <h2>팔로팔로미 맛보기!</h2>
+      <h2>팔로팔<span css={romi}>로미</span> 맛보기!</h2>
       <div css={TestModeBox}>
         <div css={boxInner}>
-          <button>테스트 모드 시작</button>
+          <Link to="/selectrobot" css={startButton}>테스트 모드 시작</Link>
           <img src={faceImg} css={imageSize} width="600px" height="800px" style={{margin: '0 auto'}}></img>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import RobotPage from './pages/RobotPage'
 import AdminPage from './pages/AdminPage'
 import LandingPage from './pages/LandingPage'
+import SelectRobotPage from './pages/Tutorial/SelectRobotPage'
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
         path="/thisislandingthisislandingthisislanding"
         component={LandingPage}
         exact
+      />
+      <Route
+        path="/selectrobot"
+        component={SelectRobotPage}
       />
     </Switch>
   )
