@@ -12,7 +12,7 @@ module.exports.function = function selectDestination (searchTerm, order) {
     searchTerm = "싸피" + searchTerm.substring(2);
   }
   ssafy_valid_str = searchTerm.substring(0, 3);
-  if (ssafy_valid_str == "싸 피" || ssafy_valid_str == "사 피"  || ssafy_valid_str == "서 피") {
+  if (ssafy_valid_str == "싸 피" || ssafy_valid_str == "사 피"  || ssafy_valid_str == "써 피" || ssafy_valid_str == "서 피") {
     if (searchTerm.substring(3, 4) == " ")
       searchTerm = "싸피" + searchTerm.substring(3);
     else searchTerm = "싸피 " + searchTerm.substring(3);
