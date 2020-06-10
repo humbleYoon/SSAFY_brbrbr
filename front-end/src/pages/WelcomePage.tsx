@@ -27,7 +27,7 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
   const URL = 'https://teachablemachine.withgoogle.com/models/YiDy9A8rs/'
   let model: tmImage.CustomMobileNet
   let webcam: tmImage.Webcam
-  let labelContainer
+  // let labelContainer
   let maxPredictions
 
   useEffect(() => {
@@ -51,11 +51,11 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
     await webcam.play()
     window.requestAnimationFrame(loop)
 
-    document.getElementById('webcam-container')?.appendChild(webcam.canvas)
-    labelContainer = document.getElementById('label-container')
-    for (let i = 0; i < maxPredictions; i++) {
-      labelContainer?.appendChild(document.createElement('div'))
-    }
+    // document.getElementById('webcam-container')?.appendChild(webcam.canvas)
+    // labelContainer = document.getElementById('label-container')
+    // for (let i = 0; i < maxPredictions; i++) {
+    // labelContainer?.appendChild(document.createElement('div'))
+    // }
   }
 
   async function loop() {
@@ -93,7 +93,7 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
         안내 시작
       </button>
       {/* <div id="webcam-container"></div> */}
-      <div id="label-container">{openVal}</div>
+      {/* <div id="label-container">{openVal}</div> */}
       <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     </div>
