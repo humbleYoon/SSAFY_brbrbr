@@ -1,4 +1,16 @@
 train (t-3gi0b0pvc48gspyw6mehzjy3p) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (도착했어)[v:ArrivalButtonState:도착했어]")
-  last-modified (1591261757928)
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (도착)[v:ArrivalButtonState:도착]했어")
+  last-modified (1591773404464)
+}
+train (t-3qq0a85wjwkqkrfj1x9w6hsyt) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (1001호 강의장)[v:SearchTerm]")
+  last-modified (1591769575690)
+}
+train (t-3es828vf6nl5g70j089yiqkvs) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (잡싸피)[v:SearchTerm]가 어디서 열려")
+  last-modified (1591770175743)
+}
+train (t-3phbs2qp15au3s09f0575owah) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (휴게실)[v:SearchTerm]로 가자")
+  last-modified (1591771094691)
 }

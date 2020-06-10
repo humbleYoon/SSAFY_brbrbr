@@ -1,9 +1,4 @@
 structure (Item) {
-  property (guideType) {
-    type (GuideType)
-    min (Required)
-    max (One)
-  }
   property (placeAndEvent) {
     type (PlaceAndEvent)
     min (Required)

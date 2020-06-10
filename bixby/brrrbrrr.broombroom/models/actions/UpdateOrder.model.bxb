@@ -9,11 +9,6 @@ action (UpdateOrder) {
     input-group (updates){
       requires (OneOrMoreOf)
       collect {
-        input (changedItem) {
-          type (ChangedItem)
-          min (Optional)
-          max (One)
-        }
         input (destinations) {
           type (Destination)
           min (Optional)
@@ -39,19 +34,6 @@ action (UpdateOrder) {
       }
     }
   }
-  //returns the updated order
   output (Order) {
-    // throws {
-
-    //    error(NoItems) {
-    //     on-catch {
-    //       halt {
-    //         dialog {
-    //           template-macro (NoItemsInCart)
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
 }

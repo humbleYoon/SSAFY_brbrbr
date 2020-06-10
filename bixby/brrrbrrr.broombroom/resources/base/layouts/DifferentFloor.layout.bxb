@@ -66,10 +66,6 @@ layout-macro-def (DifferentFloor) {
               }
               subplan {
                 goal: UpdateOrder
-                subplan {
-                  goal: SelectGuideType
-                  value: GuideType(안내)
-                }
               }
             }
           }
