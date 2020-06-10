@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import RobotPage from './pages/RobotPage'
 import AdminPage from './pages/AdminPage'
+import LandingPage from './pages/LandingPage'
 
 function App() {
   return (
@@ -11,6 +12,11 @@ function App() {
       <Route
         path="/everyoneisadmineveryoneisadmineveryoneisadmin"
         component={AdminPage}
+        exact
+      />
+      <Route
+        path="/thisislandingthisislandingthisislanding"
+        component={LandingPage}
         exact
       />
     </Switch>

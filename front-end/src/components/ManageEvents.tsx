@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useReducer, useCallback } from 'react'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
+import { useState, useEffect, useReducer, useCallback } from 'react'
 import { Event } from '../pages/RobotPage'
 import eventApi, { EventInput } from '../api/event'
 
@@ -9,7 +11,7 @@ const initialState: EventInput = {
   endtime: new Date(),
   placeName: '',
   placeFloor: 1,
-  thumbUrl: '',
+  thumburl: '',
 }
 
 function reducer(
@@ -43,7 +45,7 @@ function ManageEvents() {
     endtime,
     placeName,
     placeFloor,
-    thumbUrl,
+    thumburl,
   } = state
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(e.target)
@@ -118,74 +120,85 @@ function ManageEvents() {
     <div>
       <h2>행사 정보</h2>
 
-      <table>
-        <thead>
-          <tr>
-            {header.map((elem: string, index: number) => (
-              <td key={index}>{elem}</td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {events.map((event: Event) => (
-            <tr key={event.id}>
-              {Object.values(event).map((value: string, index: number) => (
-                <td key={index}>
-                  {[3, 4].includes(index)
-                    ? new Date(value).toLocaleString('ko-KR')
-                    : value}
-                </td>
+      <div
+        css={css`
+          height: 300px;
+          overflow-y: auto;
+        `}
+      >
+        <table>
+          <thead>
+            <tr>
+              {header.map((elem: string, index: number) => (
+                <td key={index}>{elem}</td>
               ))}
+            </tr>
+          </thead>
+          <tbody>
+            {events.map((event: Event) => (
+              <tr key={event.id}>
+                {Object.values(event).map((value: string, index: number) => (
+                  <td key={index}>
+                    {[3, 4].includes(index)
+                      ? new Date(value).toLocaleString('ko-KR')
+                      : value}
+                  </td>
+                ))}
+                <td>
+                  <button onClick={handleDelete} value={event.id}>
+                    삭제
+                  </button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td></td>
               <td>
-                <button onClick={handleDelete} value={event.id}>
-                  삭제
-                </button>
+                <input name="name" value={name} onChange={onChange} />
+              </td>
+              <td>
+                <input
+                  name="description"
+                  value={description}
+                  onChange={onChange}
+                />
+              </td>
+              <td>
+                <input
+                  type="datetime-local"
+                  name="starttime"
+                  value={trimSeconds(starttime)}
+                  onChange={onChange}
+                />
+              </td>
+              <td>
+                <input
+                  type="datetime-local"
+                  name="endtime"
+                  value={trimSeconds(endtime)}
+                  onChange={onChange}
+                />
+              </td>
+              <td>
+                <input name="placeName" value={placeName} onChange={onChange} />
+              </td>
+              <td>
+                <input
+                  name="placeFloor"
+                  value={placeFloor}
+                  onChange={onChange}
+                />
+              </td>
+              <td>
+                <input name="thumburl" value={thumburl} onChange={onChange} />
+              </td>
+              <td>
+                <button onClick={handleClick}>등록</button>
               </td>
             </tr>
-          ))}
-          <tr>
-            <td></td>
-            <td>
-              <input name="name" value={name} onChange={onChange} />
-            </td>
-            <td>
-              <input
-                name="description"
-                value={description}
-                onChange={onChange}
-              />
-            </td>
-            <td>
-              <input
-                type="datetime-local"
-                name="starttime"
-                value={trimSeconds(starttime)}
-                onChange={onChange}
-              />
-            </td>
-            <td>
-              <input
-                type="datetime-local"
-                name="endtime"
-                value={trimSeconds(endtime)}
-                onChange={onChange}
-              />
-            </td>
-            <td>
-              <input name="placeName" value={placeName} onChange={onChange} />
-            </td>
-            <td>
-              <input name="placeFloor" value={placeFloor} onChange={onChange} />
-            </td>
-            <td>
-              <input name="thumbUrl" value={thumbUrl} onChange={onChange} />
-            </td>
-            <td>
-              <button onClick={handleClick}>등록</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

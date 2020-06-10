@@ -17,4 +17,16 @@ const deleteRobot = (robotId: number) => {
   return client.delete(`/robots/${robotId}`)
 }
 
-export default { fetchRobots, addRobot, deleteRobot }
+const returnRobot = (authCode: string) => {
+  return client.get('/robots/finished', {
+    headers: {
+      authCode,
+    },
+  })
+}
+
+const initRobots = () => {
+  return client.get('/robots/init')
+}
+
+export default { fetchRobots, addRobot, deleteRobot, returnRobot, initRobots }

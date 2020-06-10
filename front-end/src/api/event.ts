@@ -7,7 +7,7 @@ export interface EventInput {
   endtime: Date
   placeName: string
   placeFloor: number
-  thumbUrl: string
+  thumburl: string
 }
 
 const fetchEvents = () => {

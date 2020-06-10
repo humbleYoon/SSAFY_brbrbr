@@ -1,5 +1,6 @@
 body {
   margin: 100;
+  background-color: #e0e5ec;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +11,103 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* landing */
+/* html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+} */
+
+li {
+  list-style: none;
+}
+
+.title {
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.links .link {
+  margin-top: 20px;
+}
+
+.component {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.component.first-component {
+  background-color: #e0e5ec;
+  position: relative;
+}
+
+.first-component--inside-scroller {
+  position: absolute;
+  right: 20px;
+  top: 100px;
+}
+
+.component.second-component {
+  background-color: #e0e5ec;
+}
+
+.component.third-component {
+  background-color: #e0e5ec;
+}
+
+.component.fourth-component {
+  background-color: #e0e5ec;
+}
+
+.component.fifth-component {
+  background-color: #e0e5ec;
+}
+
+h2 {
+  margin: auto;
+  text-align: center;
+}
+
+.pagination-additional-class {
+  margin: 0;
+  position: fixed;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+}
+
+.pagination-additional-class > li:not(:last-of-type) > a,
+.pagination-additional-class > li:not(:last-of-type) > span {
+  margin-right: 50px;
+}
+
+.demo-page-contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.demo-page-contain__hint {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .pagination-additional-class > li:not(:last-of-type) > a,
+  .pagination-additional-class > li:not(:last-of-type) > span {
+    margin-right: 5px;
+  }
 }

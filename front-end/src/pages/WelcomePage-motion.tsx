@@ -1,27 +1,7 @@
-/** @jsx jsx */
-import { useState, useEffect } from 'react'
-import { css, jsx } from '@emotion/core'
-import { PageParams } from './RobotPage'
+import React, { useState, useEffect } from 'react'
 import * as tmImage from '@teachablemachine/image'
-import Face from '../assets/face.gif'
 
-const Button = css`
-  /* position: absolute; */
-  /* margin-top: 70%; */
-  font-size: 14px;
-  font-weight: 600;
-  width: 120px;
-  height: 50px;
-  font-size: 20px;
-  /* margin-left: auto; */
-  border-radius: 12px;
-  background-color: #e0e5ec;
-  /* background-color: #C2CBD9; */
-  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
-    -9px -9px 16px rgba(255, 255, 255, 0.5);
-`
-
-function WelcomePage({ socket, setPageToChange }: PageParams) {
+export default function WelcomePage() {
   const [openVal, setOpenVal] = useState(false)
 
   const URL = 'https://teachablemachine.withgoogle.com/models/YiDy9A8rs/'
@@ -32,11 +12,7 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
 
   useEffect(() => {
     init()
-
-    if (openVal) {
-      setPageToChange('authCode')
-    }
-  }, [openVal])
+  }, [])
 
   async function init() {
     const modelURL = URL + 'model.json'
@@ -68,36 +44,18 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
     const prediction = await model.predict(webcam.canvas)
     if (Number(prediction[0].probability.toFixed(2)) >= 0.7) {
       setOpenVal(true)
-      // labelContainer.childNodes[0].innerHTML = '????!'};
+      // labelContainer.childNodes[0].innerHTML = '열어줘라!'};
     } else {
       setOpenVal(false)
     }
   }
 
   return (
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      `}
-    >
-      <img src={Face} alt="smiley face" height={350} width={350} />
-      <button
-        css={Button}
-        onClick={() => {
-          setPageToChange('authCode')
-        }}
-      >
-        안내 시작
-      </button>
-      {/* <div id="webcam-container"></div> */}
-      <div id="label-container">{openVal}</div>
+    <div>
+      <div id="webcam-container"></div>
+      <div id="label-container">{openVal ? '열어줘라!' : '잠김'}</div>
       <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     </div>
   )
 }
-
-export default WelcomePage

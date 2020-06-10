@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { PageToChange, PageParams } from './RobotPage'
+/** @jsx jsx */
+import { useState, useEffect } from 'react'
+import { css, jsx } from '@emotion/core'
+import { PageToChange, PageParams, Robot } from './RobotPage'
 
 interface RobotStatus {
   id: number
@@ -10,7 +12,26 @@ interface RobotStatus {
   onService?: boolean
 }
 
-function HomePage({ socket, setPageToChange }: PageParams) {
+const Button = css`
+  /* position: absolute; */
+  /* margin-top: 70%; */
+  font-size: 20px;
+  font-weight: 600;
+  width: 200px;
+  height: 27px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #e0e5ec;
+  /* background-color: #C2CBD9; */
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+`
+interface HomePageParams extends PageParams {
+  setRobot: React.Dispatch<React.SetStateAction<Robot>>
+}
+
+function HomePage({ socket, setPageToChange, setRobot }: HomePageParams) {
   const [robotsToMatch, setRobotsToMatch] = useState<RobotStatus[]>([])
 
   useEffect(() => {
@@ -26,18 +47,31 @@ function HomePage({ socket, setPageToChange }: PageParams) {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const target = e.target as HTMLButtonElement
-    socket.emit('robotName', target.value)
+    const selectedRobot = robotsToMatch.filter((robot) => {
+      return robot.id === Number(target.value)
+    })[0]
+    setRobot(selectedRobot)
+    socket.emit('robotName', selectedRobot.name)
   }
   return (
     <div>
       <h1>이 부릉이는 어떤 부릉이??</h1>
-      {robotsToMatch.map((robot) => (
-        <button
-          key={robot.id}
-          value={robot.name}
-          onClick={handleClick}
-        >{`${robot.floor}층에서 일하는 ${robot.name}`}</button>
-      ))}
+      <div
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        `}
+      >
+        {robotsToMatch.map((robot) => (
+          <button
+            css={Button}
+            key={robot.id}
+            value={robot.id}
+            onClick={handleClick}
+          >{`${robot.floor}층 ${robot.name}`}</button>
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useReducer, useCallback } from 'react'
+/** @jsx jsx */
+import { useState, useEffect, useReducer, useCallback } from 'react'
+import { css, jsx } from '@emotion/core'
 import { Place } from '../pages/RobotPage'
 import placeApi, { PlaceInput } from '../api/place'
 
@@ -102,62 +104,68 @@ function ManagePlaces() {
   return (
     <div>
       <h2>장소 정보</h2>
-
-      <table>
-        <thead>
-          <tr>
-            {header.map((elem: string, index: number) => (
-              <td key={index}>{elem}</td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {places.map((place: Place) => (
-            <tr key={place.id}>
-              {Object.values(place).map((value: string, index: number) => (
-                <td key={index}>{value}</td>
+      <div
+        css={css`
+          height: 300px;
+          overflow-y: auto;
+        `}
+      >
+        <table>
+          <thead>
+            <tr>
+              {header.map((elem: string, index: number) => (
+                <td key={index}>{elem}</td>
               ))}
+            </tr>
+          </thead>
+          <tbody>
+            {places.map((place: Place) => (
+              <tr key={place.id}>
+                {Object.values(place).map((value: string, index: number) => (
+                  <td key={index}>{value}</td>
+                ))}
+                <td>
+                  <button onClick={handleDelete} value={place.id}>
+                    삭제
+                  </button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td></td>
               <td>
-                <button onClick={handleDelete} value={place.id}>
-                  삭제
-                </button>
+                <input name="name" value={name} onChange={onChange} />
+              </td>
+              <td>
+                <input
+                  name="description"
+                  value={description}
+                  onChange={onChange}
+                />
+              </td>
+
+              <td>
+                <input name="floor" value={floor} onChange={onChange} />
+              </td>
+              <td>
+                <input name="xaxis" value={xaxis} onChange={onChange} />
+              </td>
+              <td>
+                <input name="yaxis" value={yaxis} onChange={onChange} />
+              </td>
+              <td>
+                <input name="thumburl" value={thumburl} onChange={onChange} />
+              </td>
+              <td>
+                <input name="mapurl" value={mapurl} onChange={onChange} />
+              </td>
+              <td>
+                <button onClick={handleClick}>등록</button>
               </td>
             </tr>
-          ))}
-          <tr>
-            <td></td>
-            <td>
-              <input name="name" value={name} onChange={onChange} />
-            </td>
-            <td>
-              <input
-                name="description"
-                value={description}
-                onChange={onChange}
-              />
-            </td>
-
-            <td>
-              <input name="floor" value={floor} onChange={onChange} />
-            </td>
-            <td>
-              <input name="xaxis" value={xaxis} onChange={onChange} />
-            </td>
-            <td>
-              <input name="yaxis" value={yaxis} onChange={onChange} />
-            </td>
-            <td>
-              <input name="thumburl" value={thumburl} onChange={onChange} />
-            </td>
-            <td>
-              <input name="mapurl" value={mapurl} onChange={onChange} />
-            </td>
-            <td>
-              <button onClick={handleClick}>등록</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

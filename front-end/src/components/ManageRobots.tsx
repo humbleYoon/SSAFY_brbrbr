@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useReducer, useCallback } from 'react'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
+import { useState, useEffect, useReducer, useCallback } from 'react'
 import { Robot } from '../pages/RobotPage'
 import robotApi, { RobotInput } from '../api/robot'
 
@@ -32,6 +34,14 @@ function ManageRobots() {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(e.target)
   }
+
+  const initRobots = useCallback(async () => {
+    try {
+      await robotApi.initRobots()
+    } catch (error) {
+      console.error(error)
+    }
+  }, [])
 
   const getRobots = useCallback(async () => {
     try {
@@ -88,43 +98,51 @@ function ManageRobots() {
   return (
     <div>
       <h2>로봇 정보</h2>
-
-      <table>
-        <thead>
-          <tr>
-            {header.map((elem: string, index: number) => (
-              <td key={index}>{elem}</td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {robots.map((robot: Robot) => (
-            <tr key={robot.id}>
-              {Object.values(robot).map((value: string, index: number) => (
-                <td key={index}>{value}</td>
+      <div
+        css={css`
+          height: 300px;
+          overflow-y: auto;
+        `}
+      >
+        <table>
+          <thead>
+            <tr>
+              {header.map((elem: string, index: number) => (
+                <td key={index}>{elem}</td>
               ))}
+            </tr>
+          </thead>
+          <tbody>
+            {robots.map((robot: Robot) => (
+              <tr key={robot.id}>
+                {Object.values(robot).map((value: string, index: number) => (
+                  <td key={index}>{value}</td>
+                ))}
+                <td>
+                  <button value={robot.id} onClick={handleDelete}>
+                    삭제
+                  </button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td></td>
               <td>
-                <button value={robot.id} onClick={handleDelete}>
-                  삭제
-                </button>
+                <input name="name" value={name} onChange={onChange} />
+              </td>
+              <td>
+                <input name="floor" value={floor} onChange={onChange} />
+              </td>
+
+              <td>
+                <button onClick={handleClick}>등록</button>
               </td>
             </tr>
-          ))}
-          <tr>
-            <td></td>
-            <td>
-              <input name="name" value={name} onChange={onChange} />
-            </td>
-            <td>
-              <input name="floor" value={floor} onChange={onChange} />
-            </td>
+          </tbody>
+        </table>
+      </div>
 
-            <td>
-              <button onClick={handleClick}>등록</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <button onClick={() => initRobots()}>로봇 연결 초기화</button>
     </div>
   )
 }
