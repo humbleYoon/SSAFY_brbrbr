@@ -1,0 +1,52 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Event",
+      "field": "placeName",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Event",
+      "field": "placeFloor",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Event",
+      "field": "placeId"
+    },
+    {
+      "tag": "UpdateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "place"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "newValue": "[placeName, placeFloor]"
+    },
+    {
+      "tag": "UpdateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Event",
+          "field": "place"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "newValue": "[name, floor]"
+    }
+  ]
+}
