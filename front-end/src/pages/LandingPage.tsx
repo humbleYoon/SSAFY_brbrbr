@@ -46,10 +46,10 @@ function LandingPages() {
         pageOnChange={handlePageChange}
         customPageNumber={currentPage}
       >
-        <FirstComponent />
+        <FourthComponent />
         <SecondComponent />
         <ThirdComponent />
-        <FourthComponent />
+        <FirstComponent />
         <FifthComponent />
       </ReactPageScroller>
       <Pagination className="pagination-additional-class">
