@@ -14,3 +14,7 @@ train (t-ea44zmb650s1ork8iw1v8jvu1) {
   utterance ("[g:CommitOrder:continue,r:UpdateOrder] (서 피게시판)[v:SearchTerm]")
   last-modified (1591774795340)
 }
+train (t-ewiwv43kv87vkv7v4s6pvcsrx) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (서 피데이)[v:SearchTerm]")
+  last-modified (1591777848389)
+}

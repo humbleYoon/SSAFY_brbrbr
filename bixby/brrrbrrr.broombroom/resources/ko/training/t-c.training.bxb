@@ -2,3 +2,7 @@ train (t-cquj0rl6d8pp8kc5t5tjs28ph) {
   utterance ([g:CommitOrder:continue,r:UpdateOrder] 다른 곳 안내해줘)
   last-modified (1591753043489)
 }
+train (t-cw71a1f2p4xqb4hh8g15n1f9b) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (수료식)[v:SearchTerm]")
+  last-modified (1591778137745)
+}

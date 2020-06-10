@@ -12,3 +12,7 @@ train (t-0rzvjzxwlsqnsf364q5k77z0u) {
   plan (hY9BDoIwEEU/gqLcwA2ujDvuYNS1C/QAhU6kiW3NULae3VoSw6LBNNOZ/Hl/pkWBsmHmb1QNW6vDVV2MJHllSYxdrH+yWis3AtsYMOO9v6RwNAKHP8B7CHWPKvqKTpgHyePgOjJOtcIpa2rnDfHNZ+qdMoHCPgbU9KTWTbGZz5XxCYLb7kasUSDBAikyLLFCjrU/G+CnZl5NvZ57BSEwyfC9xPMp8AE=)
   last-modified (1591753500053)
 }
+train (t-0zag6l0eny5vw6x2r47e4lqqy) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (싸피데이)[v:SearchTerm]")
+  last-modified (1591777898731)
+}
