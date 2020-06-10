@@ -17,6 +17,7 @@ module.exports.function = function getAuthenticationState (authenticationCode) {
       passAsJson: true,
       returnHeaders: true,
       format: 'json',
+      cacheTime: 0
     };
 
     var response = http.postUrl(url, data, options);
