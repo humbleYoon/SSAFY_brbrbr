@@ -7,10 +7,20 @@ services:
       - web
     ports:
       - 80:80
+      - 443:443
+    volumes:
+      - ./front-end/ssl/conf:/etc/letsencrypt
+      - ./front-end/ssl/www:/var/www/certbot
     depends_on: 
       - redis
       - postgres
       - express
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./front-end/ssl/conf:/etc/letsencrypt
+      - ./front-end/ssl/www:/var/www/certbot
 
   express:
     image: yopidev/broom-express:0.1.1
