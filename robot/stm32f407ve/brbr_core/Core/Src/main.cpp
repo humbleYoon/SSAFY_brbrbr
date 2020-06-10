@@ -46,7 +46,7 @@ I2C_HandleTypeDef hi2c1;
 UART_HandleTypeDef huart1;
 DMA_HandleTypeDef hdma_usart1_rx;
 DMA_HandleTypeDef hdma_usart1_tx;
-
+TIM_HandleTypeDef htime10;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -56,7 +56,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_I2C1_Init(void);
-
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -100,6 +99,7 @@ int main(void) {
 	MX_USART1_UART_Init();
 	/* USER CODE BEGIN 2 */
 	setup();
+
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -277,6 +277,13 @@ void Error_Handler(void) {
 
 	/* USER CODE END Error_Handler_Debug */
 }
+
+
+
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_TIM_PeriodElapsedCallback could be implemented in the user file
+   */
+
 
 #ifdef  USE_FULL_ASSERT
 /**

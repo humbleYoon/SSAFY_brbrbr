@@ -24,6 +24,8 @@
 
 #include "main.h"
 #include "stm32f4xx_hal.h"
+//#include <ros.h>
+//#include <std_msgs/Float32.h>
 
 extern volatile long long left_encoder_count;
 extern volatile long long right_encoder_count;
@@ -36,9 +38,11 @@ extern int32_t last_diff_tick[WHEEL_NUM];
 extern uint16_t last_tick[WHEEL_NUM];
 extern double last_rad[WHEEL_NUM];
 
-//extern char encoder_log[200];
 
+// target callback function
+//void lwheel_vtargetCB(const std_msgs::Float32& msg);
+//void rwheel_vtargetCB(const std_msgs::Float32& msg);
 void encoderInit();
-void updateEncoderInfo();
+void updateEncoderInfo(uint16_t left_tick, uint16_t right_tick);
 
 #endif /* INC_WHEEL_ENCODER_H_ */

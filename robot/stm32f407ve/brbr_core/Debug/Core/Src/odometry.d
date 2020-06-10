@@ -60,13 +60,14 @@ Core/Src/odometry.o: ../Core/Src/odometry.cpp ../Core/Inc/odometry.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/tf/transform_broadcaster.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/tf/tfMessage.h \
  ../Core/Inc/wheel_encoder.h ../Core/Inc/main.h ../Core/Inc/wheel_motor.h \
- ../Core/Inc/wheel_encoder.h \
- C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Float32.h \
- ../Core/Inc/mainapp.h \
+ ../Core/Inc/wheel_encoder.h ../Core/Inc/mainapp.h \
+ ../Core/Inc/wheel_motor.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int64.h \
  C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int32.h \
- C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/sensor_msgs/Imu.h
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Float32.h \
+ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/sensor_msgs/Imu.h \
+ ../Core/Inc/mainapp.h
 
 ../Core/Inc/odometry.h:
 
@@ -198,9 +199,9 @@ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/tf/tfMessa
 
 ../Core/Inc/wheel_encoder.h:
 
-C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Float32.h:
-
 ../Core/Inc/mainapp.h:
+
+../Core/Inc/wheel_motor.h:
 
 C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/String.h:
 
@@ -208,4 +209,8 @@ C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/I
 
 C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Int32.h:
 
+C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/std_msgs/Float32.h:
+
 C:/Users/multicampus/STM32CubeIDE/workspace_1.3.0/brbr_core/rosserial/sensor_msgs/Imu.h:
+
+../Core/Inc/mainapp.h:

@@ -11,7 +11,7 @@
 #ifndef INC_IMU_H_
 #define INC_IMU_H_
 
-#include <ros.h>
+//#include <ros.h>
 #include <wheel_motor.h>
 #include <sensor_msgs/Imu.h>
 #include <std_msgs/Float32MultiArray.h>
@@ -32,7 +32,7 @@ extern ros::Publisher rpy_pub;
 extern ros::Publisher quat_pub;
 
 
-void initMPU6050();
+void initIMU();
 void updateIMU();
 
 

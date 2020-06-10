@@ -21,6 +21,15 @@ uint16_t last_tick[WHEEL_NUM];
 double last_rad[WHEEL_NUM];
 //double last_vel[WHEEL_NUM];
 
+//void lwheel_vtargetCB(const std_msgs::Float32& msg) {
+//	vel_target[LEFT] = msg.data;
+//}
+//
+//
+//void rwheel_vtargetCB(const std_msgs::Float32& msg) {
+//	vel_target[RIGHT] = msg.data;
+//}
+
 
 void encoderInit() {
 
@@ -113,6 +122,8 @@ void updateEncoderInfo(uint16_t left_tick, uint16_t right_tick) {
 		return;
 	}
 
+	cur_tick[LEFT] = left_tick;
+	cur_tick[RIGHT] = right_tick;
 	for (int idx = 0; idx < WHEEL_NUM; idx++) {
 		if (cur_tick[idx] < low_encoder_wrap
 				&& last_tick[idx] > high_encoder_wrap) {
@@ -126,4 +137,6 @@ void updateEncoderInfo(uint16_t left_tick, uint16_t right_tick) {
 
 		last_rad[idx] += TICK2RAD * (double) last_diff_tick[idx];
 	}
+
+
 }

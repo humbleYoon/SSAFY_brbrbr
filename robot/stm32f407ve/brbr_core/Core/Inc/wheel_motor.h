@@ -24,8 +24,7 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 #include "wheel_encoder.h"
-#include <std_msgs/Float32.h>
-#include <ros.h>
+//#include <ros.h>
 #include <math.h>
 #include <string.h>
 #include "mainapp.h"
@@ -33,8 +32,8 @@
 static TIM_HandleTypeDef htim3;
 
 extern float vel_target[WHEEL_NUM];
-extern float vel_ouput[WHEEL_NUM];
-extern float last_vel[WHEEL_NUM];
+extern float cur_vel_ouput[WHEEL_NUM];
+extern float last_vel_output[WHEEL_NUM];
 
 // motor encoder
 extern float wheel_prev[WHEEL_NUM];
@@ -63,7 +62,7 @@ void driveRightWheel(float servo_value);
 
 // PID 컨트롤 초기화
 void PIDcontrollInit();
-void calcVelocity();
+void calcVelocity(uint16_t left_tick, uint16_t right_tick);
 void doPID();
 
 // 모터 조작하기

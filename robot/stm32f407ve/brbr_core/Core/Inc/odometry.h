@@ -34,5 +34,8 @@ void initJointStates();
 void updateOdometry();
 void updateJointStates();
 void updateTF(geometry_msgs::TransformStamped &odom_tf);
+void publishDriveInformation();
+bool calcOdomerty(double diff_time);
 
+ros::Time addMircos(ros::Time &t, uint32_t _micros);
 #endif /* INC_ODOMETRY_H_ */

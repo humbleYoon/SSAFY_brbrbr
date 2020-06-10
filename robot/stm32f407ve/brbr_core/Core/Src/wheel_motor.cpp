@@ -8,9 +8,7 @@
 
 extern TIM_HandleTypeDef htim3;
 
-
 static float pid_dt;
-
 
 // motor encoder
 float wheel_prev[WHEEL_NUM];
@@ -19,13 +17,13 @@ float wheel_mult[WHEEL_NUM];
 
 // motor PID control(velocity)
 float vel_target[WHEEL_NUM];
-float vel_ouput[WHEEL_NUM];
+float cur_vel_ouput[WHEEL_NUM];
+float last_vel_output[WHEEL_NUM];
 
 float vel_error[WHEEL_NUM];
 float prev_vel_error[WHEEL_NUM];
 float vel_integral[WHEEL_NUM];
 float vel_derivative[WHEEL_NUM];
-
 
 float vel_Kp[WHEEL_NUM];
 float vel_Ki[WHEEL_NUM];
@@ -99,7 +97,6 @@ void wheelPWMInit() {
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 }
-
 
 void moveStop() {
 	HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
@@ -186,7 +183,7 @@ void PIDcontrollInit() {
 
 		// motor PID control(velocity)
 		vel_target[i] = 0.f;
-		vel_ouput[i] = 0.f;
+		cur_vel_ouput[i] = 0.f;
 
 		vel_error[i] = 0.f;
 		prev_vel_error[i] = 0.f;
@@ -205,62 +202,80 @@ void PIDcontrollInit() {
 }
 
 void calcVelocity(uint16_t left_tick, uint16_t right_tick) {
-	uint16_t cur_tick[WHEEL_NUM] = {left_tick, right_tick};
-	static uint32_t prev_calcVel_time[WHEEL_NUM] = { };
-	static uint32_t cur_calcVel_time[WHEEL_NUM] = { };
-	static uint32_t calcVel_time[WHEEL_NUM] = { };
+	uint16_t cur_tick[WHEEL_NUM] = { left_tick, right_tick };
+	static uint32_t prev_calcVel_time[WHEEL_NUM] = {0 };
+	static uint32_t cur_calcVel_time[WHEEL_NUM] = {0 };
+	static uint32_t calcVel_time[WHEEL_NUM] = {0 };
 
-//	for (int idx = 0; idx < WHEEL_NUM; idx++) {
-//		ros::Time h = nh.now();
-////		h.nsec;
-////		h.sec;
-////		cur_calcVel_time[idx] = micros();
-//		calcVel_time[idx] = cur_calcVel_time[idx] - prev_calcVel_time[idx];
-//		prev_calcVel_time[idx] = cur_calcVel_time[idx];
-//
-//		double dt = (double) calcVel_time[idx] * 0.000001;
-//
-//		if (cur_tick[idx] < low_encoder_wrap && last_tick[idx] > high_encoder_wrap) {
-//			wheel_mult[idx] = wheel_mult[idx] + 1;
-//		}
-//
-//		if (cur_tick[idx] > high_encoder_wrap && last_tick[idx] < low_encoder_wrap) {
-//			wheel_mult[idx] = wheel_mult[idx] - 1;
-//		} //오버플로우를 막으려고 한 것
-//
-//		wheel_latest[idx] = (double) (cur_tick[idx]
-//				+ wheel_mult[idx] * UNSIGNED16_MAX) * TICK2METER;
-//		//wheel_latest[idx] = enc[idx] * METER_PER_TICKS;
-//		vel_ouput[idx] = (double) (wheel_latest[idx] - wheel_prev[idx]) / dt;
-//		wheel_prev[idx] = wheel_latest[idx];
-//	}
+	for (int idx = 0; idx < WHEEL_NUM; idx++) {
+		ros::Time h = nh.now();
+
+		cur_calcVel_time[idx] = tenk_tick;
+		calcVel_time[idx] = cur_calcVel_time[idx] - prev_calcVel_time[idx];
+		prev_calcVel_time[idx] = cur_calcVel_time[idx];
+
+		double dt = (double) calcVel_time[idx] * 0.000001;
+
+		if (cur_tick[idx] < low_encoder_wrap && last_tick[idx] > high_encoder_wrap) {
+			wheel_mult[idx] = wheel_mult[idx] + 1;
+		}
+
+		if (cur_tick[idx] > high_encoder_wrap && last_tick[idx] < low_encoder_wrap) {
+			wheel_mult[idx] = wheel_mult[idx] - 1;
+		} //오버플로우를 막으려고 한 것
+
+		wheel_latest[idx] = (double) (cur_tick[idx] + wheel_mult[idx] * UNSIGNED16_MAX) * TICK2METER;
+
+		cur_vel_ouput[idx] = (double) (wheel_latest[idx] - wheel_prev[idx]) / dt;
+		wheel_prev[idx] = wheel_latest[idx];
+	}
 }
 
-
-void moveLeftWheel(){
+void moveLeftWheel() {
 	if (vel_target[LEFT] > 0) {
-
-	}
-	else if (vel_target[LEFT] < 0) {
-
-	}else {
-
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+				GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+				GPIO_PIN_SET);
+		TIM3->CCR1 = (uint16_t) vel_target[LEFT];
+	} else if (vel_target[LEFT] < 0) {
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+				GPIO_PIN_SET);
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+				GPIO_PIN_RESET);
+		TIM3->CCR1 = (uint16_t) (vel_target[LEFT]*-1);
+	} else {
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR1_Pin,
+				GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_LEFT_DIR2_Pin,
+				GPIO_PIN_RESET);
+		TIM3->CCR1 = (uint16_t) 0;
 	}
 
 }
 void moveRightWheel() {
 	if (vel_target[RIGHT] > 0) {
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+				GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+				GPIO_PIN_SET);
+		TIM3->CCR2 = (uint16_t) vel_target[RIGHT];
+	} else if (vel_target[RIGHT] < 0) {
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+				GPIO_PIN_SET);
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+				GPIO_PIN_RESET);
+		TIM3->CCR2 = (uint16_t) (vel_target[RIGHT]*-1);
+	} else {
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR1_Pin,
+				GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(MOTOR_LEFT_DIR1_GPIO_Port, MOTOR_RIGHT_DIR2_Pin,
+				GPIO_PIN_RESET);
 
-	}
-	else if (vel_target[RIGHT] < 0) {
-
-	}else {
-
+		TIM3->CCR2 = (uint16_t) 0;
 	}
 
 }
-
-
 
 //
 //void doPID() {

@@ -4,9 +4,6 @@
 #include "imu.h"
 
 
-sensor_msgs::Imu imu_msg;
-std_msgs::Float32MultiArray rpy_msg;
-std_msgs::Float32MultiArray quat_msg;
 
 const int MPU6050_addr = 0x68;
 volatile int16_t AcX, AcY, AcZ, Tmp, GyX, GyY, GyZ, MagX, MagY, MagZ;
@@ -14,18 +11,23 @@ volatile float ax, ay, az, gx, gy, gz;
 volatile float quat[4];
 float aRes, gRes, mRes;
 
+
+sensor_msgs::Imu imu_msg;
+std_msgs::Float32MultiArray rpy_msg;
+std_msgs::Float32MultiArray quat_msg;
+
 ros::Publisher imu_pub("imu", &imu_msg);
 ros::Publisher rpy_pub("rpy", &rpy_msg);
 ros::Publisher quat_pub("quat", &quat_msg);
 
-void initMPU6050() {
+void initIMU() {
 	rpy_msg.data_length = 3;
 	rpy_msg.data = new float[3];
 
 	quat_msg.data_length = 4;
 	quat_msg.data = new float[4];
-
 }
+
 void updateIMU() {
 	imu_msg.header.stamp = nh.now();
 	imu_msg.header.frame_id = "imu_link";
