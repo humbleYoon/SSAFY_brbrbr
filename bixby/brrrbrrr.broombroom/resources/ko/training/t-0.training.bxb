@@ -1,12 +1,14 @@
+train (t-0koaq57302mb3su567iw7us4n) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (스타벅스)[v:SearchTerm]로 안내해줘")
+  last-modified (1591753093267)
+}
 train (t-0r2uaq421gcoshsm58u0wywjj) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder,v:GuideType:안내] (화장실)[v:SearchTerm] 빨리")
-  last-modified (1591321408005)
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (화장실)[v:SearchTerm] 빨리")
+  plan (hY9BDoIwEEU/gqLcwA2ujDvuYNS1C/QAhU6kiW3NULae3VoSw6LBNNOZ/Hl/pkWBsmHmb1QNW6vDVV2MJHllSYxdrH+yWis3AtsYMOO9v6RwNAKHP8B7CHWPKvqKTpgHyePgOjJOtcIpa2rnDfHNZ+qdMoHCPgbU9KTWTbGZz5XxCYLb7kasUSDBAikyLLFCjrU/G+CnZl5NvZ57BSEwyfC9xPMp8AE=)
+  last-modified (1591753494156)
 }
 train (t-0rzvjzxwlsqnsf364q5k77z0u) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder,v:GuideType:안내] (일타싸피)[v:SearchTerm] 할래")
-  last-modified (1591613556718)
-}
-train (t-0koaq57302mb3su567iw7us4n) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (스타벅스)[v:SearchTerm]로 (안내)[v:GuideType:안내]해줘")
-  last-modified (1591335634631)
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (일타싸피)[v:SearchTerm] 할래")
+  plan (hY9BDoIwEEU/gqLcwA2ujDvuYNS1C/QAhU6kiW3NULae3VoSw6LBNNOZ/Hl/pkWBsmHmb1QNW6vDVV2MJHllSYxdrH+yWis3AtsYMOO9v6RwNAKHP8B7CHWPKvqKTpgHyePgOjJOtcIpa2rnDfHNZ+qdMoHCPgbU9KTWTbGZz5XxCYLb7kasUSDBAikyLLFCjrU/G+CnZl5NvZ57BSEwyfC9xPMp8AE=)
+  last-modified (1591753500053)
 }

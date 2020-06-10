@@ -34,9 +34,9 @@ layout-macro-def (StopMoving) {
                   CommitOrder
                   @context (Continuation) { CommitOrder }
                 }
-                route { UpdateOrder }
-                route { SelectGuideType }
-                value: GuideType(안내)
+                subplan {
+                  goal: UpdateOrder
+                }
               }
             }
           }

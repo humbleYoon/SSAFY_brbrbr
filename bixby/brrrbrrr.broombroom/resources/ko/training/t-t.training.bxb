@@ -1,0 +1,12 @@
+train (t-tg5v7bqbh273ng8ql3j2vh0m7) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (701호 강의장)[v:SearchTerm]")
+  last-modified (1591769988460)
+}
+train (t-txa0daw3ljgskwzmttqsa9ljy) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (1101호 강의장)[v:SearchTerm]")
+  last-modified (1591774652585)
+}
+train (t-t2orovdmbcyw57jb1wroctoi0) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (라피 프로젝트 존)[v:SearchTerm]")
+  last-modified (1591775028582)
+}

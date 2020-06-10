@@ -1,6 +1,0 @@
-enum (GuideType) {
-  description (__DESCRIPTION__)
-  symbol (안내)
-  symbol (투어)
-  symbol (니맘대로)
-}

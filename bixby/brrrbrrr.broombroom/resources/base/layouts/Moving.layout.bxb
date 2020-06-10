@@ -45,7 +45,7 @@ layout-macro-def (Moving) {
                   goal: UpdateOrder
                   subplan {
                     goal: IsPressedArrivalButton
-                    value: ArrivalButtonState(도착했어)
+                    value: ArrivalButtonState(도착)
                     value: Order$expr(commitOrder.order)
                   }
                 }

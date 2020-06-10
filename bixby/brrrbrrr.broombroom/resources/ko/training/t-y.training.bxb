@@ -1,4 +1,8 @@
 train (t-yyvkjn15x6rwqzg8ayqu9x6p1) {
-  utterance ([g:CommitOrder:continue,r:UpdateOrder] 시작)
-  last-modified (1591335517000)
+  utterance ([g:CommitOrder,r:UpdateOrder] 시작)
+  last-modified (1591762961981)
+}
+train (t-yq7ndzxp6d92xbr6exi16xci6) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (무대 쪽 입구)[v:SearchTerm]")
+  last-modified (1591776082083)
 }
