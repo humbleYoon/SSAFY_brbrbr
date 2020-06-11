@@ -24,21 +24,21 @@ function LandingPages() {
     // ??? 눌러도 지금 상태에서 변하지 않음
   }
 
-  const getPagesNumbers = () => {
-    const pageNumbers = []
+  // const getPagesNumbers = () => {
+  //   const pageNumbers = []
 
-    for (let i = 1; i <= 5; i++) {
-      pageNumbers.push(
-        <Pagination.Item key={i} eventKey={i - 1} onSelect={(i:number) => handlePageChange}>
-          {i}
-          {/* <img src={buttonImg} /> */}
-        </Pagination.Item>
-      )
-    }
-    return [...pageNumbers]
-  }
+  //   for (let i = 1; i <= 5; i++) {
+  //     pageNumbers.push(
+  //       <Pagination.Item key={i} eventKey={i - 1} onSelect={(i:number) => handlePageChange}>
+  //         {i}
+  //         {/* <img src={buttonImg} /> */}
+  //       </Pagination.Item>
+  //     )
+  //   }
+  //   return [...pageNumbers]
+  // }
 
-  const pagesNumbers = getPagesNumbers()
+  // const pagesNumbers = getPagesNumbers()
 
   return (
     <body>
@@ -50,11 +50,11 @@ function LandingPages() {
         <SecondComponent />
         <ThirdComponent />
         <FourthComponent />
-        <FifthComponent />
+        {/* <FifthComponent /> */}
       </ReactPageScroller>
-      <Pagination className="pagination-additional-class">
+      {/* <Pagination className="pagination-additional-class">
         {pagesNumbers}
-      </Pagination>
+      </Pagination> */}
     </body>
   )
 }
