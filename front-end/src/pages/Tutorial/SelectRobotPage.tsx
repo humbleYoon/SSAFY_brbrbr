@@ -24,13 +24,20 @@ export default function SelectRobot() {
   const [robots, setRobots] = useState<Robot[]>([])
 
   useEffect(() => {
-    async function getRobots() {
-      const res = await robotApi.fetchRobots()
-        setRobots(res.data)
-    }
     getRobots()
   }, [])
+  
+  async function getRobots() {
+    const res = await robotApi.fetchRobots()
+    console.log(res.data, 'resdata')
+    setRobots(res.data)
+  }
 
+  const robotView = () => {
+    robots.map(() => {
+      
+    })
+  }
   //   const res = axios.robotApi.fetchRobots()
   //     try {
   //       .then(setRobots(res.data))
@@ -92,9 +99,9 @@ export default function SelectRobot() {
           </Link></button>
         </div>
 
-        {robots}
+        
+        {JSON.stringify(robots)}
         {console.log(robots, '로봇 있어 없어')}
-        {/* {showPage(pageToChange)} */}
       </div>
     </div>
   );
