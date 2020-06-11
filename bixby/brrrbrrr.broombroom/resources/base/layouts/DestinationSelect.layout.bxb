@@ -15,7 +15,8 @@ layout-macro-def (DestinationSelect) {
             as (place) {
               image-card {
                 image-url {
-                  template ("#{value(place.thumbUrl)}")
+                  // template ("#{value(place.thumbUrl)}")
+                  template ("./images/imgUrls/default.png")
                 }
                 image-object-position (Center)
                 column-size (Two)
@@ -60,7 +61,8 @@ layout-macro-def (DestinationSelect) {
             as (event) {
               image-card {
                 image-url {
-                  template ("#{value(event.thumbUrl)}")
+                  // template ("#{value(event.thumbUrl)}")
+                  template ("./images/imgUrls/default.png")
                 }
                 image-object-position (Center)
                 title-area {

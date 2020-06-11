@@ -23,7 +23,8 @@ layout-macro-def (Moving) {
           }
           image-card {
             image-url {
-              template ("#{value(commitOrder.order.destinations[0].thumbUrl)}")
+              // template ("#{value(commitOrder.order.destinations[0].thumbUrl)}")
+              template ("./images/imgUrls/default.png")
             }
             aspect-ratio (TwentyOne_Nine)
             image-background-color (Transparent)
