@@ -1,11 +1,16 @@
 /** @jsx jsx  */
-import React from "react";
-import { Link } from 'react-router-dom'
-import { Carousel } from 'react-bootstrap'
+import React, { useState } from "react";
 import { css, jsx } from '@emotion/core'
+// import { Link } from 'react-router-dom'
+// import { Carousel } from 'react-bootstrap'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import faceImg from '../../assets/face.gif'
+import Tutorial from './Tutorial/Tutorial'
+import Select from './Tutorial/Select'
+import Guide from './Tutorial/Guide'
+import Move from './Tutorial/Move'
+import Arrive from './Tutorial/Arrive'
+
 
 const boxPadding = css`
   height: 7vw;
@@ -13,53 +18,41 @@ const boxPadding = css`
   visibility: hidden;
 `
 
-const boxHeight = window.innerHeight - (window.innerHeight / 100 * 30)
+const boxHeight = window.innerHeight - (window.innerHeight / 100 * 40)
 const TestModeBox = css`
-  display: table;
-  width: 80%;
-  height: ${boxHeight}px;
-  margin: 3vw auto;
+  width: 60%;
+  height: 400px;
+  // height: ${boxHeight}px;
+  margin: 3vw 7%;
+  // padding: auto;
   box-shadow: 6px 6px 10px 0 rgb(163, 177, 198, 0.6),
    -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
-`
-
-const boxInner = css`
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  position: relative;
-`
-
-const faceWidth = window.innerWidth - (window.innerWidth / 2) - 300
-const imageSize = css`
-  position: absolute;
-  top: -20px;
-  left: ${faceWidth}px;
-  display: inline-block;
-`
-
-const startButton = css`
-  position: absolute;
-  left: 46%;
-  top: 80%;
-  z-index: 100;
 `
 
 const romi = css`
   color: purple;
 `
 
-
 export default () => {
+  const [ pageNum, setPageNum ] = useState(0)
+  const [ selectRobot, setSelectRobot ] = useState('')
+  const [ curFloor, setCurFloor ] = useState(null)
+  // const [ selectPlaceName, setSelectRogot ] = useState('')
+  // const [ selectPlaceDesc, setSelectRogot ] = useState('')
+  // const [ selectEventName, setSelectRogot ] = useState('')
+  // const [ selectEventDesc, setSelectRogot ] = useState('')
+
   return (
     <div>
       <div css={boxPadding}>영역을차지하렴</div>
       <h2>팔로팔<span css={romi}>로미</span> 맛보기!</h2>
       <div css={TestModeBox}>
-        <div css={boxInner}>
-          <Link to="/selectrobot" css={startButton}>테스트 모드 시작</Link>
-          <img src={faceImg} css={imageSize} width="600px" height="800px" style={{margin: '0 auto'}}></img>
-        </div>
+        {pageNum}
+        {pageNum === 0 ? <Tutorial i={setPageNum} /> :
+          pageNum === 1 ? <Select i={setPageNum} curfloor={setCurFloor} /> :
+          pageNum === 2 ? <Guide i={setPageNum} curfloor={setCurFloor} /> :
+          pageNum === 3 ? <Move i={setPageNum} /> :
+          pageNum === 4 ? <Arrive i={setPageNum} /> : null}
       </div>
     </div>
   );

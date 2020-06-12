@@ -2,6 +2,8 @@ import React from "react";
 
 export default () => {
   return (
-    <div></div>
+    <div>
+      팀원 소개 페이지
+    </div>
   );
 };

@@ -1,7 +1,7 @@
 /** @jsx jsx  */
 import React, { useState } from 'react'
-import { Pagination } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
+import { Pagination } from 'react-bootstrap';
 
 import ReactPageScroller from './Scroll'
 import FirstComponent from './LandingPages/FirstComponent'
@@ -15,7 +15,7 @@ import buttonImg from '../assets/button.png'
 
 
 function LandingPages() {
-  const [currentPage, setCurrentPage] = useState<any>(null)
+  const [currentPage, setCurrentPage] = useState<number>(0)
 
   const handlePageChange = (i:number) => {
     // console.log(currentPage, '바꾸기 전')
@@ -24,20 +24,19 @@ function LandingPages() {
     // ??? 눌러도 지금 상태에서 변하지 않음
   }
 
-  // const getPagesNumbers = () => {
-  //   const pageNumbers = []
+  function getPagesNumbers() {
+    const pageNumbers: any[] = []
 
-  //   for (let i = 1; i <= 5; i++) {
-  //     pageNumbers.push(
-  //       <Pagination.Item key={i} eventKey={i - 1} onSelect={(i:number) => handlePageChange}>
-  //         {i}
-  //         {/* <img src={buttonImg} /> */}
-  //       </Pagination.Item>
-  //     )
-  //   }
-  //   return [...pageNumbers]
-  // }
-
+    for (let i = 1; i <= 5; i++) {
+      pageNumbers.push(
+        <Pagination.Item key={i} eventKey={i - 1} onSelect={handlePageChange}>
+          {i}
+          {/* <img src={buttonImg} /> */}
+        </Pagination.Item>
+      )
+    }
+    return [...pageNumbers]
+  }
   // const pagesNumbers = getPagesNumbers()
 
   return (
@@ -47,12 +46,12 @@ function LandingPages() {
         customPageNumber={currentPage}
       >
         <FirstComponent />
-        <SecondComponent />
-        <ThirdComponent />
         <FourthComponent />
-        {/* <FifthComponent /> */}
+        <ThirdComponent />
+        <SecondComponent />
+        <FifthComponent />
       </ReactPageScroller>
-      {/* <Pagination className="pagination-additional-class">
+      {/* <Pagination>
         {pagesNumbers}
       </Pagination> */}
     </body>
