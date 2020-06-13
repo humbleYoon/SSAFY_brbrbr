@@ -27,6 +27,7 @@ const TestModeBox = css`
   // padding: auto;
   box-shadow: 6px 6px 10px 0 rgb(163, 177, 198, 0.6),
    -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+  background-color: #e0e5ec;
 `
 
 const romi = css`
