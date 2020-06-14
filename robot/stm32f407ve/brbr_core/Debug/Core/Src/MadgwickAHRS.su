@@ -1,0 +1,5 @@
+MadgwickAHRS.cpp:39:1:Madgwick::Madgwick()	16	static
+MadgwickAHRS.cpp:49:6:void Madgwick::update(float, float, float, float, float, float, float, float, float)	192	static
+MadgwickAHRS.cpp:154:6:void Madgwick::updateIMU(float, float, float, float, float, float)	128	static
+MadgwickAHRS.cpp:232:7:static float Madgwick::invSqrt(float)	32	static
+MadgwickAHRS.cpp:245:6:void Madgwick::computeAngles()	16	static

@@ -1,0 +1,35 @@
+time.h:51:3:ros::Time::Time()	16	static
+msg.h:45:7:constexpr ros::Msg::Msg()	16	static
+publisher.h:48:3:ros::Publisher::Publisher(const char*, ros::Msg*, int)	24	static
+STM32Hardware.h:115:19:long unsigned int STM32Hardware::time()	16	static
+String.h:18:5:std_msgs::String::String()	16	static
+String.h:23:17:virtual int std_msgs::String::serialize(unsigned char*) const	24	static
+String.h:34:17:virtual int std_msgs::String::deserialize(unsigned char*)	32	static
+String.h:49:18:virtual const char* std_msgs::String::getType()	16	static
+String.h:50:18:virtual const char* std_msgs::String::getMD5()	16	static
+Int64.h:18:5:std_msgs::Int64::Int64()	24	static
+Int64.h:23:17:virtual int std_msgs::Int64::serialize(unsigned char*) const	32	static
+Int64.h:43:17:virtual int std_msgs::Int64::deserialize(unsigned char*)	56	static
+Int64.h:64:18:virtual const char* std_msgs::Int64::getType()	16	static
+Int64.h:65:18:virtual const char* std_msgs::Int64::getMD5()	16	static
+Float32.h:18:5:std_msgs::Float32::Float32()	16	static
+Float32.h:23:17:virtual int std_msgs::Float32::serialize(unsigned char*) const	24	static
+Float32.h:39:17:virtual int std_msgs::Float32::deserialize(unsigned char*)	24	static
+Float32.h:56:18:virtual const char* std_msgs::Float32::getType()	16	static
+Float32.h:57:18:virtual const char* std_msgs::Float32::getMD5()	16	static
+wheel_motor.cpp:32:6:void wheelDirInit()	32	static
+wheel_motor.cpp:53:6:void wheelPWMInit()	64	static
+wheel_motor.cpp:101:6:void moveStop()	8	static
+wheel_motor.cpp:117:6:void moveForword()	8	static
+wheel_motor.cpp:132:6:void moveBackword()	8	static
+wheel_motor.cpp:147:6:void moveLeft()	8	static
+wheel_motor.cpp:162:6:void moveRight()	8	static
+wheel_motor.cpp:177:6:void PIDcontrollInit()	16	static
+wheel_motor.cpp:204:6:void calcVelocity(uint16_t, uint16_t)	56	static
+wheel_motor.cpp:234:6:void moveLeftWheel()	8	static
+wheel_motor.cpp:256:6:void moveRightWheel()	8	static
+msg.h:129:15:static void ros::Msg::varToArr(A, V) [with A = unsigned char*; V = long unsigned int]	24	static
+msg.h:137:15:static void ros::Msg::arrToVar(V&, A) [with V = long unsigned int; A = unsigned char*]	24	static
+node_handle.h:392:8:ros::Time ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::now() [with Hardware = STM32Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
+wheel_motor.cpp:278:1:void __static_initialization_and_destruction_0(int, int)	16	static
+wheel_motor.cpp:278:1:cpp)	8	static
