@@ -17,4 +17,16 @@ const startGuide = (robotCode: string) => {
   })
 }
 
-export { startGuide }
+const stopMoving = (robotCode: string) => {
+  redis.get('robot', (err, robots) => {
+    if(!err) {
+      const robotStatus = JSON.parse(robots)
+      const robotRequested = robotStatus[robotCode]
+
+      robotRequested.status = '정지'
+      redis.set('robot', JSON.stringify(robotStatus))
+    }
+  })
+}
+
+export { startGuide, stopMoving }

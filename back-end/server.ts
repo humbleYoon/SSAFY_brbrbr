@@ -15,6 +15,7 @@ import socketMain from './socketMain'
 import eventRouter from './routes/event'
 import placeRouter from './routes/place'
 import robotRouter from './routes/robot'
+import searchRouter from './routes/search'
 
 if (process.env.NODE_ENV === 'production') {
   dotenv.config({ path: path.join(__dirname, '.env.prod') })
@@ -72,6 +73,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use('/api/v1/events', eventRouter)
 app.use('/api/v1/places', placeRouter)
 app.use('/api/v1/robots', robotRouter)
+app.use('/api/v1/searchs', searchRouter)
 
 const server = app.listen(app.get('port'), () => {
   console.log(`${app.get('port')} 포트에 연결되었습니다.`)
