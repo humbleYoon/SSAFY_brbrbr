@@ -14,7 +14,6 @@ html, body {
 }
 
 h2 {
-    /* padding-top: 150px; */
     text-align: center;
 }
 
@@ -62,6 +61,28 @@ h3 {
 .pagination-additional-class > li:not(:last-of-type) > a,
 .pagination-additional-class > li:not(:last-of-type) > span {
     margin-right: 50px;
+}
+
+.pager li>a {
+    margin-top: 5vw;
+    background-color: #cad0d9;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+.pager li>a:visited {
+    background-color: #cad0d9;
+    border: none;
+}
+.pager li>a:hover {
+    background-color: #cad0d9;
+    border: none;
+}
+.pager li>a:active {
+    background-color: #cad0d9;
+    border: none;
 }
 
 @media (max-width: 768px) {

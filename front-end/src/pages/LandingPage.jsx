@@ -1,7 +1,7 @@
 /** @jsx jsx  */
 import React, { useState } from 'react'
 import { css, jsx } from '@emotion/core'
-import { Pagination } from 'react-bootstrap';
+import { Pager } from 'react-bootstrap';
 
 import ReactPageScroller from './Scroll'
 import FirstComponent from './LandingPages/FirstComponent'
@@ -14,10 +14,10 @@ import '../index_lan.css'
 import buttonImg from '../assets/button.png'
 
 
-function LandingPages() {
-  const [currentPage, setCurrentPage] = useState<number>(0)
+export default function LandingPages() {
+  const [currentPage, setCurrentPage] = useState(null)
 
-  const handlePageChange = (i:number) => {
+  const handlePageChange = (i) => {
     // console.log(currentPage, '바꾸기 전')
     setCurrentPage(i) // set currentPage number, to reset it from the previous selected.
     // console.log(currentPage, '바꾼 후')
@@ -25,19 +25,21 @@ function LandingPages() {
   }
 
   function getPagesNumbers() {
-    const pageNumbers: any[] = []
+    const pageNumbers = []
 
     for (let i = 1; i <= 5; i++) {
       pageNumbers.push(
-        <Pagination.Item key={i} eventKey={i - 1} onSelect={handlePageChange}>
-          {i}
+        <Pager.Item 
+        key={i} eventKey={i - 1} onSelect={handlePageChange}>
+          { }
           {/* <img src={buttonImg} /> */}
-        </Pagination.Item>
+        </Pager.Item>
       )
     }
     return [...pageNumbers]
   }
-  // const pagesNumbers = getPagesNumbers()
+
+  const pagesNumbers = getPagesNumbers()
 
   return (
     <body>
@@ -46,19 +48,18 @@ function LandingPages() {
         customPageNumber={currentPage}
       >
         <FirstComponent />
-        <FourthComponent />
-        <ThirdComponent />
         <SecondComponent />
+        <ThirdComponent />
         <FifthComponent />
+        <FourthComponent />
       </ReactPageScroller>
-      {/* <Pagination>
+      <Pager className="pagination-additional-class">
         {pagesNumbers}
-      </Pagination> */}
+      </Pager>
     </body>
   )
 }
 
-export default LandingPages
 
 // export default class Landing extends React.Component {
 //   constructor(props) {

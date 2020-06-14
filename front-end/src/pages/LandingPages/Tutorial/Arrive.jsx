@@ -20,6 +20,19 @@ const startButton = css`
   z-index: 100;
   display: inline-block;
 `
+const homeButton = css`
+  font-size: 20px;
+  font-weight: 600;
+  width: 130px;
+  height: 27px;
+  text-align: center;
+  margin: 3% 0 30px 80%;
+  border-radius: 12px;
+  background-color: #e0e5ec;
+  /* background-color: #C2CBD9; */
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+`
 const faceWidth = window.innerWidth - (window.innerWidth / 2) - 300
 const imageSize = css`
   margin: 0 auto;
@@ -46,6 +59,17 @@ const ItemStyle = css`
   box-shadow: inset 6px 6px 10px 0 rgb(163, 177, 198, 0.6),
     inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
 `
+const Thumbnail = css`
+  width: 150px;
+  height: 150px;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e5ec;
+  box-shadow: inset 6px 6px 10px 0 rgb(163, 177, 198, 0.6),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+`
 
 
 export default function Tutorial(props) {
@@ -57,33 +81,23 @@ export default function Tutorial(props) {
     props.i(0)
   }
 
-  const destination = { 
-    name: '싸피데이', 
-    description: '휴게공간', 
-    placeName: '휴게실', 
-    placeFloor: 7}
-
   return (
-    <div>
-      <div css={startButton} onClick={NextTuto}>도착!</div>
-      <div>
-        <h1>목적지에 도착했습니다</h1>
-        <div
-          css={css`
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 6px;
-          `}
-        >
-          {/* <img css={Thumbnail} src={thumburl} alt={name} /> */}
-          <div css={ItemStyle}>
-            <h3>{`@ ${props.curfloor}층 ${props.curplaceinfo.name}`}</h3>
-            <p>{props.curplaceinfo.description}</p>
-          </div>
+    <React.Fragment>
+      <div css={homeButton} onClick={StartTuto}>처음으로</div>
+      <h3 css={css`text-align: center`}>목적지에 도착했습니다</h3>
+      <div
+        css={css`
+          display: flex;
+          justify-content: space-around;
+          margin-bottom: 6px;
+        `}
+      >
+        <img css={Thumbnail} src={props.curplaceinfo.thumburl} alt={props.curplaceinfo.name} />
+        <div css={ItemStyle}>
+          <h3>{`@ ${props.curfloor}층 ${props.curplaceinfo.name}`}</h3>
+          <p>{props.curplaceinfo.description}</p>
         </div>
-
       </div>
-      <div onClick={StartTuto}>처음으로</div>
-    </div>
+    </React.Fragment>
   )
 }

@@ -1,46 +1,51 @@
 /** @jsx jsx  */
-import React, { useState } from 'react'
+import React from 'react'
 import { css, jsx } from '@emotion/core'
 
-import faceImg from '../../../assets/face.gif'
-
-const boxInner = css`
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  position: relative;
-`
 const startButton = css`
-  margin: 0 auto;
+  position: absolute;
+  display: inline;
   text-align: center;
   width: 100%;
-  // height: 400px;
-  // position: absolute;
-  // left: 46%;
-  // top: 80%;
+  top: 80%;
+  left: 50%;
+  margin-left: -100px;
   z-index: 100;
-  display: inline-block;
+`
+const Button = css`
+  font-size: 20px;
+  font-weight: 600;
+  width: 200px;
+  height: 27px;
+  // margin-right: 10px;
+  // margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #e0e5ec;
+  /* background-color: #C2CBD9; */
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+  border: 2px solid black;
 `
 const faceWidth = window.innerWidth - (window.innerWidth / 2) - 300
 const imageSize = css`
-  margin: 0 auto;
   position: absolute;
+  left: 50%;
+  margin-left: -300px;
   // top: -20px;
   // left: ${faceWidth}px;
 `
 
-
 export default function Tutorial(props) {
-
   const NextTuto = () => {
     props.i(1)
   }
   
   return (
-    <div>
-      {props.i}
-      <div css={startButton} onClick={NextTuto}>테스트 모드 시작</div>
-      <img src={faceImg} css={imageSize} width="600px" height="400px" style={{margin: '0 auto'}}></img>
-    </div>
+    <React.Fragment>
+      <div css={startButton}>
+        <div css={Button} onClick={NextTuto}>테스트 모드 시작</div>
+      </div>
+      <img src='/image/face.gif' css={imageSize} width="600px" height="400px"></img>
+    </React.Fragment>
   )
 }

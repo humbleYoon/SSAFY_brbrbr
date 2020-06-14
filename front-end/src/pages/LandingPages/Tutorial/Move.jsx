@@ -1,31 +1,57 @@
 /** @jsx jsx  */
-import React, { useState } from 'react'
+import React from 'react'
 import { css, jsx } from '@emotion/core'
 
-import faceImg from '../../../assets/face.gif'
 
-const boxInner = css`
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  position: relative;
-`
 const startButton = css`
-  margin: 0 auto;
+  position: absolute;
+  display: inline;
   text-align: center;
   width: 100%;
-  // position: absolute;
-  // left: 46%;
-  // top: 80%;
+  top: 80%;
+  left: 50%;
+  margin-left: -100px;
   z-index: 100;
-  display: inline-block;
 `
-const faceWidth = window.innerWidth - (window.innerWidth / 2) - 300
-const imageSize = css`
-  margin: 0 auto;
+const Button = css`
+  font-size: 20px;
+  font-weight: 600;
+  width: 200px;
+  height: 27px;
+  // margin-right: 10px;
+  // margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #e0e5ec;
+  /* background-color: #C2CBD9; */
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+  border: 2px solid black;
+`
+const homeButton = css`
   position: absolute;
-  // top: -20px;
-  // left: ${faceWidth}px;
+  font-size: 20px;
+  font-weight: 600;
+  width: 130px;
+  height: 27px;
+  text-align: center;
+  margin: 3% 0 30px ${390*0.2}%;
+  border-radius: 12px;
+  background-color: #e0e5ec;
+  /* background-color: #C2CBD9; */
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+`
+const moveText = css`
+  text-align: center;
+  position: absolute;
+  top: 85px;
+  font-size: 1.7rem;
+  width: 100%;
+`
+const imageSize = css`
+  position: absolute;
+  left: 50%;
+  margin-left: -300px;
 `
 
 
@@ -37,15 +63,17 @@ export default function Tutorial(props) {
   const StartTuto = () => {
     props.i(0)
   }
-  
-  const place = '싸피데이'
 
   return (
-    <div>
-      <div css={startButton}>{props.curfloor}층 {props.curplaceinfo.name}에 이동 중이야</div>
-      <div css={startButton} onClick={NextTuto}>도착하면 도착 버튼을 눌러 주세요</div>
-      <img src={faceImg} css={imageSize} width="600px" height="800px" style={{margin: '0 auto'}}></img>
-      <div onClick={StartTuto}>처음으로</div>
-    </div>
+    <React.Fragment>
+      <div css={homeButton} onClick={StartTuto}>처음으로</div>
+      <div css={moveText}><span css={css`color: purple;`}>{props.curfloor}층 {props.curplaceinfo.name}</span>
+        에 이동 중이야<br/>도착하면 도착 버튼을 눌러 주세요</div>
+      <div css={startButton}>
+        <span css={css`position: absolute; top: -50px; left: -25px;`}>*** 로미를 따라오세요 팔로팔로미 ~ ***</span>
+        <div css={Button} onClick={NextTuto}>도착</div>
+      </div>
+      <img src='/image/face.gif' css={imageSize} width="600px" height="400px"></img>
+    </React.Fragment>
   )
 }

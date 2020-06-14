@@ -20,7 +20,7 @@ const text = css`
 const introText = css`
   font-size: 4rem;
   grid-column: 1/3;
-  grid-row: 2/5;
+  grid-row: 3/5;
   // text-align: center;
   margin: auto;
 `
@@ -61,21 +61,21 @@ const image = css`
 export default () => {
   return (
     <div css={wrapper}>
-      <div css={text}></div>
+      <div css={text}>부릉부릉</div>
       <div css={introText}>
-        Part<br />
+        Robot<br />
         김현철 이수영 안유림<br />
         {/* Communication<br />
         배성호 안유림<br /> */}
-        {/* Bixby<br /> */}
+        Bixby<br />
         김윤재 배성호 장현진
       </div>
-      <div css={KYJ}><img src={man} css={image} width='100%' height='100%' /></div>
-      <div css={KHC}><img src={man} css={image} width='100%' height='100%'  /></div>
-      <div css={BSH}><img src={man} css={image} width='100%' height='100%' /></div>
-      <div css={AYL}><img src='/여1.png' css={image} width='100%' height='100%' /></div>
-      <div css={LSY}><img src={man} css={image} width='100%' height='100%' /></div>
-      <div css={JHJ}><img src={man} css={image} width='100%' height='100%' /></div>
+      <div css={KYJ}><img src={man} css={image} width='100%' height='100%' />김윤재</div>
+      <div css={KHC}><img src={man} css={image} width='100%' height='100%'  />김현철</div>
+      <div css={BSH}><img src={man} css={image} width='100%' height='100%' />배성호</div>
+      <div css={AYL}><img src='/여1.png' css={image} width='100%' height='100%' />안유림</div>
+      <div css={LSY}><img src={man} css={image} width='100%' height='100%' />이수영</div>
+      <div css={JHJ}><img src={man} css={image} width='100%' height='100%' />장현진</div>
     </div>
   );
 };

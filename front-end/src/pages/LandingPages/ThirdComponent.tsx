@@ -11,7 +11,7 @@ const wrapper = css`
 `
 
 const boxPadding = css`
-  height: 17vw;
+  height: 12vw;
   visibility: hidden;
   position: relative;
   grid-colume: 1;
