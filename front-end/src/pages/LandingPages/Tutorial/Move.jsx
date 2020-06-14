@@ -42,8 +42,7 @@ export default function Tutorial(props) {
 
   return (
     <div>
-      {props.i}
-      <div css={startButton}>{place}에 이동 중이야</div>
+      <div css={startButton}>{props.curfloor}층 {props.curplaceinfo.name}에 이동 중이야</div>
       <div css={startButton} onClick={NextTuto}>도착하면 도착 버튼을 눌러 주세요</div>
       <img src={faceImg} css={imageSize} width="600px" height="800px" style={{margin: '0 auto'}}></img>
       <div onClick={StartTuto}>처음으로</div>

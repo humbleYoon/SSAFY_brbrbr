@@ -46,9 +46,9 @@ function LandingPages() {
         customPageNumber={currentPage}
       >
         <FirstComponent />
-        <SecondComponent />
-        <ThirdComponent />
         <FourthComponent />
+        <ThirdComponent />
+        <SecondComponent />
         <FifthComponent />
       </ReactPageScroller>
       {/* <Pagination>

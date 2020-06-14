@@ -36,8 +36,8 @@ const romi = css`
 
 export default () => {
   const [ pageNum, setPageNum ] = useState(0)
-  const [ selectRobot, setSelectRobot ] = useState('')
   const [ curFloor, setCurFloor ] = useState(null)
+  const [ curPlaceInfo, setCurPlaceInfo ] = useState(null)
   // const [ selectPlaceName, setSelectRogot ] = useState('')
   // const [ selectPlaceDesc, setSelectRogot ] = useState('')
   // const [ selectEventName, setSelectRogot ] = useState('')
@@ -51,9 +51,9 @@ export default () => {
         {pageNum}
         {pageNum === 0 ? <Tutorial i={setPageNum} /> :
           pageNum === 1 ? <Select i={setPageNum} curfloor={setCurFloor} /> :
-          pageNum === 2 ? <Guide i={setPageNum} curfloor={setCurFloor} /> :
-          pageNum === 3 ? <Move i={setPageNum} /> :
-          pageNum === 4 ? <Arrive i={setPageNum} /> : null}
+          pageNum === 2 ? <Guide i={setPageNum} curfloor={curFloor} curplaceinfo={setCurPlaceInfo} /> :
+          pageNum === 3 ? <Move i={setPageNum} curfloor={curFloor} curplaceinfo={curPlaceInfo} /> :
+          pageNum === 4 ? <Arrive i={setPageNum} curfloor={curFloor} curplaceinfo={curPlaceInfo} /> : null}
       </div>
     </div>
   );

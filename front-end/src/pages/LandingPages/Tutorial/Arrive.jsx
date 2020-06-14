@@ -77,8 +77,8 @@ export default function Tutorial(props) {
         >
           {/* <img css={Thumbnail} src={thumburl} alt={name} /> */}
           <div css={ItemStyle}>
-            <h3>{`${destination.name} @ ${destination.placeFloor}층 ${destination.placeName}`}</h3>
-            <p>{destination.description}</p>
+            <h3>{`@ ${props.curfloor}층 ${props.curplaceinfo.name}`}</h3>
+            <p>{props.curplaceinfo.description}</p>
           </div>
         </div>
 

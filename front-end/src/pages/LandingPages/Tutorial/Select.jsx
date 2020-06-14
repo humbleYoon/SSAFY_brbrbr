@@ -45,9 +45,9 @@ const Button = css`
 `
 
 export default function Tutorial(props) {
-  const NextTuto = (floor) => {
-    console.log(floor)
-    props.curfloor(floor)
+  const NextTuto = (robot) => {
+    console.log(robot)
+    props.curfloor(robot.floor)
     props.i(2)
   }
 
@@ -55,10 +55,17 @@ export default function Tutorial(props) {
     props.i(0)
   }
 
-  const floors = [7, 8, 9, 10, 18, 20]
+  const robots = [ 
+    {name: '성호', floor: 7}, 
+    {name: '수영', floor: 9}, 
+    {name: '유림', floor: 10}, 
+    {name: '윤재', floor: 11}, 
+    {name: '현진', floor: 18}, 
+    {name: '현철', floor: 20}, 
+  ]
 
-  const buttonList = floors.map(floor => (
-    <button css={Button} onClick={() => NextTuto(floor)}>{`${floor}층 봇`}</button>
+  const buttonList = robots.map(robot => (
+    <button css={Button} onClick={() => NextTuto(robot)}>{`${robot.floor}층 ${robot.name}봇`}</button>
   ))
 
   return (
