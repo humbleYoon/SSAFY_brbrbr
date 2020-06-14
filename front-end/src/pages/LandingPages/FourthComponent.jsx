@@ -40,12 +40,15 @@ const TestModeBixby = css`
   position: relative;
   flex: 1;
   display: inline-block;
-  margin: 7% 3vw 7% 0;
-  width: 22%;
+  margin: 3vw 7% 3vw 0;
+  width: 250px;
   height: 500px;
-  background-color: black;
 `
-
+const TestModeGuide = css`
+  margin-top: 10px;
+  text-align: center;
+  font-size: 2rem;
+`
 
 export default () => {
   const [ pageNum, setPageNum ] = useState(0)
@@ -66,9 +69,15 @@ export default () => {
           null}
         </div>
         <div css={TestModeBixby}>
-          <img src='/image/bixby/authentication.png' width="100%" height="100%" />
+          <img src='/image/bixby/0.png' height="100%" 
+            css={css`position: absolute; left: 50%; margin-left: -125px;`} />
         </div>
       </div>
+      {pageNum === 0 && <div css={TestModeGuide}>현재 코로나 상황으로 인해, 로미와 여러분이 멀티캠퍼스에서 만날 수 없어요.<br/>그리운 멀티캠퍼스를 튜토리얼에서 구경해볼까요? 로미가 안내해드릴게요!</div>}
+      {pageNum === 1 && <div css={TestModeGuide}>현재 멀티캠퍼스의 몇 층에서 로미를 이용하실 지 선택해 주세요!</div>}
+      {pageNum === 2 && <div css={TestModeGuide}>현재 {curFloor}층에 계시군요! {curFloor}층의 장소 정보와, 모든 층에 예정된 행사 정보를 보실 수 있어요!<br/>안내받을 장소를 선택해 주세요.</div>}
+      {pageNum === 3 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 이동 중입니다.<br/>도착하면 도착 버튼을 눌러 주세요!</div>}
+      {pageNum === 4 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 도착 했습니다.<br/>튜토리얼은 여기까지입니다. 이용해주셔서 고마워요!</div>}
     </React.Fragment>
   );
 };

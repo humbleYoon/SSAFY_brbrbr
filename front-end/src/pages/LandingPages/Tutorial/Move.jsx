@@ -40,6 +40,7 @@ const homeButton = css`
   /* background-color: #C2CBD9; */
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
+  z-index: 100;
 `
 const moveText = css`
   text-align: center;
