@@ -5,14 +5,7 @@ var secret = require('secret');
 const baseURL = secret.get("baseURL");
 
 module.exports.function = function isPressedArrivalButton (arrivalButtonState, order) {
-  // if (arrivalButtonState == "정지") {
-  //   return "정지"
-  // }
-
-  // 로봇 상태 정보(대기, 이동중, 도착)에 대해 요청한다.
   var result;
-  var response;
-  var url = baseURL + "/robots/arrived";
   var authCode = order.authenticationState.authenticationCode.toString();
   var options = {
     format: 'json',
@@ -21,7 +14,17 @@ module.exports.function = function isPressedArrivalButton (arrivalButtonState, o
       'authCode': authCode
     }
   };
-  response = http.getUrl(url, options);
+
+  if (arrivalButtonState == "정지") {
+    var urlStop = baseURL + "/robots/stop";
+    // var responseStop = http.getUrl(urlStop, options);
+    // consol.log(responseStop);
+    return "정지"
+  }
+
+  // 로봇 상태 정보(대기, 이동중, 도착)에 대해 요청한다.
+  var url = baseURL + "/robots/arrived";
+  var response = http.getUrl(url, options);
   // console.log(response);
 
   if (response){
@@ -31,7 +34,6 @@ module.exports.function = function isPressedArrivalButton (arrivalButtonState, o
     else {
       result = "이동중";
     }
-    
   }
   else {
     throw fail.checkedError("NoResult", "NoResult")
