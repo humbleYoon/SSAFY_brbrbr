@@ -1,0 +1,36 @@
+###########################################################
+# move_base
+###########################################################
+
+# move_base가 비활성화 상태일 때 costmap 노드를 정지시킬 것인가에 대한 선택
+shutdown_costmaps: false
+
+# 로봇 베이스에 속도 명령을 주는 컨트롤 반복 주기(Hz단위)
+# 180526현재 AR_Core의 주기는 8Hz가량이므로 이보다는 낮아야한다.(MCU주기보다 높아봤자 반영이 안되기 때문에 의미가 없다)
+controller_frequency: 3.0
+
+# space-clearing 동작이 수행되기 전 컨트롤러가 컨트롤 정보를 수신 대기하는 최대 시간(sec단위)
+controller_patience: 1.0
+
+# 전역 계획의  반복 주기(Hz단위)
+planner_frequency: 2.0
+
+# space-clearing 동작이 수행되기 전 사용 가능한 계획을 찾는데 기다르는 최대 시간(sec 단위)
+planner_patience: 1.0
+
+
+
+###########################################################
+# move_base Recovery behavior
+###########################################################
+
+# 복구 동작의 costmap 초기화 때 이 정해진 거리보다 먼 장애물은 지도에서 삭제된다. 0.05
+conservative_reset_dist: 0.3
+
+# 복구 동작(recovery behavior)을 실행하기 전 로봇이 왔다갔다 하는 것을 허용하는 시간(sec 단위)
+oscillation_timeout: 10.0
+
+# 로봇이 왔다갔다 하지 않도록 움직여야만 하는 거리(meter 단위)
+# 아래 거리를 움직이면 oscillation_timeout은 초기화 된다.
+oscillation_distance: 0.2
+

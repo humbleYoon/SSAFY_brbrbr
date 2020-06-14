@@ -1,0 +1,17 @@
+<launch>
+ 
+    <!-- Parsing xacro and setting robot_description parameter -->
+    <param name="robot_description" command="$(find xacro)/xacro.py $(find brbr_description)/urdf/brbr.urdf.xacro"/>
+    <param name="use_gui" value="true"/>
+
+    <!-- Starting joing state publisher node which will publisher the joint values -->
+    <node name="joint_state_publiser" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="1"/>
+    </node>
+    <!-- Starting robot state publish which will publish tf -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+    <!-- Reserved -->
+    <!-- Launch visualization tin rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find brbr_description)/rviz/robot_model.rviz" required="True"/>
+</launch>
