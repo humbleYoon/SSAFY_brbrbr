@@ -7,7 +7,7 @@ import { Robot } from '@prisma/client'
 
 export interface RobotStatus extends Robot {
   available?: boolean
-  status?: '대기' | '이동중' | '도착'
+  status?: '대기' | '이동중' | '정지' | '도착'
   onService?: boolean
   socketId?: string
 }

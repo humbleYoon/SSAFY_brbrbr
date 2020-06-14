@@ -5,6 +5,7 @@ import redisRobot, { RobotsByCode } from '../redis/robot'
 import { emitToRobot } from './helpers'
 import getRandomCode from '../utils/getRandomCode'
 import validateCode from '../middlewares/validateCode'
+import { stopMoving } from '../robot/mock'
 
 const router = express.Router()
 
@@ -120,6 +121,32 @@ router.get('/init', async (req, res) => {
   redisRobot.initRobots()
 
   res.status(204).end()
+})
+
+router.get('/stop', async (req, res) => {
+  // 로봇 이동 중 정지
+  const codeReceived = req.header('authCode')
+  if (codeReceived) {
+    const robotsByCode = await redisRobot.getRobotsByCode()
+    const floorOfRobot = robotsByCode[String(codeReceived)].floor
+
+    const places = await prisma.place.findMany({
+      where: {
+        floor: floorOfRobot,
+      },
+    })
+    const events = await prisma.event.findMany({
+      include: {
+        place: true,
+      },
+    })
+
+    res.status(204).end()
+    await stopMoving(codeReceived)
+    emitToRobot(req, codeReceived, 'changePageTo', 'listOnFloor')
+    emitToRobot(req, codeReceived, 'placesOnFloor', JSON.stringify(places))
+    emitToRobot(req, codeReceived, 'eventsOpened', JSON.stringify(events))
+  }
 })
 
 export default router
