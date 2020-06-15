@@ -68,10 +68,10 @@ export default function Tutorial(props) {
   return (
     <React.Fragment>
       <div css={homeButton} onClick={StartTuto}>처음으로</div>
-      <div css={moveText}><span css={css`color: purple;`}>{props.curfloor}층 {props.curplaceinfo.name}</span>
-        에 이동 중이야<br/>도착하면 도착 버튼을 눌러 주세요</div>
+      {/* <div css={moveText}><span css={css`color: purple;`}>{props.curfloor}층 {props.curplaceinfo.name}</span>
+        에 이동 중이야<br/>도착하면 도착 버튼을 눌러 주세요</div> */}
       <div css={startButton}>
-        <span css={css`position: absolute; top: -50px; left: -25px;`}>*** 로미를 따라오세요 팔로팔로미 ~ ***</span>
+        <span css={css`position: absolute; top: -50px; left: -25px; font-size: 1.5rem;`}>*** 로미를 따라오세요 팔로팔로미 ~ ***</span>
         <div css={Button} onClick={NextTuto}>도착</div>
       </div>
       <img src='/image/face.gif' css={imageSize} width="600px" height="400px"></img>

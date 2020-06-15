@@ -1,8 +1,6 @@
 /** @jsx jsx  */
 import React from "react";
 import { css, jsx } from '@emotion/core'
-import Logo from '../../assets/logo2.png'
-import robot from '../../assets/realromi.png'
 
 const wrapper = css`
   display: grid;
@@ -46,7 +44,7 @@ export default () => {
   return (
     <div css={wrapper}>
       <div css={boxPadding}>
-        <img src={Logo} width="300px" height="200px"></img>
+        <img src='/image/logo.png' width="300px" height="200px"></img>
       </div>
       <div css={fontBox}>
         <h2 css={fontPadding}>자율주행</h2>
@@ -54,7 +52,7 @@ export default () => {
         <h2 css={fontPadding}>「로미」</h2>
       </div>
       <div>
-        <img src={robot} alt='로봇사진' width="350px" height="600px"  css={imageBox}></img>
+        <img src='/image/realromi.png' alt='로봇사진' width="350px" height="600px"  css={imageBox}></img>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 /** @jsx jsx  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { css, jsx } from '@emotion/core'
 
 import Tutorial from './Tutorial/Tutorial'
@@ -10,12 +10,12 @@ import Arrive from './Tutorial/Arrive'
 
 
 const boxPadding = css`
-  height: 12vw;
+  height: 5.5vw;
   width: 100%;
   visibility: hidden;
 `
 const romi = css`
-color: purple;
+color: #39226A;
 `
 const boxHeight = window.innerHeight - (window.innerHeight / 100 * 40)
 const TestModeLCD = css`
@@ -25,22 +25,23 @@ const TestModeLCD = css`
   width: 60%;
   height: 500px;
   // height: ${boxHeight}px;
-  margin: 3vw 7%;
+  margin: 1vw 7%;
   padding: 10px;
   box-shadow: 6px 6px 10px 0 rgb(163, 177, 198, 0.6),
    -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
   background-color: #e0e5ec;
   overflow-y: auto;
+  overflow-x: hidden;
   -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
 `
 const TestModeBixby = css`
   position: relative;
   flex: 1;
   display: inline-block;
-  margin: 3vw 7% 3vw 0;
+  margin: 1vw 7% 1vw 0;
   width: 250px;
   height: 500px;
 `
@@ -54,6 +55,13 @@ export default () => {
   const [ pageNum, setPageNum ] = useState(0)
   const [ curFloor, setCurFloor ] = useState(null)
   const [ curPlaceInfo, setCurPlaceInfo ] = useState(null)
+  const [ curFloorImg, setCurFloorImg ] = useState('')
+
+  useEffect (() => {
+    if (curFloor) {
+      setCurFloorImg(`/image/bixby/2-${curFloor}.png`)
+    }
+  }, [curFloor])
 
   return (
     <React.Fragment>
@@ -69,15 +77,19 @@ export default () => {
           null}
         </div>
         <div css={TestModeBixby}>
-          <img src='/image/bixby/0.png' height="100%" 
-            css={css`position: absolute; left: 50%; margin-left: -125px;`} />
+          {pageNum === 0 ? <img src='/image/bixby/0.png' height="100%" css={css`position: absolute; left: 50%; margin-left: -125px;`} /> :
+            pageNum === 1 ? <img src='/image/bixby/1.png' height="100%" css={css`position: absolute; left: 50%; margin-left: -125px;`} /> :
+            pageNum === 2 ? <img src={curFloorImg} height="100%" css={css`position: absolute; left: 50%; margin-left: -125px;`} /> :
+            pageNum === 3 ? <img src='/image/bixby/3.png' height="100%" css={css`position: absolute; left: 50%; margin-left: -125px;`} /> :
+            pageNum === 4 ? <img src='/image/bixby/4.png' height="100%" css={css`position: absolute; left: 50%; margin-left: -125px;`} /> : 
+          null}
         </div>
       </div>
-      {pageNum === 0 && <div css={TestModeGuide}>현재 코로나 상황으로 인해, 로미와 여러분이 멀티캠퍼스에서 만날 수 없어요.<br/>그리운 멀티캠퍼스를 튜토리얼에서 구경해볼까요? 로미가 안내해드릴게요!</div>}
-      {pageNum === 1 && <div css={TestModeGuide}>현재 멀티캠퍼스의 몇 층에서 로미를 이용하실 지 선택해 주세요!</div>}
+      {pageNum === 0 && <div css={TestModeGuide}>현재 코로나 상황으로 인해, <span css={romi}>로미</span>와 여러분이 멀티캠퍼스에서 만날 수 없어요.<br/>그리운 멀티캠퍼스를 튜토리얼에서 구경해볼까요? <span css={romi}>로미</span>가 안내해드릴게요!</div>}
+      {pageNum === 1 && <div css={TestModeGuide}>현재 멀티캠퍼스의 몇 층에서 <span css={romi}>로미</span>를 이용하실 지 선택해 주세요!<br/>실제 <span css={romi}>로미</span>는 해당 층에서 빅스비로 호출한 후 인증번호를 입력하시면 사용하실 수 있답니다.</div>}
       {pageNum === 2 && <div css={TestModeGuide}>현재 {curFloor}층에 계시군요! {curFloor}층의 장소 정보와, 모든 층에 예정된 행사 정보를 보실 수 있어요!<br/>안내받을 장소를 선택해 주세요.</div>}
-      {pageNum === 3 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 이동 중입니다.<br/>도착하면 도착 버튼을 눌러 주세요!</div>}
-      {pageNum === 4 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 도착 했습니다.<br/>튜토리얼은 여기까지입니다. 이용해주셔서 고마워요!</div>}
+      {pageNum === 3 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 이동중입니다.<br/>도착하면 도착 버튼을 눌러 주세요!</div>}
+      {pageNum === 4 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 도착했습니다.<br/>튜토리얼은 여기까지입니다. 이용해주셔서 고마워요!</div>}
     </React.Fragment>
   );
 };

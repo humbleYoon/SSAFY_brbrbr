@@ -11,7 +11,7 @@ const wrapper = css`
 `
 
 const boxPadding = css`
-  height: 12vw;
+  height: 5.5vw;
   visibility: hidden;
   position: relative;
   grid-colume: 1;
@@ -25,7 +25,7 @@ const tableMargin = css`
 `
 
 export default () => {
-  const text = '영상으로 구경해보시죠 \>_~'
+  const text = '로미를 소개합니다 \>_~'
   return (
     <div css={wrapper}>
       <div css={boxPadding}>영역을차지하렴</div>

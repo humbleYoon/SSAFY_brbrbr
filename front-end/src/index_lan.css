@@ -51,7 +51,7 @@ h3 {
 .pagination-additional-class {
     margin: 0;
     position: fixed;
-    top: 20px;
+    top: -30px;
     display: flex;
     justify-content: center;
     width: 100%;
