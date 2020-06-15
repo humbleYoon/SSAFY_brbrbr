@@ -119,6 +119,129 @@
 
 
 
+## Getting Started - SetUp
+
+### [STM32F407VE]
+
+1. Install STM32CubeIDE
+
+   - https://www.st.com/en/development-tools/stm32cubeide.html
+
+2. Transplant stm32_rosserial
+
+   - https://github.com/yoneken/rosserial_stm32
+   - In addtion, the size of the receive buffer, queue and transmit buffer, queue  must br adjusted
+     - rosserail/ros/node_hanlder.h : default(25, 25, 512, 512) -> (10, 10, 512, 1024)
+     - rosserial/hard_ware.h : transmit buffer size 512 ->  1024
+
+3.  Put the source code by linking with ST link using stm32CubeIDE
+
+   - source code path: robot/stm32f407ve/brbr_core
+
+   
+
+### [SBC-Raspiberry4]
+
+1. Install ROS-melodic
+
+   - https://wiki.ros.org/melodic/installation/Ubuntu
+
+2. Install lidar ROS package, rosserial
+
+	 ```bash
+	 $ mkdir -p ~/catkin_ws/src
+	 $ cd ~/catkin_ws
+	 $ catkin_make
+	 $ cd ~/catkin_ws/src
+	 $ git clone https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver
+	 $ cd ~/catkin_ws
+	 $ catkin_make
+	```
+
+3. Install rosserial
+
+   ```bash
+   $ sudo apt install ros-melodic-rosserial
+   ```
+
+
+
+### [Remote-PC]
+
+
+1. Install ROS-melodic
+
+   - https://wiki.ros.org/melodic/installation/Ubuntu
+
+2. Install ROS package
+
+	 ```bash
+	$ mkdir -p ~/catkin_ws/src
+	$ cd ~/catkin_ws
+	$ catkin_make
+	
+	$ sudo apt install ros-melodic-teleop-twist-joy ros-melodic-joy ros-melodic-teleop-twist-keyboard ros-melodic-laser-proc ros-melodic-rosserial-python ros-melodic-server ros-melodic-client ros-melodic-rosserial-msgs ros-melodic-amcl ros-melodic-map-server ros-melodic-move-base ros-melodic-urdf ros-melodic-xacro ros-melodic-compressed-image-transport ros-melodic-gmapping ros-melodic-navigation
+	 
+	```
+	
+3. Install rosserial
+
+   ```bash
+   $ cd
+   $ git clone https://lab.ssafy.com/s02-final/s02p31a302.git
+   $ mv s02p31a302/robot/romi_pacakge/* ~/catkin_ws/src
+   
+   $ cd ~/catkin_ws; catkin_make
+   ```
+
+
+
+
+## Getting Started - SLAM
+### [Remote-PC]
+
+```bash
+$ roscore
+$ rosrun br_bringup twist_to_motors
+$ rosrun br_teleop br_teleop_key
+$ roslaunch br_slam br_slam.launch
+```
+
+### [SBC-Raspiberry4]
+
+After the remotePC's roscore is execution, run te code below
+
+```bash
+$ rosrun rosserial_python serial_node.py _baud:=115200 _port:=/dev/ttyUSB1
+$ roslaunch hls_lfcd_lds_driver hlds_laser.launch 
+```
+
+
+
+
+## Getting Started - Navigation
+### [Remote-PC]
+
+```bash
+$ roscore
+$ rosrun br_bringup twist_to_motors
+$ rosrun br_teleop br_teleop_key
+$ roslaunch br_navigation br_navigation.launch
+
+```
+
+### [SBC-Raspiberry4]
+
+After the remotePC's roscore is execution, run te code below
+
+```bash
+$ rosrun rosserial_python serial_node.py _baud:=115200 _port:=/dev/ttyUSB1
+$ roslaunch hls_lfcd_lds_driver hlds_laser.launch 
+```
+
+
+
+
 
 
 
