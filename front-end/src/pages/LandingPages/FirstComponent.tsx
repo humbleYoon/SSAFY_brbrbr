@@ -44,7 +44,7 @@ export default () => {
   return (
     <div css={wrapper}>
       <div css={boxPadding}>
-        <img src='/image/logo.png' width="300px" height="200px"></img>
+        <img src='/image/logo_lan.png' width="300px" height="200px"></img>
       </div>
       <div css={fontBox}>
         <h2 css={fontPadding}>자율주행</h2>

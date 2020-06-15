@@ -14,7 +14,7 @@ export default () => {
   return (
     <React.Fragment css={css`position: relative;`}>
       <video loop autoPlay css={videoMg}>
-        <source src="/landing2.mp4" type="video/mp4" />
+        <source src="/video/landing2.mp4" type="video/mp4" />
       </video>
     </React.Fragment>
   );

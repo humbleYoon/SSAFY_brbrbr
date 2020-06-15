@@ -2,8 +2,6 @@
 import React from "react";
 import { css, jsx } from '@emotion/core'
 
-import man from '../../assets/man1.png'
-
 const wrapper = css`
   display: grid;
   height: 100%;
@@ -18,7 +16,7 @@ const text = css`
   margin: auto;
 `
 const introText = css`
-  font-size: 4rem;
+  font-size: 3rem;
   grid-column: 1/3;
   grid-row: 2/5;
   // text-align: center;
@@ -61,21 +59,24 @@ const image = css`
 export default () => {
   return (
     <div css={wrapper}>
+      <div css={css`position: absolute; z-index: 200;`}>
+        <img src='/image/logo_lan.png' width="300px" height="200px"></img>
+      </div>
       <div css={text}></div>
       <div css={introText}>
-        Part<br />
-        김현철 이수영 안유림<br />
-        {/* Communication<br />
-        배성호 안유림<br /> */}
-        {/* Bixby<br /> */}
-        김윤재 배성호 장현진
+        이수영 LEE SOO YOUNG <br />
+        김현철 KIM HYEON CHEOL <br />
+        김윤재 KIM YOON JAE <br /> 
+        배성호 BAE SEONG HO <br />
+        안유림 AN YU LIM <br />
+        장현진 JANG HYEON JIN <br />
       </div>
-      <div css={KYJ}><img src={man} css={image} width='100%' height='100%' /></div>
-      <div css={KHC}><img src={man} css={image} width='100%' height='100%'  /></div>
-      <div css={BSH}><img src={man} css={image} width='100%' height='100%' /></div>
-      <div css={AYL}><img src='/여1.png' css={image} width='100%' height='100%' /></div>
-      <div css={LSY}><img src={man} css={image} width='100%' height='100%' /></div>
-      <div css={JHJ}><img src={man} css={image} width='100%' height='100%' /></div>
+      <div css={KYJ}><img src='/image/KIM YOON JAE.jpg' css={image} width='100%' height='100%' /></div>
+      <div css={KHC}><img src='/image/KIM HYEON CHEOL.jpg' css={image} width='100%' height='100%'  /></div>
+      <div css={BSH}><img src='/image/BAE SEONG HO.jpg' css={image} width='100%' height='100%' /></div>
+      <div css={AYL}><img src='/image/AN YU LIM.jpg' css={image} width='100%' height='100%' /></div>
+      <div css={LSY}><img src='/image/LEE SOO YOUNG.jpg' css={image} width='100%' height='100%' /></div>
+      <div css={JHJ}><img src='/image/JANG HYEON JIN.jpg' css={image} width='100%' height='100%' /></div>
     </div>
   );
 };

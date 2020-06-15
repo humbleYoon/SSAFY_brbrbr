@@ -23,12 +23,11 @@ export default function LandingPages() {
   function getPagesNumbers() {
     const pageNumbers = []
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 4; i++) {
       pageNumbers.push(
         <Pager.Item 
         key={i} eventKey={i - 1} onSelect={handlePageChange}>
           { }
-          {/* <img src={buttonImg} /> */}
         </Pager.Item>
       )
     }
@@ -43,7 +42,7 @@ export default function LandingPages() {
         pageOnChange={handlePageChange}
         customPageNumber={currentPage}
       >
-        <FirstComponent />
+        {/* <FirstComponent /> */}
         <SecondComponent />
         <ThirdComponent />
         <FifthComponent />
