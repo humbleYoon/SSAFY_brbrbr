@@ -28,9 +28,9 @@ export default () => {
   const text = '로미를 소개합니다 \>_~'
   return (
     <div css={wrapper}>
-      <div css={css`position: absolute; z-index: 200;`}>
+      {/* <div css={css`position: absolute; z-index: 200;`}>
         <img src='/image/logo_lan.png' width="300px" height="200px"></img>
-      </div>
+      </div> */}
       <div css={boxPadding}>영역을차지하렴</div>
       <h2>{text}</h2>
       
@@ -68,6 +68,7 @@ export default () => {
           </tr>
         </td>
       </table>      
+      <div css={css`text-align: center; margin-top: 20px;`}>More ReadMe GitHub Link : https://github.com/anyl92/RomiReadme</div>
     </div>
   );
 };

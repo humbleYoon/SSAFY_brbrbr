@@ -60,9 +60,11 @@ export default () => {
   return (
     <div css={wrapper}>
       <div css={css`position: absolute; z-index: 200;`}>
+        
+      </div>
+      <div css={text}>
         <img src='/image/logo_lan.png' width="300px" height="200px"></img>
       </div>
-      <div css={text}></div>
       <div css={introText}>
         이수영 LEE SOO YOUNG <br />
         김현철 KIM HYEON CHEOL <br />
