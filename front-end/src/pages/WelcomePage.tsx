@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import { PageParams } from './RobotPage'
 import * as tmImage from '@teachablemachine/image'
-import Face from '../assets/face.gif'
 
 const Button = css`
   /* position: absolute; */
@@ -83,7 +82,7 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
         align-items: center;
       `}
     >
-      <img src={Face} alt="smiley face" height={350} width={350} />
+      <img src='/image/face.gif' alt="smiley face" height={350} width={350} />
       <button
         css={Button}
         onClick={() => {
