@@ -17,7 +17,7 @@ module.exports.function = function isPressedArrivalButton (arrivalButtonState, o
 
   if (arrivalButtonState == "정지") {
     var urlStop = baseURL + "/robots/stop";
-    // var responseStop = http.getUrl(urlStop, options);
+    var responseStop = http.getUrl(urlStop, options);
     // consol.log(responseStop);
     return "정지"
   }
