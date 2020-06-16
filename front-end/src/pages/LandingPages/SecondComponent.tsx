@@ -13,7 +13,7 @@ const videoMg = css`
 export default () => {
   return (
     <React.Fragment css={css`position: relative;`}>
-      <video loop autoPlay css={videoMg}>
+      <video muted loop autoPlay css={videoMg}>
         <source src="/video/landing2.mp4" type="video/mp4" />
       </video>
     </React.Fragment>
