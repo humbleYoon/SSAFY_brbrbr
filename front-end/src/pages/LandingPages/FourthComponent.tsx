@@ -54,7 +54,7 @@ const TestModeGuide = css`
 export default () => {
   const [ pageNum, setPageNum ] = useState(0)
   const [ curFloor, setCurFloor ] = useState(null)
-  const [ curPlaceInfo, setCurPlaceInfo ] = useState(null)
+  const [ curPlaceInfo, setCurPlaceInfo ] = useState({name:'', description:'', thumburl:''})
   const [ curFloorImg, setCurFloorImg ] = useState('')
 
   useEffect (() => {
@@ -90,6 +90,7 @@ export default () => {
       {pageNum === 2 && <div css={TestModeGuide}>현재 {curFloor}층에 계시군요! {curFloor}층의 장소 정보와, 모든 층에 예정된 행사 정보를 보실 수 있어요!<br/>안내받을 장소를 선택해 주세요.</div>}
       {pageNum === 3 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 이동중입니다.<br/>도착하면 도착 버튼을 눌러 주세요!</div>}
       {pageNum === 4 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 도착했습니다.<br/>튜토리얼은 여기까지입니다. 이용해주셔서 고마워요!</div>}
+      {console.log(curPlaceInfo, '이게뭔뎅')}
     </React.Fragment>
   );
 };

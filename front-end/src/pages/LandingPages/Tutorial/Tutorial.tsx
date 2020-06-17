@@ -35,7 +35,7 @@ const imageSize = css`
   // left: ${faceWidth}px;
 `
 
-export default function Tutorial(props) {
+export default function Tutorial(props:any) {
   const NextTuto = () => {
     props.i(1)
   }
