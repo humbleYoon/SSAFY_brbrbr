@@ -66,7 +66,7 @@ module.exports.function = function updateOrder (order, changedAuthenticationStat
         break
       }
       else if (currentRobotState == "정지") {
-        order.step = "정지"
+        order.step = "목적지 선택"
         break
       }
       else {
