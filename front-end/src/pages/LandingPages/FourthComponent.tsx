@@ -25,7 +25,7 @@ const TestModeLCD = css`
   width: 60%;
   height: 500px;
   // height: ${boxHeight}px;
-  margin: 1vw 7%;
+  margin: 0.5vw 7%;
   padding: 10px;
   box-shadow: 6px 6px 10px 0 rgb(163, 177, 198, 0.6),
    -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
@@ -41,7 +41,7 @@ const TestModeBixby = css`
   position: relative;
   flex: 1;
   display: inline-block;
-  margin: 1vw 7% 1vw 0;
+  margin: 0.5vw 7% 0.5vw 0;
   width: 250px;
   height: 500px;
 `

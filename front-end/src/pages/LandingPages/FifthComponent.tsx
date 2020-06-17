@@ -58,6 +58,26 @@ const image = css`
   position: 'relative';
 `
 
+const snip = css`
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  margin: 10px;
+  min-width: 310px -60px;
+  max-width: 310px;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  background-color: #000000;
+  font-size: 16px;
+
+  * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
+  }
+`
+
 export default () => {
   return (
     <div css={wrapper}>
@@ -78,30 +98,31 @@ export default () => {
       <div className="snip1273" css={KYJ}><img src='/image/KIM YOON JAE.jpg' css={image} width='100%' height='100%' />
         <figcaption>
           <h3 style={{color:'white'}}>KIM YOON JAE</h3>
-          <div>Bixby</div>
-          <div>빅스비는 로컬호스트를 몰라요..</div>
+          <div>Bixby Developer</div>
+          <div>Back-end Developer</div>
+          <br/><p>빅스비는 로컬호스트를 몰라요..</p>
         </figcaption>
       </div>
       <div className="snip1273" css={KHC}><img src='/image/KIM HYEON CHEOL.jpg' css={image} width='100%' height='100%' />
         <figcaption>
           <h3 style={{color:'white'}}>KIM HYEON CHEOL</h3>
-          <div>Robot Drive Part</div>
-          <div>어이쿠</div>
+          <div>Robot Drive</div>
+          <br/><p>어이쿠</p>
         </figcaption>
       </div>
       <div className="snip1273" css={BSH}><img src='/image/BAE SEONG HO.jpg' css={image} width='100%' height='100%' />
         <figcaption>
           <h3 style={{color:'white'}}>BAE SEONG HO</h3>
-          <div>Web FullStack</div>
-          <div>다음 프로젝트는 앱으로</div>
+          <div>Web FullStack Developer</div>
+          <br/><p>다음 프로젝트는 앱으로</p>
         </figcaption> 
       </div>
       <div className="snip1273" css={AYL}><img src='/image/AN YU LIM.jpg' css={image} width='100%' height='100%' />
         <figcaption>
           <h3 style={{color:'white'}}>AN YU LIM</h3>
           <div>Robot Communication</div>
-          <div>Front-end</div>
-          <div>로미로미</div>
+          <div>Front-end Deverloper</div>
+          <br/><p>로미로미</p>
         </figcaption> 
       </div>
       <div className="snip1273" css={LSY}><img src='/image/LEE SOO YOUNG.jpg' css={image} width='100%' height='100%' />
@@ -109,14 +130,15 @@ export default () => {
           <h3 style={{color:'white'}}>LEE SOO YOUNG</h3>
           <div>Project Manager</div>
           <div>Robot Odometry</div>
-          <div>Atchacha.... 로봇은 취미로</div>
+          <br/><p>Atchacha.... 로봇은 취미로</p>
         </figcaption> 
       </div>
       <div className="snip1273" css={JHJ}><img src='/image/JANG HYEON JIN.jpg' css={image} width='100%' height='100%' />
         <figcaption>
           <h3 style={{color:'white'}}>JANG HYEON JIN</h3>
-          <div>Bixby</div>
-          <div>하이 빅스비~!</div>
+          <div>Bixby Developer</div>
+          <div>Presenter</div>
+          <br/><p>하이 빅스비~!</p>
         </figcaption> 
       </div>
     </div>
