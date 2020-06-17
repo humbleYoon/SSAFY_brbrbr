@@ -3,12 +3,15 @@
 ![Bixby 뱃지](https://img.shields.io/badge/Bixby-8.0.1-informational) 
 
 
-## Usage
+## Getting started
 
 ```
 1. 스마트폰의 Bixby를 실행합니다.
-2. 부릉부릉 캡슐을 검색 후 추가합니다.
-3. Bixby에게 다음과 같이 음성으로 말합니다. 부릉부릉 시작!
+2. 로미 캡슐을 검색 후 추가합니다.
+3. Bixby에게 다음과 같이 음성으로 말합니다.
+  - 로미 시작
+  - 팔로팔로미 연결해줘
+  - 로미 켜줘
 ```
 
 ![bixby_market](./images/bixby_market.png) ![bixby_market_brr](./images/bixby_market_brr.png) ![bixby_market_brr_2](./images/bixby_market_brr_2.png)
