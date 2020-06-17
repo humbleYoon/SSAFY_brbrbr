@@ -58,7 +58,7 @@ module.exports.function = function selectDestination (searchTerm, order) {
       }
     }
     else {
-      if(response.places.length == 0) {
+      if(!response.places) {
         if(!response.events) {
           destinations[0] = {
             destinationName: "null",
