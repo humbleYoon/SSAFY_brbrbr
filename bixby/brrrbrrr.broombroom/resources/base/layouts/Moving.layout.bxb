@@ -10,16 +10,16 @@ layout-macro-def (Moving) {
         content {
           title-area {
             halign (Center)
-             slot2 {
-               single-line {
-                 text {
-                   style (Title_S)
-                   value {
-                     template ("도착하면 아래의 버튼을 눌러주세요!")
-                   }
-                 }
-               }
-             }
+            slot2 {
+              single-line {
+                text {
+                  style (Title_S)
+                  value {
+                    template ("도착하면 아래의 버튼을 눌러주세요!")
+                  }
+                }
+              }
+            }
           }
           image-card {
             image-url {
@@ -46,6 +46,51 @@ layout-macro-def (Moving) {
                   subplan {
                     goal: IsPressedArrivalButton
                     value: ArrivalButtonState(도착)
+                    value: Order$expr(commitOrder.order)
+                  }
+                }
+              }
+            }
+          }
+          // 2576
+          title-area {
+            halign (Center)
+            slot2 {
+              single-line {
+                text {
+                  style (Title_XS)
+                  value {
+                    template ("정지를 원하면 아래의 버튼을 눌러주세요!")
+                  }
+                }
+              }
+            }
+          }
+          image-card {
+            image-url {
+              template ("images/imgUrls/stop.png")
+            }
+            aspect-ratio (Sixteen_Nine)
+            image-background-color (Transparent)
+            image-object-fit (Cover)
+            text-position (Below)
+            title-area {
+              halign (Center)
+              slot1 {
+                text ("정지")
+              }
+            }
+            on-click {
+              intent {
+                goal {
+                  CommitOrder
+                  @context (Continuation) { CommitOrder }
+                }
+                subplan {
+                  goal: UpdateOrder
+                  subplan {
+                    goal: IsPressedArrivalButton
+                    value: ArrivalButtonState(정지)
                     value: Order$expr(commitOrder.order)
                   }
                 }
