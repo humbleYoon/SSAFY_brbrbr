@@ -1,0 +1,9 @@
+legal {
+  country-documents {
+    store-country (KR)
+    privacy-policy { // 개인정보 처리 방침
+      url(https://github.com/anyl92/RomiReadme/tree/master/bixby/privacy_policy.md)
+    }
+  }
+}
+

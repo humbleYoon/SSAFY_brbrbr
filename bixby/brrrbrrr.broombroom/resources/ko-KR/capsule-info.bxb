@@ -1,10 +1,9 @@
 capsule-info {
   display-name (로미)
   developer-name (brrrbrrr)
-  description ("부릉부릉은 로봇을 사용한 안내 서비스입니다.")
+  description ("로미는 실내 자율주행 로봇을 사용한 안내 서비스입니다. 로미 캡슐을 통해 자율주행 로봇 로미를 인증한 후 목적지를 말씀하시면 해당 목적지로 직접 데려가주고, 목적지에 대한 자세한 안내를 받을 수 있습니다.")
   dispatch-name (로미)
   dispatch-aliases {
-    alias (시발로미)
     alias (팔로팔로미)
   }
   // Set your own image for your capsule's icon
