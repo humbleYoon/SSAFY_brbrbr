@@ -4,7 +4,7 @@ var fail = require('fail');
 var secret = require('secret');
 const baseURL = secret.get("baseURL");
 
-module.exports.function = function selectGuideType (guideType, order) {
+exports.getPlaceAndEvent = function getPlaceAndEvent (order) {
   // 가이드 타입을 선택하고, 그에 따른 장소, 행사에 대한 정보를 요청한다.
   var urlPlaces = baseURL + "/places";
   var urlEvents = baseURL + "/events";
@@ -49,7 +49,6 @@ module.exports.function = function selectGuideType (guideType, order) {
   }
 
   var changedItem = {
-    guideType: guideType,
     placeAndEvent: placeAndEventList
   };
   

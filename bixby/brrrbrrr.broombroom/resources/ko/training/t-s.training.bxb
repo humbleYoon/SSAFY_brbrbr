@@ -1,8 +1,8 @@
 train (t-sdoogl26ak1yarzk3b0qjfe6b) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (도착)[v:ArrivalButtonState:도착했어]이야")
-  last-modified (1591261779489)
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (도착)[v:ArrivalButtonState:도착]이야")
+  last-modified (1591773444685)
 }
-train (t-s8z2za7ut5wekg6s6i129jb8z) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (안내)[v:GuideType:안내]")
-  last-modified (1591326179981)
+train (t-s5nf4r9x48xqrr460gd0b7dt6) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (안내데스크)[v:SearchTerm]")
+  last-modified (1591770256325)
 }

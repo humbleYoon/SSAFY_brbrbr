@@ -2,3 +2,11 @@ train (t-knn7f96y6qsmp15yqs11gjcod) {
   utterance ("[g:CommitOrder:continue,r:UpdateOrder] (가디)[v:SearchTerm]")
   last-modified (1591324633289)
 }
+train (t-k3lxgqdqjdh0zn8gyan03i0ys) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (703호 강의장)[v:SearchTerm]")
+  last-modified (1591770037338)
+}
+train (t-kluzvkjfh1hhvw73m4nmxu1o1) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (입구)[v:SearchTerm] 안내해줘")
+  last-modified (1591772998406)
+}

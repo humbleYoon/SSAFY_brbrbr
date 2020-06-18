@@ -1,10 +1,11 @@
 var console = require('console');
+var lib = require('./GetPlaceAndEvent.js');
 
-module.exports.function = function updateOrder (order, changedAuthenticationState, changedItem, destinations, currentRobotState) {
+module.exports.function = function updateOrder (order, changedAuthenticationState, destinations, currentRobotState) {
   var beforeStep
 
   if (!changedAuthenticationState.isAuthenticated) {
-    order.step == "인증 실패";
+    order.step = "인증 실패";
   }
 
   do {
@@ -13,42 +14,26 @@ module.exports.function = function updateOrder (order, changedAuthenticationStat
       order.authenticationState = changedAuthenticationState;
       // 인증 번호가 맞다면
       if (changedAuthenticationState.isAuthenticated) {
-        order.step = "가이드 타입 선택"
-        if (!changedItem && order.item) {
-          changedItem = order.item
-        }
+        order.step = "목적지 선택"
         // 인증번호를 틀리고 난 후
-        if (destinations.length == 0 && order.destinations.length > 0) {
+        if (destinations.length == 0 && order.destinations.length > 0)
           destinations = order.destinations
-        }
         // 기본 시나리오를 진행해 올 때 성공 흐름의 destinations 백업
         else order.destinations = destinations
       }
       else {
         order.step = "인증 실패"
-        if (changedItem) order.item = changedItem
-        if (destinations.length > 0) order.destinations = destinations
+        if (destinations.length > 0)
+          order.destinations = destinations
       }
     }
     else if (order.step == "도착" || order.step == "없는 장소" || order.step == "다른 층" || order.step == "정지") {
-      if (changedItem) {
-        order.step = "목적지 선택"
-        order.destinations = []
-      }
-      else {
-        order.step = "가이드 타입 선택"
-        order.destinations = destinations
-      }
-    }
-    else if ((order.step == "가이드 타입 선택") && changedItem) {
       order.step = "목적지 선택"
-      order.item = changedItem
     }
     else if (order.step == "목적지 선택") {
       if (destinations.length == 0) {
-        if (order.destinations.length > 0)
-          destinations = order.destinations
-        else break
+        order.item = lib.getPlaceAndEvent(order)
+        break
       }
       order.step = "안내"
     }
@@ -81,7 +66,7 @@ module.exports.function = function updateOrder (order, changedAuthenticationStat
         break
       }
       else if (currentRobotState == "정지") {
-        order.step = "정지"
+        order.step = "목적지 선택"
         break
       }
       else {

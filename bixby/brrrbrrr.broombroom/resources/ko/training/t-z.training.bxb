@@ -1,0 +1,8 @@
+train (t-zrgkn34zfaovlqhvmoi7mupmv) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (1102호)[v:SearchTerm]")
+  last-modified (1591769890341)
+}
+train (t-z12o072f3ert8qtxijqj303qe) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (싸 피 사무실)[v:SearchTerm]")
+  last-modified (1591774201141)
+}

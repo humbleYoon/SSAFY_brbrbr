@@ -36,11 +36,6 @@ layout-macro-def (NotExistPlace) {
                 }
                 subplan {
                   goal: UpdateOrder
-                  subplan {
-                    goal: SelectGuideType
-                    value: GuideType(안내)
-                    value: Order$expr(commitOrder.order)
-                  }
                 }
               }
             }

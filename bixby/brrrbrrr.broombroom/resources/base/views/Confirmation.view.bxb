@@ -30,13 +30,6 @@ confirmation-view {
           }
         }
       }
-      case ("가이드 타입 선택") {
-        template-macro (GuideTypeSelect) {
-          param (commitOrder) {
-            expression (action)
-          }
-        }
-      }
       case ("목적지 선택") {
         template-macro (DestinationSelect) {
           param (commitOrder) {
@@ -100,13 +93,6 @@ confirmation-view {
           }
         }
       }
-      case ("가이드 타입 선택") {
-        layout-macro (GuideTypeSelect) {
-          param (commitOrder) {
-            expression (action)
-          }
-        }
-      }
       case("목적지 선택"){
         layout-macro (DestinationSelect) {
           param (commitOrder) {
@@ -157,9 +143,6 @@ confirmation-view {
       case ("인증 실패") {
         conversation-driver ("다시 인증할래")
       }
-      case ("가이드 타입 선택") {
-        conversation-driver ("안내 해줘")
-      }
       case ("목적지 선택") {
         conversation-driver ("#{value(action.order.item.placeAndEvent.places[0].placeName)}로 안내해줘")
       }
@@ -178,6 +161,9 @@ confirmation-view {
       }
       case ("정지") {
         conversation-driver ("다른 곳 안내해줘")
+      }
+      default {
+        conversation-driver ("SearchTerm : #{value(action.order.destinations[0].destinationName)}")
       }
     }
   }

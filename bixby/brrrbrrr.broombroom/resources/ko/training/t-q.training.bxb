@@ -1,8 +1,12 @@
 train (t-qq9o9aw2vnydkstgidw1ut8w6) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (다왔어)[v:ArrivalButtonState:도착했어]")
-  last-modified (1591261765427)
+  utterance ([g:CommitOrder:continue,r:UpdateOrder,v:ArrivalButtonState:도착] 다왔어)
+  last-modified (1591773423605)
 }
 train (t-qoe8h8o9bmak6a5dlqih84dgs) {
-  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (커피빈)[v:SearchTerm]으로 (가자)[v:GuideType:안내]")
-  last-modified (1591333965933)
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (커피빈)[v:SearchTerm]으로 가자")
+  last-modified (1591753100342)
+}
+train (t-qz33cl7mq3ogaqy9zf0vjw3ww) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (1번 상담실)[v:SearchTerm]")
+  last-modified (1591770209073)
 }

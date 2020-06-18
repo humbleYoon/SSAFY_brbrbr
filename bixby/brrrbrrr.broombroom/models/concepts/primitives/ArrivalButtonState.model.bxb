@@ -1,5 +1,5 @@
 enum (ArrivalButtonState) {
-  description (__DESCRIPTION__)
-  symbol ("도착했어")
+  description (이동중에서 눌리는 버튼의 상태입니다.)
+  symbol ("도착")
   symbol ("정지")
 }

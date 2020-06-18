@@ -1,0 +1,8 @@
+train (t-rbq54q7u59i21s8pdujyzavke) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (1102호 라이브 방송 강의장)[v:SearchTerm]")
+  last-modified (1591769942937)
+}
+train (t-rjfca1vczlc1fxgmbo6z14pid) {
+  utterance ("[g:CommitOrder:continue,r:UpdateOrder] (싸피 데이)[v:SearchTerm]")
+  last-modified (1591777775087)
+}
