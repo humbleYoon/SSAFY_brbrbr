@@ -4,11 +4,10 @@ import { css, jsx } from '@emotion/core'
 import { Pager } from 'react-bootstrap';
 
 import ReactPageScroller from './Scroll'
-import FirstComponent from './LandingPages/FirstComponent'
-import SecondComponent from './LandingPages/SecondComponent'
-import ThirdComponent from './LandingPages/ThirdComponent'
-import FourthComponent from './LandingPages/FourthComponent'
-import FifthComponent from './LandingPages/FifthComponent'
+import IntroComponent from './LandingPages/IntroComponent'
+import VideoComponent from './LandingPages/VideoComponent'
+import ProfileComponent from './LandingPages/ProfileComponent'
+import TutorialComponent from './LandingPages/TutorialComponent'
 
 import '../index_lan.css'
 
@@ -16,7 +15,7 @@ import '../index_lan.css'
 export default function LandingPages() {
   const [currentPage, setCurrentPage] = useState(null)
 
-  const handlePageChange = (i) => {
+  const handlePageChange = (i:any) => {
     setCurrentPage(i) // set currentPage number, to reset it from the previous selected.
   }
 
@@ -42,11 +41,10 @@ export default function LandingPages() {
         pageOnChange={handlePageChange}
         customPageNumber={currentPage}
       >
-        {/* <FirstComponent /> */}
-        <SecondComponent />
-        <ThirdComponent />
-        <FifthComponent />
-        <FourthComponent />
+        <IntroComponent />
+        <VideoComponent />
+        <ProfileComponent />
+        <TutorialComponent />
       </ReactPageScroller>
       <Pager className="pagination-additional-class">
         {pagesNumbers}
