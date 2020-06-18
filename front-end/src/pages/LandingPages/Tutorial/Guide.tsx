@@ -63,8 +63,8 @@ const Thumbnail = css`
     inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
 `
 
-export default function Tutorial(props) {
-  const NextTuto = (info) => {
+export default function Guide(props:any) {
+  const NextTuto = (info:Object) => {
     props.curplaceinfo(info)
     props.i(3)
   }

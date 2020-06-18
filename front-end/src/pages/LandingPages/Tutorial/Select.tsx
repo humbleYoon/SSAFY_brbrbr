@@ -33,8 +33,8 @@ const homeButton = css`
 `
 
 
-export default function Tutorial(props) {
-  const NextTuto = (robot) => {
+export default function Select(props:any) {
+  const NextTuto = (robot:any) => {
     props.curfloor(robot.floor)
     props.i(2)
   }

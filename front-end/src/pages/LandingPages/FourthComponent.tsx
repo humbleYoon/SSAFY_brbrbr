@@ -25,7 +25,7 @@ const TestModeLCD = css`
   width: 60%;
   height: 500px;
   // height: ${boxHeight}px;
-  margin: 1vw 7%;
+  margin: 0.5vw 7%;
   padding: 10px;
   box-shadow: 6px 6px 10px 0 rgb(163, 177, 198, 0.6),
    -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
@@ -41,7 +41,7 @@ const TestModeBixby = css`
   position: relative;
   flex: 1;
   display: inline-block;
-  margin: 1vw 7% 1vw 0;
+  margin: 0.5vw 7% 0.5vw 0;
   width: 250px;
   height: 500px;
 `
@@ -54,7 +54,7 @@ const TestModeGuide = css`
 export default () => {
   const [ pageNum, setPageNum ] = useState(0)
   const [ curFloor, setCurFloor ] = useState(null)
-  const [ curPlaceInfo, setCurPlaceInfo ] = useState(null)
+  const [ curPlaceInfo, setCurPlaceInfo ] = useState({name:'', description:'', thumburl:''})
   const [ curFloorImg, setCurFloorImg ] = useState('')
 
   useEffect (() => {
@@ -90,6 +90,7 @@ export default () => {
       {pageNum === 2 && <div css={TestModeGuide}>현재 {curFloor}층에 계시군요! {curFloor}층의 장소 정보와, 모든 층에 예정된 행사 정보를 보실 수 있어요!<br/>안내받을 장소를 선택해 주세요.</div>}
       {pageNum === 3 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 이동중입니다.<br/>도착하면 도착 버튼을 눌러 주세요!</div>}
       {pageNum === 4 && <div css={TestModeGuide}>{curFloor}층 {curPlaceInfo.name}에 도착했습니다.<br/>튜토리얼은 여기까지입니다. 이용해주셔서 고마워요!</div>}
+      {console.log(curPlaceInfo, '이게뭔뎅')}
     </React.Fragment>
   );
 };

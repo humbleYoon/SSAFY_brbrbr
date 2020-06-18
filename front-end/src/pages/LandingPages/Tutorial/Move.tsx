@@ -56,7 +56,7 @@ const imageSize = css`
 `
 
 
-export default function Tutorial(props) {
+export default function Tutorial(props:any) {
   const NextTuto = () => {
     props.i(4)
   }

@@ -1,6 +1,8 @@
 /** @jsx jsx  */
 import React from "react";
 import { css, jsx } from '@emotion/core'
+// import { Carousel } from 'react-bootstrap'
+// import Carousel from 'https://cdn.jsdelivr.net/npm/react-bootstrap-carousel@4.0.6/dist/react-bootstrap-carousel.js'
 
 const wrapper = css`
   // display: grid;
@@ -34,6 +36,44 @@ export default () => {
       <div css={boxPadding}>영역을차지하렴</div>
       <h2>{text}</h2>
       
+      {/* <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="holder.js/800x400?text=First slide&bg=373940"
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="holder.js/800x400?text=Second slide&bg=282c34"
+            alt="Third slide"
+          />
+
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="holder.js/800x400?text=Third slide&bg=20232a"
+            alt="Third slide"
+          />
+
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel> */}
+
       <table css={tableMargin}>
         <td>
           <tr><div className='videoTag'> UCC 홍보 영상 </div></tr>
@@ -52,7 +92,7 @@ export default () => {
           </tr>
         </td>
         <td>
-          <tr><div className='videoTag'> SLAM 자율주행 과정</div></tr>
+          <tr><div className='videoTag'> SLAM 자율주행 과정 </div></tr>
           <tr>
             <video controls width="350px" height="300px" css={css`margin:7px; border:none;`}>
               <source src="/video/slam.mp4" type="video/mp4" />
@@ -60,7 +100,7 @@ export default () => {
           </tr>
         </td>
         <td>
-          <tr><div className='videoTag'> 실제 자율주행 영상</div></tr>
+          <tr><div className='videoTag'> 실제 자율주행 영상 </div></tr>
           <tr>
             <video controls width="350px" height="300px" css={css`margin:7px; border:none;`}>
               <source src="/video/move.mp4" type="video/mp4" />
@@ -68,7 +108,7 @@ export default () => {
           </tr>
         </td>
       </table>      
-      <div css={css`text-align: center; margin-top: 20px;`}>More ReadMe GitHub Link : https://github.com/anyl92/RomiReadme</div>
+      <div css={css`text-align: center; margin-top: 20px;`}><a href="https://github.com/anyl92/RomiReadme">Go To More ReadMe GitHub Link</a></div>
     </div>
   );
 };
