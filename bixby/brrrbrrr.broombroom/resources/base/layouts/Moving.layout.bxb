@@ -8,32 +8,49 @@ layout-macro-def (Moving) {
     layout {
       section {
         content {
+          image {
+            url {
+              // template ("#{value(commitOrder.order.destinations[0].thumbUrl)}")
+              template ("./images/imgUrls/default.png")
+            }
+            background-color (Transparent)
+            object-fit (Cover)
+          }
           title-area {
             halign (Center)
-            slot2 {
+            slot1 {
               single-line {
                 text {
-                  style (Title_S)
+                  style (Detail_L_Soft)
                   value {
-                    template ("도착하면 아래의 버튼을 눌러주세요!")
+                    template ("도착하면 도착 버튼을 눌러주세요.")
+                  }
+                }
+              }
+            }
+          }
+          title-area {
+            halign (Center)
+            slot1 {
+              single-line {
+                text {
+                  style (Detail_L_Soft)
+                  value {
+                    template ("이동을 멈추려면 정지 버튼을 눌러주세요.")
                   }
                 }
               }
             }
           }
           image-card {
-            image-url {
-              // template ("#{value(commitOrder.order.destinations[0].thumbUrl)}")
-              template ("./images/imgUrls/default.png")
-            }
+            image-url ("images/imgUrls/arrival_font.png")
             aspect-ratio (TwentyOne_Nine)
-            image-background-color (Transparent)
-            image-object-fit (Cover)
-            text-position (Below)
+            column-size (Two)
             title-area {
-              halign (Center)
               slot1 {
-                text ("도착")
+                text {
+                  value ("")
+                }
               }
             }
             on-click {
@@ -53,32 +70,16 @@ layout-macro-def (Moving) {
               }
             }
           }
-          // 2576
-          title-area {
-            halign (Center)
-            slot2 {
-              single-line {
-                text {
-                  style (Title_XS)
-                  value {
-                    template ("정지를 원하면 아래의 버튼을 눌러주세요!")
-                  }
-                }
-              }
-            }
-          }
           image-card {
-            image-url {
-              template ("images/imgUrls/stop.png")
-            }
-            aspect-ratio (Sixteen_Nine)
-            image-background-color (Transparent)
-            image-object-fit (Cover)
-            text-position (Below)
+            image-url ("images/imgUrls/stop_font.png")
+            aspect-ratio (TwentyOne_Nine)
+            column-size (Two)
             title-area {
               halign (Center)
               slot1 {
-                text ("정지")
+                text {
+                  value ("")
+                }
               }
             }
             on-click {
