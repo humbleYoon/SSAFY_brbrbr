@@ -1,6 +1,6 @@
 import redis from '../redis/client'
 
-const startGuide = (robotCode: string) => {
+const moveTo = (robotCode: string, axis: number[]) => {
   redis.get('robot', (err, robots) => {
     if (!err) {
       const robotStatus = JSON.parse(robots)
@@ -19,7 +19,7 @@ const startGuide = (robotCode: string) => {
 
 const stopMoving = (robotCode: string) => {
   redis.get('robot', (err, robots) => {
-    if(!err) {
+    if (!err) {
       const robotStatus = JSON.parse(robots)
       const robotRequested = robotStatus[robotCode]
 
@@ -29,4 +29,4 @@ const stopMoving = (robotCode: string) => {
   })
 }
 
-export { startGuide, stopMoving }
+export { moveTo, stopMoving }

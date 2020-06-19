@@ -2,28 +2,18 @@ version: "3.3"
 
 services:
   client:
-    image: yopidev/broom-react:0.1.1
+    image: yopidev/broom-react:0.5.0
     networks:
       - web
     ports:
       - 80:80
-      - 443:443
-    volumes:
-      - ./front-end/ssl/conf:/etc/letsencrypt
-      - ./front-end/ssl/www:/var/www/certbot
     depends_on: 
       - redis
       - postgres
       - express
 
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./front-end/ssl/conf:/etc/letsencrypt
-      - ./front-end/ssl/www:/var/www/certbot
-
   express:
-    image: yopidev/broom-express:0.1.1
+    image: yopidev/broom-express:0.5.0
     networks:
       - web
       - server
@@ -51,6 +41,16 @@ services:
       - redis_data:/data
     env_file: .env.prod.db
 
+  mongo:
+    image: mongo:4.2.7-bionic
+    networks:
+      - server
+    ports: 
+      - 27017:27017
+    volumes: 
+      - mongo_data:/data/db
+    env_file: .env.prod.db
+
 networks:
   web:
     driver: overlay
@@ -60,3 +60,4 @@ networks:
 volumes:
   postgres_data:
   redis_data:
+  mongo_data:

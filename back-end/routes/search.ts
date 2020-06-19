@@ -3,7 +3,7 @@ import prisma from '../prisma/client'
 import redisRobot from '../redis/robot'
 import { emitToRobot } from './helpers'
 import validateCode from '../middlewares/validateCode'
-import { startGuide } from '../robot/mock'
+import { moveTo } from '../robot/mock'
 
 const router = express.Router()
 
@@ -47,19 +47,27 @@ router.get('/', validateCode, async (req, res) => {
 
       if (place.length > 0 || event.length > 0) {
         // 해당 층에 장소 또는 행사 있는 경우
-        if (place.length > 0){
-          res.send({place})
-          await startGuide(codeReceived)
-          await emitToRobot(req, codeReceived, 'destinations', JSON.stringify(place))
-        }
-        else {
-          res.send({event})
-          await startGuide(codeReceived)
-          await emitToRobot(req, codeReceived, 'destinations', JSON.stringify(event))
+        if (place.length > 0) {
+          res.send({ place })
+          await moveTo(codeReceived, [0, 0])
+          await emitToRobot(
+            req,
+            codeReceived,
+            'destinations',
+            JSON.stringify(place)
+          )
+        } else {
+          res.send({ event })
+          await moveTo(codeReceived, [0, 0])
+          await emitToRobot(
+            req,
+            codeReceived,
+            'destinations',
+            JSON.stringify(event)
+          )
         }
         await emitToRobot(req, codeReceived, 'changePageTo', 'guide')
-      }
-      else {
+      } else {
         const places = await prisma.place.findMany({
           where: {
             name: placeAndEventName.replace('+', ' ') as string,
@@ -76,28 +84,40 @@ router.get('/', validateCode, async (req, res) => {
 
         if (places.length == 0 && events.length == 0) {
           // 없는 장소인 경우
-          res.send({places})
-          await emitToRobot(req, codeReceived, 'destinations', JSON.stringify(places))
+          res.send({ places })
+          await emitToRobot(
+            req,
+            codeReceived,
+            'destinations',
+            JSON.stringify(places)
+          )
           await emitToRobot(req, codeReceived, 'changePageTo', 'destination')
-        }
-        else {
+        } else {
           // 다른 층인 경우
           if (places.length > 0) {
-            res.send({places})
-            await emitToRobot(req, codeReceived, 'destinations', JSON.stringify(places))
+            res.send({ places })
+            await emitToRobot(
+              req,
+              codeReceived,
+              'destinations',
+              JSON.stringify(places)
+            )
             await emitToRobot(req, codeReceived, 'changePageTo', 'destination')
-          }
-          else {
-            res.send({events})
-            await emitToRobot(req, codeReceived, 'destinations', JSON.stringify(places))
+          } else {
+            res.send({ events })
+            await emitToRobot(
+              req,
+              codeReceived,
+              'destinations',
+              JSON.stringify(events)
+            )
             await emitToRobot(req, codeReceived, 'changePageTo', 'destination')
           }
         }
       }
-    }
-    else {
+    } else {
       res.status(400).send({
-        message: 'There is no query param'
+        message: 'There is no query param',
       })
     }
   }

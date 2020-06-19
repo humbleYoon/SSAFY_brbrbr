@@ -3,6 +3,8 @@ import prisma from '../prisma/client'
 import redis from '../redis/client'
 import redisRobot, { RobotsByCode } from '../redis/robot'
 import { emitToRobot } from './helpers'
+import { moveTo } from '../robot/mock'
+import { Log } from '../models/log'
 import getRandomCode from '../utils/getRandomCode'
 import validateCode from '../middlewares/validateCode'
 import { stopMoving } from '../robot/mock'
@@ -13,6 +15,20 @@ router.get('/', async (req, res) => {
   const robots = await prisma.robot.findMany()
 
   res.send(robots)
+})
+
+router.post('/', async (req, res) => {
+  const { name, floor } = req.body
+
+  const robot = await prisma.robot.create({
+    data: {
+      name,
+      floor: Number(floor),
+    },
+  })
+
+  res.send(robot)
+  redisRobot.initRobots()
 })
 
 router.post('/', async (req, res) => {
@@ -77,6 +93,16 @@ router.get('/arrived', validateCode, async (req, res) => {
       res.send({
         isArrived: true,
       })
+
+      if (robot.destination) {
+        const log = Log.build({
+          robotName: robot.name,
+          destination: robot.destination,
+          status: '도착',
+        })
+        await log.save()
+      }
+
       emitToRobot(req, codeReceived, 'changoPageTo', 'destination')
     } else {
       res.send({
@@ -92,9 +118,21 @@ router.get('/finished', validateCode, async (req, res) => {
   const codeReceived = req.header('authCode')!
 
   try {
+    moveTo(codeReceived, [0.0, 0.0])
     const robotsByCode = await redisRobot.getRobotsByCode()
     const robot = robotsByCode[codeReceived]
+
+    if (robot.destination) {
+      const log = Log.build({
+        robotName: robot.name,
+        destination: robot.destination,
+        status: '종료',
+      })
+      await log.save()
+    }
+
     robot.status = '대기'
+    robot.destination = undefined
 
     const newRobotsByCode = {} as RobotsByCode
 
