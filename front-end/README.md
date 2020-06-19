@@ -3,11 +3,36 @@
 ![react-version](https://img.shields.io/badge/react-16.13.1-blue)
 ![typescript-version](https://img.shields.io/badge/typescript-3.9.3-blue)
 
+## Getting Started - 로봇 화면을 직접 실행해보고 싶다면..
+
+### 1. `.env` 파일 작성
+
+```
+# <프로젝트 루트 폴더>/front-end/.env.dev
+
+REACT_APP_SERVER_URL=http://localhost:3064/api/v1
+REACT_APP_SOCKET_HOST=http://localhost:3064
+```
+
+### 2. 개발 서버 구동
+
+- Node 패키지 설치
+
+```bash
+yarn
+```
+
+- 개발 서버 시작
+
+```bash
+yarn start
+```
+
 ## 컴포넌트 구조
 
-![컴포넌트 구조](./images/structure.png)
+![컴포넌트 구조](./images/structure.jpeg)
 
-## 와이어프레임
+## 로봇 화면 와이어프레임
 
 ### HomePage
 
