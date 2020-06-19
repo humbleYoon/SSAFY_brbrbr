@@ -97,7 +97,7 @@ yarn dev
 - 해당 데이터들이 관계를 맺고 있기 때문에 안정성 놎은 오픈소스 관계형 DB인 Postgres를 사용
 - Prisma 클라이언트는 Typescript 프로젝트에서 직관적인 ORM, 자체 캐시 기능 등 쉽고 빠른 데이터 관리를 도움
 
-[상세한 DB 스키마 보러가기 클릭!](../docs/DB-스키마-정리/README.md#PostgreSQL)
+[상세한 DB 스키마 보러가기 클릭!](/docs/DB%20스키마%20정리/README.md#PostgreSQL)
 
 ### Redis + Node-redis
 
@@ -105,7 +105,7 @@ yarn dev
 - 로봇 상태는 서비스 구동 중 빈번하게 수정이 일어나고 영구적인 저장이 필요하지 않기 때문에 인메모리 DB인 Redis 사용
 - Node-cluster를 구현했을 때 소켓 정보를 기억하는 수단으로 사용
 
-[상세한 DB 스키마 보러가기 클릭!](../docs/DB-스키마-정리/README.md#Redis)
+[상세한 DB 스키마 보러가기 클릭!](../docs/DB%20스키마%20정리/README.md#Redis)
 
 ### MongoDB + Mongoose
 
@@ -113,7 +113,7 @@ yarn dev
 - 신속한 저장과 대용량 데이터 적재를 위해 NoSQL DB 중 하나인 Mongo 사용
 - 가장 안정적ㅇ ORM인 Mongoose를 이용해 쉽고 빠른 개발이 가능
 
-[상세한 DB 스키마 보러가기 클릭!](../docs/DB-스키마-정리/README.md#MongoDB)
+[상세한 DB 스키마 보러가기 클릭!](../docs/DB%20스키마%20정리/README.md#MongoDB)
 
 ### RabbitMQ
 
