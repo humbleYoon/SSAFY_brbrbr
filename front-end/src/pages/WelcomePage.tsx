@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 import { PageParams } from './RobotPage'
-import * as tmImage from '@teachablemachine/image'
+// import * as tmImage from '@teachablemachine/image'
 
 const Button = css`
   /* position: absolute; */
@@ -21,57 +21,57 @@ const Button = css`
 `
 
 function WelcomePage({ socket, setPageToChange }: PageParams) {
-  const [openVal, setOpenVal] = useState(false)
+  // const [openVal, setOpenVal] = useState(false)
 
-  const URL = 'https://teachablemachine.withgoogle.com/models/YiDy9A8rs/'
-  let model: tmImage.CustomMobileNet
-  let webcam: tmImage.Webcam
+  // const URL = 'https://teachablemachine.withgoogle.com/models/YiDy9A8rs/'
+  // let model: tmImage.CustomMobileNet
+  // let webcam: tmImage.Webcam
   // let labelContainer
-  let maxPredictions
+  // let maxPredictions
 
-  useEffect(() => {
-    init()
+  // useEffect(() => {
+  //   init()
 
-    if (openVal) {
-      setPageToChange('authCode')
-    }
-  }, [openVal])
+  //   if (openVal) {
+  //     setPageToChange('authCode')
+  //   }
+  // }, [openVal])
 
-  async function init() {
-    const modelURL = URL + 'model.json'
-    const metadataURL = URL + 'metadata.json'
+  // async function init() {
+  //   const modelURL = URL + 'model.json'
+  //   const metadataURL = URL + 'metadata.json'
 
-    model = await tmImage.load(modelURL, metadataURL)
-    maxPredictions = model.getTotalClasses()
+  //   model = await tmImage.load(modelURL, metadataURL)
+  //   maxPredictions = model.getTotalClasses()
 
-    const flip = true
-    webcam = new tmImage.Webcam(200, 200, flip)
-    await webcam.setup()
-    await webcam.play()
-    window.requestAnimationFrame(loop)
+  //   const flip = true
+  //   webcam = new tmImage.Webcam(200, 200, flip)
+  //   await webcam.setup()
+  //   await webcam.play()
+  //   window.requestAnimationFrame(loop)
 
-    // document.getElementById('webcam-container')?.appendChild(webcam.canvas)
-    // labelContainer = document.getElementById('label-container')
-    // for (let i = 0; i < maxPredictions; i++) {
-    // labelContainer?.appendChild(document.createElement('div'))
-    // }
-  }
+  // document.getElementById('webcam-container')?.appendChild(webcam.canvas)
+  // labelContainer = document.getElementById('label-container')
+  // for (let i = 0; i < maxPredictions; i++) {
+  // labelContainer?.appendChild(document.createElement('div'))
+  // }
+  // }
 
-  async function loop() {
-    webcam.update()
-    await predict()
-    window.requestAnimationFrame(loop)
-  }
+  // async function loop() {
+  //   webcam.update()
+  //   await predict()
+  //   window.requestAnimationFrame(loop)
+  // }
 
-  async function predict() {
-    const prediction = await model.predict(webcam.canvas)
-    if (Number(prediction[0].probability.toFixed(2)) >= 0.7) {
-      setOpenVal(true)
-      // labelContainer.childNodes[0].innerHTML = '????!'};
-    } else {
-      setOpenVal(false)
-    }
-  }
+  // async function predict() {
+  //   const prediction = await model.predict(webcam.canvas)
+  //   if (Number(prediction[0].probability.toFixed(2)) >= 0.7) {
+  //     setOpenVal(true)
+  //     // labelContainer.childNodes[0].innerHTML = '????!'};
+  //   } else {
+  //     setOpenVal(false)
+  //   }
+  // }
 
   return (
     <div
@@ -82,7 +82,7 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
         align-items: center;
       `}
     >
-      <img src='/image/face.gif' alt="smiley face" height={350} width={350} />
+      <img src="/image/face.gif" alt="smiley face" height={350} width={350} />
       <button
         css={Button}
         onClick={() => {
@@ -93,8 +93,8 @@ function WelcomePage({ socket, setPageToChange }: PageParams) {
       </button>
       {/* <div id="webcam-container"></div> */}
       {/* <div id="label-container">{openVal}</div> */}
-      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+      {/* <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script> */}
     </div>
   )
 }
