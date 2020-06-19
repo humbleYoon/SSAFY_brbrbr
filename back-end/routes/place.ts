@@ -1,9 +1,11 @@
 import express from 'express'
 import prisma from '../prisma/client'
+import redis from '../redis/client'
 import redisRobot from '../redis/robot'
 import { emitToRobot } from './helpers'
 import validateCode from '../middlewares/validateCode'
-import { startGuide } from '../robot/mock'
+import { moveTo } from '../robot/mock'
+import { Log } from '../models/log'
 
 const router = express.Router()
 
@@ -15,7 +17,8 @@ router.get('/', validateCode, async (req, res) => {
     // 로봇 인증 번호가 함께 올 때
 
     const robotsByCode = await redisRobot.getRobotsByCode()
-    const floorOfRobot = robotsByCode[String(codeReceived)].floor
+    const robot = robotsByCode[String(codeReceived)]
+    const floorOfRobot = robot.floor
 
     if (placeName) {
       // 특정 장소 요청이 들어오면 해당 장소 데이터를 보내준다
@@ -26,11 +29,20 @@ router.get('/', validateCode, async (req, res) => {
           floor: floorOfRobot,
         },
       })
-      console.log(place)
       if (place.length > 0) {
         res.send(place)
 
-        await startGuide(codeReceived)
+        robot.destination = place[0].name
+        redis.set('robot', JSON.stringify(robotsByCode))
+
+        const log = Log.build({
+          robotName: robot.name,
+          destination: place[0].name,
+          status: '출발',
+        })
+        await log.save()
+
+        await moveTo(codeReceived, [place[0].xaxis, place[0].yaxis])
         await emitToRobot(
           req,
           codeReceived,
@@ -40,7 +52,7 @@ router.get('/', validateCode, async (req, res) => {
         await emitToRobot(req, codeReceived, 'changePageTo', 'guide')
       } else {
         // 현재 있는 층과 다른 층에 위치한 장소를 물어보는 경우
-        console.log('헤더와 이름 둘 다 있음 이름이 다른 층')
+
         const places = await prisma.place.findMany({
           where: {
             name: placeName.replace('+', ' ') as string,

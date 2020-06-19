@@ -10,6 +10,7 @@ export interface RobotStatus extends Robot {
   status?: '대기' | '이동중' | '정지' | '도착'
   onService?: boolean
   socketId?: string
+  destination?: string
 }
 
 export interface RobotsByCode {
@@ -25,6 +26,7 @@ const initRobots = async () => {
     robot.available = true
     robot.status = '대기'
     robot.onService = false
+    robot.destination = undefined
     return robot
   })
 

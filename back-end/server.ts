@@ -9,6 +9,7 @@ import passport from 'passport'
 import hpp from 'hpp'
 import helmet from 'helmet'
 import socketio from 'socket.io'
+import mongoose from 'mongoose'
 
 import socketMain from './socketMain'
 
@@ -79,6 +80,20 @@ const server = app.listen(app.get('port'), () => {
   console.log(`${app.get('port')} 포트에 연결되었습니다.`)
 })
 
+const startMongo = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL!, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    console.log('MongoDB와 연결되었습니다')
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+startMongo()
 const io = socketio(server)
 app.set('io', io)
 

@@ -1,8 +1,11 @@
 import express from 'express'
 import prisma from '../prisma/client'
+import redisRobot from '../redis/robot'
+import redis from '../redis/client'
 import { emitToRobot } from './helpers'
 import validateCode from '../middlewares/validateCode'
-import { startGuide } from '../robot/mock'
+import { moveTo } from '../robot/mock'
+import { Log } from '../models/log'
 
 const router = express.Router()
 
@@ -12,6 +15,9 @@ router.get('/', validateCode, async (req, res) => {
 
   if (codeReceived) {
     // 로봇 인증 번호가 함께 올 때
+
+    const robotsByCode = await redisRobot.getRobotsByCode()
+    const robot = robotsByCode[String(codeReceived)]
 
     if (eventName) {
       // 특정 행사 요청이 들어오면 해당 행사 데이터와 행사가 열리는 장소 데이터를 보내준다
@@ -28,7 +34,18 @@ router.get('/', validateCode, async (req, res) => {
         if (events.length > 0) {
           res.send(events)
 
-          startGuide(codeReceived)
+          moveTo(codeReceived, [events[0].place.xaxis, events[0].place.yaxis])
+
+          robot.destination = events[0].place.name
+          redis.set('robot', JSON.stringify(robotsByCode))
+
+          const log = Log.build({
+            robotName: robot.name,
+            destination: events[0].place.name,
+            status: '출발',
+          })
+          await log.save()
+
           emitToRobot(req, codeReceived, 'changePageTo', 'guide')
           emitToRobot(req, codeReceived, 'destinations', JSON.stringify(events))
         } else {
